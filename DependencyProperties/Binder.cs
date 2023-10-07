@@ -1,13 +1,10 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.DependencyProperties;
+﻿namespace WpfUtils.DependencyProperties;
 
 using System;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Data;
-using XivToolsWpf.Logging;
+using WpfUtils.Logging;
 
 public class Binder
 {

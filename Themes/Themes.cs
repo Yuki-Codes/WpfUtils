@@ -1,11 +1,8 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Themes;
+﻿namespace WpfUtils.Themes;
 
 using System.Windows;
 using System.Windows.Media;
-using XivToolsWpf.Extensions;
+using WpfUtils.Extensions;
 
 public class CustomTheme
 {

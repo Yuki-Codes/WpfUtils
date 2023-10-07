@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace System.Windows.Controls;
+﻿namespace System.Windows.Controls;
 
 using System.Windows;
 

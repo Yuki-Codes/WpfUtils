@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Meida3D.Lines;
+﻿namespace WpfUtils.Meida3D.Lines;
 
 using System;
 using System.Windows.Media.Media3D;

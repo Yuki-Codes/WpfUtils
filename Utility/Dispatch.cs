@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf;
+﻿namespace WpfUtils;
 
 using System;
 using System.Runtime.CompilerServices;

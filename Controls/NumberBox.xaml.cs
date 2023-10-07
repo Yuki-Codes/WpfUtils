@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Controls;
+﻿namespace WpfUtils.Controls;
 
 using System;
 using System.ComponentModel;
@@ -13,8 +10,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using PropertyChanged.SourceGenerator;
-using XivToolsWpf.DependencyProperties;
-using XivToolsWpf.Logging;
+using WpfUtils.DependencyProperties;
+using WpfUtils.Logging;
 using DrawPoint = System.Drawing.Point;
 using WinCur = System.Windows.Forms.Cursor;
 using WinPoint = System.Windows.Point;

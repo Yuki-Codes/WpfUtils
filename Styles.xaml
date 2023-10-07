@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:controls="clr-namespace:XivToolsWpf.Controls"
-	xmlns:converters="clr-namespace:XivToolsWpf.Converters">
+	xmlns:controls="clr-namespace:WpfUtils.Controls"
+	xmlns:converters="clr-namespace:WpfUtils.Converters">
 
 	<ResourceDictionary.MergedDictionaries>
 
@@ -32,27 +32,27 @@
 	</ResourceDictionary.MergedDictionaries>
 
 	<Style
-		BasedOn="{StaticResource XivToolsButton}"
+		BasedOn="{StaticResource WpfUtilsButton}"
 		TargetType="{x:Type Button}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsComboBox}"
+		BasedOn="{StaticResource WpfUtilsComboBox}"
 		TargetType="{x:Type ComboBox}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsListBox}"
+		BasedOn="{StaticResource WpfUtilsListBox}"
 		TargetType="{x:Type ListBox}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsListBoxItem}"
+		BasedOn="{StaticResource WpfUtilsListBoxItem}"
 		TargetType="{x:Type ListBoxItem}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsSlider}"
+		BasedOn="{StaticResource WpfUtilsSlider}"
 		TargetType="{x:Type Slider}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsToggleButton}"
+		BasedOn="{StaticResource WpfUtilsToggleButton}"
 		TargetType="{x:Type ToggleButton}" />
 
 	<Style
@@ -60,47 +60,47 @@
 		TargetType="{x:Type ScrollViewer}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsTabControl}"
+		BasedOn="{StaticResource WpfUtilsTabControl}"
 		TargetType="{x:Type TabControl}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsTextBox}"
+		BasedOn="{StaticResource WpfUtilsTextBox}"
 		TargetType="{x:Type TextBox}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsProgressBar}"
+		BasedOn="{StaticResource WpfUtilsProgressBar}"
 		TargetType="{x:Type ProgressBar}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsCheckBox}"
+		BasedOn="{StaticResource WpfUtilsCheckBox}"
 		TargetType="{x:Type CheckBox}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsMenuItem}"
+		BasedOn="{StaticResource WpfUtilsMenuItem}"
 		TargetType="{x:Type MenuItem}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsGroupBox}"
+		BasedOn="{StaticResource WpfUtilsGroupBox}"
 		TargetType="{x:Type GroupBox}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsTextBlock}"
+		BasedOn="{StaticResource WpfUtilsTextBlock}"
 		TargetType="{x:Type TextBlock}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsExpander}"
+		BasedOn="{StaticResource WpfUtilsExpander}"
 		TargetType="{x:Type Expander}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsMultiNumberBox}"
+		BasedOn="{StaticResource WpfUtilsMultiNumberBox}"
 		TargetType="{x:Type controls:MultiNumberBox}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsSlider}"
+		BasedOn="{StaticResource WpfUtilsSlider}"
 		TargetType="{x:Type controls:Slider}" />
 
 	<Style
-		BasedOn="{StaticResource XivToolsSlider}"
+		BasedOn="{StaticResource WpfUtilsSlider}"
 		TargetType="{x:Type controls:RelativeSlider}" />
 
 	<!--  Custom converters  -->

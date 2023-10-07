@@ -1,11 +1,11 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:XivtoolsWpf="clr-namespace:XivToolsWpf.Controls"
-	xmlns:converters="clr-namespace:XivToolsWpf.Converters">
+	xmlns:XivtoolsWpf="clr-namespace:WpfUtils.Controls"
+	xmlns:converters="clr-namespace:WpfUtils.Converters">
 
 	<Style
-		x:Key="XivToolsTabControl"
+		x:Key="WpfUtilsTabControl"
 		TargetType="{x:Type TabControl}">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="Padding" Value="3" />
@@ -25,7 +25,7 @@
 						<Border
 							Margin="{TemplateBinding Padding}"
 							Background="{TemplateBinding Background}"
-							Style="{DynamicResource XivToolsControlBorder}">
+							Style="{DynamicResource WpfUtilsControlBorder}">
 
 							<UniformGrid
 								Margin="3"
@@ -76,7 +76,7 @@
 									ContentTemplate="{TemplateBinding HeaderTemplate}"
 									IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}"
 									IsEnabled="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType=TabItem}}"
-									Style="{DynamicResource XivToolsToggleButton}" />
+									Style="{DynamicResource WpfUtilsToggleButton}" />
 
 							</ControlTemplate>
 						</Setter.Value>
@@ -89,7 +89,7 @@
 
 
 	<Style
-		x:Key="XivToolsSideTabs"
+		x:Key="WpfUtilsSideTabs"
 		TargetType="TabControl">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="BorderThickness" Value="0" />
@@ -113,7 +113,7 @@
 							Grid.Column="0"
 							Margin="{TemplateBinding Padding}"
 							Background="{TemplateBinding Background}"
-							Style="{DynamicResource XivToolsControlBorder}">
+							Style="{DynamicResource WpfUtilsControlBorder}">
 
 							<UniformGrid
 								Margin="3"
@@ -165,7 +165,7 @@
 									ContentTemplate="{TemplateBinding HeaderTemplate}"
 									IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}"
 									IsEnabled="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType=TabItem}}"
-									Style="{DynamicResource XivToolsToggleButton}" />
+									Style="{DynamicResource WpfUtilsToggleButton}" />
 
 							</ControlTemplate>
 						</Setter.Value>
@@ -176,7 +176,7 @@
 	</Style>
 
 	<Style
-		x:Key="XivToolsSideTabItem"
+		x:Key="WpfUtilsSideTabItem"
 		TargetType="TabItem">
 		<Setter Property="Margin" Value="0,1,0,1" />
 		<Setter Property="Height" Value="42" />
@@ -199,7 +199,7 @@
 							x:Name="HoverBorder"
 							Opacity="0"
 							SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-							Style="{DynamicResource XivToolsControlHoverBorder}" />
+							Style="{DynamicResource WpfUtilsControlHoverBorder}" />
 
 						<ContentPresenter
 							x:Name="ContentSite"

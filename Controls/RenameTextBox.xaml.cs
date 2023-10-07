@@ -1,13 +1,10 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Controls;
+﻿namespace WpfUtils.Controls;
 
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using XivToolsWpf.DependencyProperties;
+using WpfUtils.DependencyProperties;
 
 /// <summary>
 /// Interaction logic for RenameTextBox.xaml.

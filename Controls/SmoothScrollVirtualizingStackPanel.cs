@@ -1,12 +1,9 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Controls;
+﻿namespace WpfUtils.Controls;
 
 using System.Threading.Tasks;
 using System;
 using System.Windows.Controls;
-using XivToolsWpf.Behaviours;
+using WpfUtils.Behaviours;
 
 public class SmoothScrollVirtualizingStackPanel : VirtualizingStackPanel
 {

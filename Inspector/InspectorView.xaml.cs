@@ -1,16 +1,13 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Inspector;
+﻿namespace WpfUtils.Inspector;
 
 using System;
 using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Windows.Controls;
-using XivToolsWpf.DependencyProperties;
+using WpfUtils.DependencyProperties;
 using PropertyChanged.SourceGenerator;
 
-using Binder = XivToolsWpf.DependencyProperties.Binder;
+using Binder = WpfUtils.DependencyProperties.Binder;
 using System.ComponentModel;
 using System.Windows;
 

@@ -4,7 +4,7 @@
 	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
 	<ControlTemplate
-		x:Key="XivToolsExpanderTemplate"
+		x:Key="WpfUtilsExpanderTemplate"
 		TargetType="{x:Type Expander}">
 
 		<Grid KeyboardNavigation.TabNavigation="Local">
@@ -43,7 +43,7 @@
 				Margin="2,0,0,0"
 				Foreground="{TemplateBinding Foreground}"
 				IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-				Style="{DynamicResource XivToolsToggleButton}">
+				Style="{DynamicResource WpfUtilsToggleButton}">
 				<Path
 					Margin="3"
 					HorizontalAlignment="Center"
@@ -118,9 +118,9 @@
 	</ControlTemplate>
 
 	<Style
-		x:Key="XivToolsExpander"
+		x:Key="WpfUtilsExpander"
 		TargetType="{x:Type Expander}">
-		<Setter Property="Template" Value="{StaticResource XivToolsExpanderTemplate}" />
+		<Setter Property="Template" Value="{StaticResource WpfUtilsExpanderTemplate}" />
 		<Setter Property="Margin" Value="1" />
 	</Style>
 

@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Logging;
+﻿namespace WpfUtils.Logging;
 
 using System;
 

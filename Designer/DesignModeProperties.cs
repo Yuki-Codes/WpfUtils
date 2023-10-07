@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Designer;
+﻿namespace WpfUtils.Designer;
 
 using System.ComponentModel;
 using System.Windows;

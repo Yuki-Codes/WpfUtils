@@ -1,15 +1,15 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:controls="clr-namespace:XivToolsWpf.Controls">
+	xmlns:controls="clr-namespace:WpfUtils.Controls">
 
 	<ControlTemplate
-		x:Key="XivToolsCheckBoxTemplate"
+		x:Key="WpfUtilsCheckBoxTemplate"
 		TargetType="{x:Type CheckBox}">
 
 		<Border
 			Background="{TemplateBinding Background}"
-			Style="{DynamicResource XivToolsControlBorder}">
+			Style="{DynamicResource WpfUtilsControlBorder}">
 			<Grid x:Name="Content">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
@@ -31,7 +31,7 @@
 					BorderThickness="1"
 					CornerRadius="6,0,0,6"
 					Opacity="0"
-					Style="{DynamicResource XivToolsControlHoverBorder}" />
+					Style="{DynamicResource WpfUtilsControlHoverBorder}" />
 
 				<Ellipse
 					x:Name="CheckMark"
@@ -139,25 +139,25 @@
 	</ControlTemplate>
 
 	<Style
-		x:Key="XivToolsCheckBox"
+		x:Key="WpfUtilsCheckBox"
 		TargetType="{x:Type CheckBox}">
 
 		<Setter Property="Height" Value="26" />
 		<Setter Property="SnapsToDevicePixels" Value="true" />
 		<Setter Property="OverridesDefaultStyle" Value="true" />
-		<Setter Property="Template" Value="{StaticResource XivToolsCheckBoxTemplate}" />
+		<Setter Property="Template" Value="{StaticResource WpfUtilsCheckBoxTemplate}" />
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 	</Style>
 
 
 	<ControlTemplate
-		x:Key="XivToolsLockCheckBoxTemplate"
+		x:Key="WpfUtilsLockCheckBoxTemplate"
 		TargetType="{x:Type CheckBox}">
 
 		<Border
 			Background="{TemplateBinding Background}"
-			Style="{DynamicResource XivToolsControlBorder}">
+			Style="{DynamicResource WpfUtilsControlBorder}">
 			<Grid x:Name="Content">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
@@ -169,7 +169,7 @@
 					Grid.Column="0"
 					Width="25"
 					CornerRadius="6,0,0,6"
-					Style="{DynamicResource XivToolsControlBorder}" />
+					Style="{DynamicResource WpfUtilsControlBorder}" />
 
 				<Border
 					x:Name="HoverBorder"
@@ -178,7 +178,7 @@
 					BorderThickness="1"
 					CornerRadius="6,0,0,6"
 					Opacity="0"
-					Style="{DynamicResource XivToolsControlHoverBorder}" />
+					Style="{DynamicResource WpfUtilsControlHoverBorder}" />
 
 				<controls:IconBlock
 					x:Name="CheckMark"
@@ -285,14 +285,14 @@
 	</ControlTemplate>
 
 	<Style
-		x:Key="XivToolsLockCheckBox"
+		x:Key="WpfUtilsLockCheckBox"
 		TargetType="{x:Type CheckBox}">
 
 		<Setter Property="Height" Value="22" />
 		<Setter Property="Margin" Value="0,1,1,1" />
 		<Setter Property="SnapsToDevicePixels" Value="true" />
 		<Setter Property="OverridesDefaultStyle" Value="true" />
-		<Setter Property="Template" Value="{StaticResource XivToolsLockCheckBoxTemplate}" />
+		<Setter Property="Template" Value="{StaticResource WpfUtilsLockCheckBoxTemplate}" />
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 	</Style>

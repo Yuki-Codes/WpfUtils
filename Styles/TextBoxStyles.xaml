@@ -3,7 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 	<Style
-		x:Key="XivToolsTextBox"
+		x:Key="WpfUtilsTextBox"
 		TargetType="{x:Type TextBox}">
 
 		<Setter Property="Margin" Value="0,1" />
@@ -98,7 +98,7 @@
 
 						<Border
 							Background="{TemplateBinding Background}"
-							Style="{DynamicResource XivToolsControlBorder}" />
+							Style="{DynamicResource WpfUtilsControlBorder}" />
 
 						<Border
 							x:Name="HoverHighlight"
@@ -109,7 +109,7 @@
 							BorderThickness="1"
 							CornerRadius="4"
 							Opacity="0"
-							Style="{DynamicResource XivToolsControlBorder}" />
+							Style="{DynamicResource WpfUtilsControlBorder}" />
 
 						<Border
 							x:Name="SelectedHighlight"
@@ -120,7 +120,7 @@
 							BorderThickness="1"
 							CornerRadius="4"
 							Opacity="0"
-							Style="{DynamicResource XivToolsControlBorder}" />
+							Style="{DynamicResource WpfUtilsControlBorder}" />
 
 						<ScrollViewer
 							Name="PART_ContentHost"

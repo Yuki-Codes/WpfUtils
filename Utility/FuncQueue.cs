@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Utils;
+﻿namespace WpfUtils.Utils;
 
 using System;
 using System.Threading.Tasks;

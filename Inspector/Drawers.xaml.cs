@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Inspector;
+﻿namespace WpfUtils.Inspector;
 
 using System;
 using System.Collections;
@@ -33,7 +30,7 @@ public static class Drawers
 		if (resourceDictionary == null)
 		{
 			resourceDictionary = new();
-			resourceDictionary.Source = new Uri("XivToolsWpf;component/Inspector/Drawers.xaml", UriKind.RelativeOrAbsolute);
+			resourceDictionary.Source = new Uri("wpfUtils;component/Inspector/Drawers.xaml", UriKind.RelativeOrAbsolute);
 		}
 
 		foreach (object? item in resourceDictionary)

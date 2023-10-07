@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.DependencyProperties;
+﻿namespace WpfUtils.DependencyProperties;
 
 using System.Windows;
 

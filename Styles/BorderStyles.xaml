@@ -3,7 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 	<Style
-		x:Key="XivToolsControlHoverBorder"
+		x:Key="WpfUtilsControlHoverBorder"
 		TargetType="{x:Type Border}">
 		<Setter Property="Background" Value="{DynamicResource ControlHighlightBrush}" />
 		<Setter Property="BorderThickness" Value="0" />
@@ -28,7 +28,7 @@
 	</Style>
 
 	<Style
-		x:Key="XivToolsControlBorder"
+		x:Key="WpfUtilsControlBorder"
 		TargetType="{x:Type Border}">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="BorderThickness" Value="0" />
@@ -41,7 +41,7 @@
 	</Style>
 
 	<Style
-		x:Key="XivToolsSelectedBorder"
+		x:Key="WpfUtilsSelectedBorder"
 		TargetType="{x:Type Border}">
 		<Setter Property="Background" Value="{DynamicResource TrimBrush}" />
 		<Setter Property="BorderThickness" Value="0" />
@@ -55,7 +55,7 @@
 	</Style>
 
 	<Style
-		x:Key="XivToolsKeyboardFocusBorder"
+		x:Key="WpfUtilsKeyboardFocusBorder"
 		TargetType="{x:Type Border}">
 		<Setter Property="BorderBrush" Value="{DynamicResource TrimBrush}" />
 		<Setter Property="BorderThickness" Value="1" />

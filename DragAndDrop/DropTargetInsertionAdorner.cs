@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.DragAndDrop;
+﻿namespace WpfUtils.DragAndDrop;
 
 using System.Windows;
 using System.Windows.Media;

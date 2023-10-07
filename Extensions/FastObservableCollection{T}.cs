@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Extensions;
+﻿namespace WpfUtils.Extensions;
 
 using System.Collections;
 using System.Collections.Generic;

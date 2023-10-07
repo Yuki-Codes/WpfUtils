@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Controls;
+﻿namespace WpfUtils.Controls;
 
 using System.Reflection;
 using System.Windows.Input;

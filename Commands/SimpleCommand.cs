@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Commands;
+﻿namespace WpfUtils.Commands;
 
 using System;
 using System.Windows.Input;

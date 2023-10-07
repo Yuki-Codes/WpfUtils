@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace System.Windows;
+﻿namespace System.Windows;
 
 using System.Collections.Generic;
 using System.Windows.Media;

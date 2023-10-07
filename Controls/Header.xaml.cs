@@ -1,12 +1,9 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Controls;
+﻿namespace WpfUtils.Controls;
 
 using System.Windows.Controls;
 using FontAwesome.Sharp;
 using FontAwesome.Sharp.Pro;
-using XivToolsWpf.DependencyProperties;
+using WpfUtils.DependencyProperties;
 
 public partial class Header : UserControl
 {

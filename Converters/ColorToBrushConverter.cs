@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Converters;
+﻿namespace WpfUtils.Converters;
 
 using System.Windows.Data;
 using System.Windows.Media;

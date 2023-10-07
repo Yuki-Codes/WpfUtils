@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Converters;
+﻿namespace WpfUtils.Converters;
 
 public class BoolInversionConverter : ConverterBase<bool, bool>
 {

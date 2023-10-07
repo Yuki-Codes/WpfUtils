@@ -3,7 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 	<Style
-		x:Key="XivToolsSliderThumb"
+		x:Key="WpfUtilsSliderThumb"
 		TargetType="{x:Type Thumb}">
 
 		<Setter Property="Width" Value="12" />
@@ -32,7 +32,7 @@
 							BorderBrush="{DynamicResource ControlBackgroundBrush}"
 							BorderThickness="2"
 							CornerRadius="3"
-							Style="{DynamicResource XivToolsControlHoverBorder}" />
+							Style="{DynamicResource WpfUtilsControlHoverBorder}" />
 					</Grid>
 
 					<ControlTemplate.Triggers>
@@ -54,13 +54,13 @@
 
 
 	<ControlTemplate
-		x:Key="XivToolsSliderTrackButtonLeftTemplate"
+		x:Key="WpfUtilsSliderTrackButtonLeftTemplate"
 		TargetType="{x:Type RepeatButton}">
 
 		<Border
 			x:Name="Hover"
 			CornerRadius="4,0,0,4"
-			Style="{DynamicResource XivToolsControlHoverBorder}">
+			Style="{DynamicResource WpfUtilsControlHoverBorder}">
 			<Path
 				Margin="3"
 				HorizontalAlignment="Left"
@@ -73,12 +73,12 @@
 	</ControlTemplate>
 
 	<ControlTemplate
-		x:Key="XivToolsSliderTrackButtonRightTemplate"
+		x:Key="WpfUtilsSliderTrackButtonRightTemplate"
 		TargetType="{x:Type RepeatButton}">
 		<Border
 			x:Name="Hover"
 			CornerRadius="0,4,4,0"
-			Style="{DynamicResource XivToolsControlHoverBorder}">
+			Style="{DynamicResource WpfUtilsControlHoverBorder}">
 			<Path
 				Margin="3"
 				HorizontalAlignment="Right"
@@ -91,7 +91,7 @@
 	</ControlTemplate>
 
 	<Style
-		x:Key="XivToolsSliderTrackButton"
+		x:Key="WpfUtilsSliderTrackButton"
 		TargetType="{x:Type RepeatButton}">
 		<Setter Property="Foreground" Value="{DynamicResource ControlHighlightBrush}" />
 		<Setter Property="Margin" Value="0" />
@@ -133,21 +133,21 @@
 	</Style>
 
 	<Style
-		x:Key="XivToolsSliderTrackButtonLeft"
-		BasedOn="{StaticResource XivToolsSliderTrackButton}"
+		x:Key="WpfUtilsSliderTrackButtonLeft"
+		BasedOn="{StaticResource WpfUtilsSliderTrackButton}"
 		TargetType="{x:Type RepeatButton}">
-		<Setter Property="Template" Value="{StaticResource XivToolsSliderTrackButtonLeftTemplate}" />
+		<Setter Property="Template" Value="{StaticResource WpfUtilsSliderTrackButtonLeftTemplate}" />
 	</Style>
 
 	<Style
-		x:Key="XivToolsSliderTrackButtonRight"
-		BasedOn="{StaticResource XivToolsSliderTrackButton}"
+		x:Key="WpfUtilsSliderTrackButtonRight"
+		BasedOn="{StaticResource WpfUtilsSliderTrackButton}"
 		TargetType="{x:Type RepeatButton}">
-		<Setter Property="Template" Value="{StaticResource XivToolsSliderTrackButtonRightTemplate}" />
+		<Setter Property="Template" Value="{StaticResource WpfUtilsSliderTrackButtonRightTemplate}" />
 	</Style>
 
 	<Style
-		x:Key="XivToolsSlider"
+		x:Key="WpfUtilsSlider"
 		TargetType="{x:Type Slider}">
 
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
@@ -162,7 +162,7 @@
 					<Grid>
 						<Border
 							Background="{TemplateBinding Background}"
-							Style="{DynamicResource XivToolsControlBorder}" />
+							Style="{DynamicResource WpfUtilsControlBorder}" />
 
 
 
@@ -176,7 +176,7 @@
 									Command="Slider.DecreaseSmall"
 									Focusable="False"
 									KeyboardNavigation.IsTabStop="False"
-									Style="{StaticResource XivToolsSliderTrackButtonLeft}" />
+									Style="{StaticResource WpfUtilsSliderTrackButtonLeft}" />
 							</Track.DecreaseRepeatButton>
 							<Track.IncreaseRepeatButton>
 								<RepeatButton
@@ -184,7 +184,7 @@
 									Command="Slider.IncreaseSmall"
 									Focusable="False"
 									KeyboardNavigation.IsTabStop="False"
-									Style="{StaticResource XivToolsSliderTrackButtonRight}" />
+									Style="{StaticResource WpfUtilsSliderTrackButtonRight}" />
 							</Track.IncreaseRepeatButton>
 							<Track.Thumb>
 								<Thumb
@@ -193,7 +193,7 @@
 									Focusable="False"
 									Foreground="{TemplateBinding Foreground}"
 									KeyboardNavigation.IsTabStop="False"
-									Style="{StaticResource XivToolsSliderThumb}" />
+									Style="{StaticResource WpfUtilsSliderThumb}" />
 							</Track.Thumb>
 						</Track>
 
@@ -201,7 +201,7 @@
 							x:Name="KeyboardFocusBorder"
 							IsHitTestVisible="False"
 							Opacity="0"
-							Style="{DynamicResource XivToolsKeyboardFocusBorder}" />
+							Style="{DynamicResource WpfUtilsKeyboardFocusBorder}" />
 					</Grid>
 
 					<ControlTemplate.Triggers>

@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Controls;
+﻿namespace WpfUtils.Controls;
 
 using PropertyChanged.SourceGenerator;
 using System;
@@ -10,8 +7,8 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
-using XivToolsWpf;
-using XivToolsWpf.DependencyProperties;
+using WpfUtils;
+using WpfUtils.DependencyProperties;
 
 public partial class MultiNumberBox : TextBox
 {

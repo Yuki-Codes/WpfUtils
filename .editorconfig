@@ -2,7 +2,6 @@
 
 [*.cs]
 indent_style = tab
-file_header_template = © XIV-Tools.\nLicensed under the MIT license.
 csharp_style_namespace_declarations = file_scoped:warning
 
 dotnet_diagnostic.SA1000.severity = none

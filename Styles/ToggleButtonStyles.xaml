@@ -3,7 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 	<ControlTemplate
-		x:Key="XivToolsToggleButtonTemplate"
+		x:Key="WpfUtilsToggleButtonTemplate"
 		TargetType="{x:Type ToggleButton}">
 
 		<Grid
@@ -13,18 +13,18 @@
 			<Border
 				x:Name="BackgroundBorder"
 				Background="{TemplateBinding Background}"
-				Style="{DynamicResource XivToolsControlBorder}" />
+				Style="{DynamicResource WpfUtilsControlBorder}" />
 
 			<Border
 				x:Name="HoverBorder"
 				Opacity="0"
 				SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-				Style="{DynamicResource XivToolsControlHoverBorder}" />
+				Style="{DynamicResource WpfUtilsControlHoverBorder}" />
 
 			<Border
 				x:Name="KeyboardFocusBorder"
 				Opacity="0"
-				Style="{DynamicResource XivToolsKeyboardFocusBorder}" />
+				Style="{DynamicResource WpfUtilsKeyboardFocusBorder}" />
 
 			<Border
 				x:Name="Border"
@@ -190,7 +190,7 @@
 	</ControlTemplate>
 
 	<Style
-		x:Key="XivToolsToggleButton"
+		x:Key="WpfUtilsToggleButton"
 		TargetType="{x:Type ToggleButton}">
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
@@ -204,7 +204,7 @@
 		<Setter Property="MinHeight" Value="18" />
 		<Setter Property="SnapsToDevicePixels" Value="True" />
 		<Setter Property="Height" Value="26" />
-		<Setter Property="Template" Value="{StaticResource XivToolsToggleButtonTemplate}" />
+		<Setter Property="Template" Value="{StaticResource WpfUtilsToggleButtonTemplate}" />
 	</Style>
 
 </ResourceDictionary>

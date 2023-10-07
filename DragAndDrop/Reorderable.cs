@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.DragAndDrop;
+﻿namespace WpfUtils.DragAndDrop;
 
 using System;
 using System.Collections;
@@ -10,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using XivToolsWpf.Behaviours;
+using WpfUtils.Behaviours;
 
 public class Reorderable : Behaviour
 {

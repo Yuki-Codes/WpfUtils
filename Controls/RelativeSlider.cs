@@ -1,11 +1,8 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Controls;
+﻿namespace WpfUtils.Controls;
 
 using System.Windows;
 using System.Windows.Input;
-using XivToolsWpf.DependencyProperties;
+using WpfUtils.DependencyProperties;
 
 public class RelativeSlider : Slider
 {

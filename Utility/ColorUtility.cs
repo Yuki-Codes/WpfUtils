@@ -1,7 +1,4 @@
-﻿// © XIV-Tools.
-// Licensed under the MIT license.
-
-namespace XivToolsWpf.Utility;
+﻿namespace WpfUtils.Utility;
 
 using System;
 using System.Windows.Media;

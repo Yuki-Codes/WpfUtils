@@ -1,12 +1,12 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:behaviours="clr-namespace:XivToolsWpf.Behaviours"
-	xmlns:controls="clr-namespace:XivToolsWpf.Controls"
+	xmlns:behaviours="clr-namespace:WpfUtils.Behaviours"
+	xmlns:controls="clr-namespace:WpfUtils.Controls"
 	xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes">
 
 	<Style
-		x:Key="XivToolsSwitchSelectorNoBorder"
+		x:Key="WpfUtilsSwitchSelectorNoBorder"
 		TargetType="{x:Type ListBox}">
 
 		<Setter Property="Height" Value="26" />
@@ -45,7 +45,7 @@
 									Background="Transparent"
 									IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"
 									IsEnabled="{TemplateBinding IsEnabled}"
-									Style="{DynamicResource XivToolsToggleButton}">
+									Style="{DynamicResource WpfUtilsToggleButton}">
 
 									<ContentPresenter
 										x:Name="Content"
@@ -63,14 +63,14 @@
 	</Style>
 
 	<Style
-		x:Key="XivToolsSwitchSelector"
-		BasedOn="{StaticResource XivToolsSwitchSelectorNoBorder}"
+		x:Key="WpfUtilsSwitchSelector"
+		BasedOn="{StaticResource WpfUtilsSwitchSelectorNoBorder}"
 		TargetType="{x:Type ListBox}">
 
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ListBox}">
-					<Border Style="{DynamicResource XivToolsControlBorder}">
+					<Border Style="{DynamicResource WpfUtilsControlBorder}">
 						<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
 					</Border>
 				</ControlTemplate>
@@ -79,7 +79,7 @@
 	</Style>
 
 	<Style
-		x:Key="XivToolsListBoxItem"
+		x:Key="WpfUtilsListBoxItem"
 		TargetType="{x:Type ListBoxItem}">
 
 
@@ -199,9 +199,9 @@
 	</Style>
 
 	<Style
-		x:Key="XivToolsListBox"
+		x:Key="WpfUtilsListBox"
 		TargetType="{x:Type ListBox}">
-		<Setter Property="ItemContainerStyle" Value="{DynamicResource XivToolsListBoxItem}" />
+		<Setter Property="ItemContainerStyle" Value="{DynamicResource WpfUtilsListBoxItem}" />
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="BorderThickness" Value="0" />
 		<Setter Property="BorderBrush" Value="Transparent" />
@@ -229,7 +229,7 @@
 						BorderBrush="{TemplateBinding BorderBrush}"
 						BorderThickness="{TemplateBinding BorderThickness}"
 						SnapsToDevicePixels="true"
-						Style="{DynamicResource XivToolsControlBorder}">
+						Style="{DynamicResource WpfUtilsControlBorder}">
 						<ScrollViewer
 							Padding="{TemplateBinding Padding}"
 							Focusable="false">

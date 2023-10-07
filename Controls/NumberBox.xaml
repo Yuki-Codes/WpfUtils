@@ -1,10 +1,10 @@
 ﻿<UserControl
-	x:Class="XivToolsWpf.Controls.NumberBox"
+	x:Class="WpfUtils.Controls.NumberBox"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:converters="clr-namespace:XivToolsWpf.Converters"
+	xmlns:converters="clr-namespace:WpfUtils.Converters"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:local="clr-namespace:XivToolsWpf.Controls"
+	xmlns:local="clr-namespace:WpfUtils.Controls"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	Height="26"
 	Margin="1"
@@ -31,7 +31,7 @@
 			Margin="0,0,2,0"
 			Background="{DynamicResource ControlBackgroundBrush}"
 			CornerRadius="6,0,0,6"
-			Style="{DynamicResource XivToolsControlBorder}">
+			Style="{DynamicResource WpfUtilsControlBorder}">
 			<Slider
 				x:Name="InputSlider"
 				Margin="0"
@@ -57,7 +57,7 @@
 			Padding="0"
 			Background="{DynamicResource ControlBackgroundBrush}"
 			CornerRadius="0, 6, 6, 0"
-			Style="{DynamicResource XivToolsControlBorder}">
+			Style="{DynamicResource WpfUtilsControlBorder}">
 
 			<Grid>
 				<Grid.ColumnDefinitions>
@@ -98,7 +98,7 @@
 					VerticalContentAlignment="Center"
 					Click="OnDownClick"
 					Content="-"
-					Style="{DynamicResource XivToolsRepeatButton}" />
+					Style="{DynamicResource WpfUtilsRepeatButton}" />
 
 				<RepeatButton
 					x:Name="UpButton"
@@ -110,7 +110,7 @@
 					VerticalContentAlignment="Center"
 					Click="OnUpClick"
 					Content="+"
-					Style="{DynamicResource XivToolsRepeatButton}" />
+					Style="{DynamicResource WpfUtilsRepeatButton}" />
 			</Grid>
 
 
@@ -123,7 +123,7 @@
 			Background="Transparent"
 			BorderBrush="Red"
 			BorderThickness="1"
-			Style="{DynamicResource XivToolsControlHoverBorder}"
+			Style="{DynamicResource WpfUtilsControlHoverBorder}"
 			Visibility="Collapsed" />
 
 	</Grid>

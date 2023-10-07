@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:controls="clr-namespace:XivToolsWpf.Controls"
-	xmlns:converters="clr-namespace:XivToolsWpf.Converters"
+	xmlns:controls="clr-namespace:WpfUtils.Controls"
+	xmlns:converters="clr-namespace:WpfUtils.Converters"
 	xmlns:sys="clr-namespace:System;assembly=System.Runtime">
 
 	<converters:NumberConverter x:Key="NumberConverter" />
