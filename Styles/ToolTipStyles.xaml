@@ -38,7 +38,7 @@
 						<Border
 							x:Name="PanelBackground"
 							Background="{DynamicResource BackgroundBrush}"
-							BorderBrush="{DynamicResource BackgroundBrush}"
+							BorderBrush="{DynamicResource BackgroundLightBrush}"
 							BorderThickness="1"
 							CornerRadius="6" />
 
