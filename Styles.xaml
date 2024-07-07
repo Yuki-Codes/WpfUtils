@@ -25,6 +25,7 @@
 		<ResourceDictionary Source="Styles/ProgressBarStyles.xaml" />
 		<ResourceDictionary Source="Styles/CheckBoxStyles.xaml" />
 		<ResourceDictionary Source="Styles/ListBoxStyles.xaml" />
+		<ResourceDictionary Source="Styles/ToolTipStyles.xaml" />
 
 		<!--  Controls  -->
 		<ResourceDictionary Source="Controls/MultiNumberBoxStyles.xaml" />
@@ -102,6 +103,10 @@
 	<Style
 		BasedOn="{StaticResource WpfUtilsSlider}"
 		TargetType="{x:Type controls:RelativeSlider}" />
+
+	<Style
+		BasedOn="{StaticResource WpfUtilsToolTip}"
+		TargetType="{x:Type ToolTip}" />
 
 	<!--  Custom converters  -->
 	<converters:StringHasContentToVisibilityConverter x:Key="StringHasContentToVisibility" />
