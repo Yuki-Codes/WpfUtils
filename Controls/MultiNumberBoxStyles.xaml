@@ -7,7 +7,7 @@
 		x:Key="WpfUtilsMultiNumberBox"
 		TargetType="{x:Type controls:MultiNumberBox}">
 
-		<Setter Property="Margin" Value="0,1" />
+		<Setter Property="Margin" Value="1" />
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
 		<Setter Property="BorderBrush" Value="{DynamicResource TrimBrush}" />
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
