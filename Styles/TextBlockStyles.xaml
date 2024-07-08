@@ -35,10 +35,10 @@
 		x:Key="Header"
 		BasedOn="{StaticResource WpfUtilsTextBlock}"
 		TargetType="{x:Type TextBlock}">
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
 		<Setter Property="HorizontalAlignment" Value="Left" />
 		<Setter Property="VerticalAlignment" Value="Center" />
-		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="FontSize" Value="14" />
 	</Style>
 
 	<Style
