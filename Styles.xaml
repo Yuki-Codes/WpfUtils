@@ -26,6 +26,7 @@
 		<ResourceDictionary Source="Styles/CheckBoxStyles.xaml" />
 		<ResourceDictionary Source="Styles/ListBoxStyles.xaml" />
 		<ResourceDictionary Source="Styles/ToolTipStyles.xaml" />
+		<ResourceDictionary Source="Styles/ResizeGripStyles.xaml" />
 
 		<!--  Controls  -->
 		<ResourceDictionary Source="Controls/MultiNumberBoxStyles.xaml" />
