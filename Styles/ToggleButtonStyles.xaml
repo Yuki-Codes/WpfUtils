@@ -23,6 +23,7 @@
 
 			<Border
 				x:Name="KeyboardFocusBorder"
+				Margin="2"
 				Opacity="0"
 				Style="{DynamicResource WpfUtilsKeyboardFocusBorder}" />
 
