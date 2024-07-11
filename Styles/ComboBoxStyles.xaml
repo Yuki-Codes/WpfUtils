@@ -132,6 +132,9 @@
 	<Style
 		x:Key="WpfUtilsComboBoxItem"
 		TargetType="{x:Type ComboBoxItem}">
+
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ComboBoxItem}">
@@ -210,6 +213,7 @@
 		<Setter Property="Padding" Value="3,0" />
 		<Setter Property="Margin" Value="1" />
 		<Setter Property="ItemContainerStyle" Value="{StaticResource WpfUtilsComboBoxItem}" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 	</Style>
 
 	<Style

@@ -148,6 +148,7 @@
 		<Setter Property="Template" Value="{StaticResource WpfUtilsCheckBoxTemplate}" />
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 	</Style>
 
 
@@ -295,6 +296,7 @@
 		<Setter Property="Template" Value="{StaticResource WpfUtilsLockCheckBoxTemplate}" />
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 	</Style>
 
 </ResourceDictionary>

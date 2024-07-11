@@ -22,12 +22,6 @@
 				Style="{DynamicResource WpfUtilsControlHoverBorder}" />
 
 			<Border
-				x:Name="KeyboardFocusBorder"
-				Margin="2"
-				Opacity="0"
-				Style="{DynamicResource WpfUtilsKeyboardFocusBorder}" />
-
-			<Border
 				x:Name="Border"
 				Height="2"
 				Margin="6,0,6,3"
@@ -62,11 +56,6 @@
 		</Grid>
 
 		<ControlTemplate.Triggers>
-
-			<Trigger Property="IsKeyboardFocused" Value="True">
-				<Setter TargetName="KeyboardFocusBorder" Property="Opacity" Value="1" />
-			</Trigger>
-
 			<Trigger Property="IsMouseOver" Value="true">
 
 				<Trigger.EnterActions>
@@ -206,6 +195,7 @@
 		<Setter Property="SnapsToDevicePixels" Value="True" />
 		<Setter Property="Height" Value="26" />
 		<Setter Property="Template" Value="{StaticResource WpfUtilsToggleButtonTemplate}" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 	</Style>
 
 </ResourceDictionary>

@@ -10,6 +10,7 @@
 
 		<!--  Custom  -->
 		<ResourceDictionary Source="Styles/BorderStyles.xaml" />
+		<ResourceDictionary Source="Styles/FocusVisualstyles.xaml" />
 		<ResourceDictionary Source="Styles/GroupBoxStyles.xaml" />
 		<ResourceDictionary Source="Styles/ButtonStyles.xaml" />
 		<ResourceDictionary Source="Styles/TextBlockStyles.xaml" />
@@ -113,6 +114,10 @@
 	<Style
 		BasedOn="{StaticResource WpfUtilsRadioButton}"
 		TargetType="{x:Type RadioButton}" />
+
+	<Style
+		x:Key="{x:Static SystemParameters.FocusVisualStyleKey}"
+		BasedOn="{StaticResource WpfUtilsFocusVisualStyle}" />
 
 	<!--  Custom converters  -->
 	<converters:StringHasContentToVisibilityConverter x:Key="StringHasContentToVisibility" />

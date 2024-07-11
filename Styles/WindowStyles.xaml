@@ -25,7 +25,9 @@
 								Fill="{DynamicResource BackgroundLightBrush}" />
 						</Grid>
 
-						<ContentPresenter Content="{TemplateBinding Content}" />
+						<AdornerDecorator>
+							<ContentPresenter Content="{TemplateBinding Content}" />
+						</AdornerDecorator>
 
 					</Grid>
 				</ControlTemplate>

@@ -13,6 +13,7 @@
 		<Setter Property="HorizontalContentAlignment" Value="Left" />
 		<Setter Property="Padding" Value="0" />
 		<Setter Property="SnapsToDevicePixels" Value="True" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -21,11 +22,6 @@
 					<Grid
 						Cursor="Hand"
 						TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
-
-						<Border
-							x:Name="KeyboardFocusBorder"
-							Opacity="0"
-							Style="{DynamicResource WpfUtilsKeyboardFocusBorder}" />
 
 						<ContentPresenter
 							Margin="{TemplateBinding Padding}"
@@ -51,9 +47,6 @@
 					</Grid>
 
 					<ControlTemplate.Triggers>
-						<Trigger Property="IsKeyboardFocused" Value="True">
-							<Setter TargetName="KeyboardFocusBorder" Property="Opacity" Value="1" />
-						</Trigger>
 						<Trigger Property="IsEnabled" Value="false">
 							<Setter TargetName="Line" Property="Opacity" Value="0" />
 						</Trigger>
@@ -75,6 +68,7 @@
 		<Setter Property="Margin" Value="1" />
 		<Setter Property="Padding" Value="0" />
 		<Setter Property="SnapsToDevicePixels" Value="True" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -88,11 +82,6 @@
 							x:Name="HoverBorder"
 							Opacity="0"
 							Style="{DynamicResource WpfUtilsControlHoverBorder}" />
-
-						<Border
-							x:Name="KeyboardFocusBorder"
-							Opacity="0"
-							Style="{DynamicResource WpfUtilsKeyboardFocusBorder}" />
 
 						<ContentPresenter
 							x:Name="ContentRipple"
@@ -109,9 +98,6 @@
 					</Grid>
 
 					<ControlTemplate.Triggers>
-						<Trigger Property="IsKeyboardFocused" Value="True">
-							<Setter TargetName="KeyboardFocusBorder" Property="Opacity" Value="1" />
-						</Trigger>
 						<Trigger Property="IsMouseOver" Value="true">
 							<Setter TargetName="HoverBorder" Property="Opacity" Value="1" />
 						</Trigger>
@@ -144,6 +130,7 @@
 		<Setter Property="MinHeight" Value="18" />
 		<Setter Property="Height" Value="26" />
 		<Setter Property="SnapsToDevicePixels" Value="True" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -163,11 +150,6 @@
 							Opacity="0"
 							Style="{DynamicResource WpfUtilsControlHoverBorder}" />
 
-						<Border
-							x:Name="KeyboardFocusBorder"
-							Opacity="0"
-							Style="{DynamicResource WpfUtilsKeyboardFocusBorder}" />
-
 						<ContentPresenter
 							x:Name="Content"
 							Margin="{TemplateBinding Padding}"
@@ -182,10 +164,6 @@
 					</Grid>
 
 					<ControlTemplate.Triggers>
-
-						<Trigger Property="IsKeyboardFocused" Value="True">
-							<Setter TargetName="KeyboardFocusBorder" Property="Opacity" Value="1" />
-						</Trigger>
 
 						<Trigger Property="IsMouseOver" Value="true">
 							<Trigger.EnterActions>

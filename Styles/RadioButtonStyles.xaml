@@ -19,6 +19,7 @@
 		<Setter Property="SnapsToDevicePixels" Value="True" />
 		<Setter Property="Height" Value="26" />
 		<Setter Property="Template" Value="{DynamicResource WpfUtilsToggleButtonTemplate}" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 	</Style>
 
 
