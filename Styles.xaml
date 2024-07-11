@@ -27,6 +27,7 @@
 		<ResourceDictionary Source="Styles/ListBoxStyles.xaml" />
 		<ResourceDictionary Source="Styles/ToolTipStyles.xaml" />
 		<ResourceDictionary Source="Styles/ResizeGripStyles.xaml" />
+		<ResourceDictionary Source="Styles/RadioButtonStyles.xaml" />
 
 		<!--  Controls  -->
 		<ResourceDictionary Source="Controls/MultiNumberBoxStyles.xaml" />
@@ -108,6 +109,10 @@
 	<Style
 		BasedOn="{StaticResource WpfUtilsToolTip}"
 		TargetType="{x:Type ToolTip}" />
+
+	<Style
+		BasedOn="{StaticResource WpfUtilsRadioButton}"
+		TargetType="{x:Type RadioButton}" />
 
 	<!--  Custom converters  -->
 	<converters:StringHasContentToVisibilityConverter x:Key="StringHasContentToVisibility" />
