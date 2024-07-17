@@ -1,6 +1,7 @@
 ﻿namespace System.Windows;
 
 using System;
+using System.Windows.Input;
 using System.Windows.Media.Animation;
 
 public static class FrameworkElementExtensions
@@ -39,5 +40,10 @@ public static class FrameworkElementExtensions
 	{
 		Storyboard sb = self.GetResource<Storyboard>(name);
 		sb.Stop();
+	}
+
+	public static void SetFocusToWindow(this FrameworkElement self)
+	{
+		FocusManager.SetFocusedElement(FocusManager.GetFocusScope(self), Window.GetWindow(self));
 	}
 }
