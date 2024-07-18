@@ -3,7 +3,7 @@
 using System;
 using System.Windows;
 
-public abstract class Behaviour : IDisposable
+public abstract class Behaviour
 {
 	public readonly DependencyObject Host;
 
