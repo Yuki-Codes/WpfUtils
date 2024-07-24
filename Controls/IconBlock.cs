@@ -38,6 +38,14 @@ public class IconBlock : IconBlockBase<ProIcons>
 	{
 	}
 
+	public enum IconStyles
+	{
+		Solid,
+		Outline,
+		OutlineThin,
+		Brand,
+	}
+
 	public IconStyles IconStyle
 	{
 		get => (IconStyles)this.GetValue(IconStyleProperty);
@@ -99,12 +107,4 @@ public class IconBlock : IconBlockBase<ProIcons>
 			iconBlock.Icon = icon;
 		}
 	}
-}
-
-public enum IconStyles
-{
-	Solid,
-	Outline,
-	OutlineThin,
-	Brand,
 }

@@ -1,7 +1,7 @@
 ﻿namespace WpfUtils.DragAndDrop;
 
-using System.Windows.Documents;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 public abstract class DropTargetAdorner : Adorner

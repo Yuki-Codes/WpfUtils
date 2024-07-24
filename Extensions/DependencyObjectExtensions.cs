@@ -8,7 +8,16 @@ public static class DependencyObjectExtensions
 	public static T? FindParent<T>(this DependencyObject child)
 		where T : DependencyObject
 	{
-		DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+		DependencyObject parentObject;
+
+		if (child is Visual)
+		{
+			parentObject = VisualTreeHelper.GetParent(child);
+		}
+		else
+		{
+			parentObject = LogicalTreeHelper.GetParent(child);
+		}
 
 		if (parentObject == null)
 			return null;

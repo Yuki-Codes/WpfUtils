@@ -1,7 +1,7 @@
 ﻿namespace WpfUtils.Controls;
 
-using System.Threading.Tasks;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using WpfUtils.Behaviours;
 

@@ -1,8 +1,8 @@
 ﻿namespace WpfUtils.DragAndDrop;
 
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 public class DropTargetInsertionAdorner : DropTargetAdorner
 {

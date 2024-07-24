@@ -2,14 +2,13 @@
 
 using System;
 using System.Collections.ObjectModel;
-using System.Reflection;
-using System.Windows.Controls;
-using WpfUtils.DependencyProperties;
-using PropertyChanged.SourceGenerator;
-
-using Binder = WpfUtils.DependencyProperties.Binder;
 using System.ComponentModel;
+using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
+using PropertyChanged.SourceGenerator;
+using WpfUtils.DependencyProperties;
+using Binder = WpfUtils.DependencyProperties.Binder;
 
 public partial class InspectorView : UserControl
 {

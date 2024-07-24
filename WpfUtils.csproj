@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<TargetFramework>net7.0-windows</TargetFramework>
+	<TargetFramework>net8.0-windows</TargetFramework>
 	<UseWPF>true</UseWPF>
 	<AppendTargetFramework>False</AppendTargetFramework>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -28,13 +28,13 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="FontAwesome.Sharp" Version="6.1.1" />
-	<PackageReference Include="FontAwesome.Sharp.Pro" Version="5.15.4" />
+	<PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
+	<PackageReference Include="FontAwesome.Sharp.Pro" Version="6.3.0" />
 	<PackageReference Include="PropertyChanged.SourceGenerator" Version="1.0.8">
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
-	<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+	<PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556">
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>

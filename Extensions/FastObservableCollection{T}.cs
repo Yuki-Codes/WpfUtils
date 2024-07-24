@@ -117,8 +117,3 @@ public class FastObservableCollection<T> : ObservableCollection<T>, IFastObserva
 		base.OnCollectionChanged(e);
 	}
 }
-
-public interface IFastObservableCollection
-{
-	public void Replace(IEnumerable other);
-}
