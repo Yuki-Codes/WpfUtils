@@ -1,8 +1,10 @@
 ﻿namespace WpfUtils.Triggers;
 
+using System;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Media.Animation;
+using WpfUtils.Logging;
 
 public class StoryboardBindingTrigger : EventTrigger
 {
@@ -16,7 +18,7 @@ public class StoryboardBindingTrigger : EventTrigger
 		nameof(StoryboardBindingTrigger.Target),
 		typeof(FrameworkElement),
 		typeof(StoryboardBindingTrigger),
-		new(null));
+		new(null, OnTargetChanged));
 
 	private static readonly MethodInfo? ActionInvokeMethod;
 
@@ -59,10 +61,10 @@ public class StoryboardBindingTrigger : EventTrigger
 	{
 		if (d is StoryboardBindingTrigger trigger)
 		{
-			if (e.NewValue == null || trigger.Value == null)
+			if (trigger.Binding == null || trigger.Value == null)
 				return;
 
-			if (e.NewValue.Equals(trigger.Value))
+			if (trigger.Binding.Equals(trigger.Value))
 			{
 				trigger.OnEnter();
 			}
@@ -73,17 +75,46 @@ public class StoryboardBindingTrigger : EventTrigger
 		}
 	}
 
+	private static void OnTargetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if (d is StoryboardBindingTrigger trigger)
+		{
+			trigger.isEntered = null;
+			OnBindingValueChanged(d, default);
+		}
+	}
+
 	private void OnEnter()
 	{
 		this.isEntered = true;
 
-		this.EnterStoryboard?.Begin(this.Target);
+		if (this.Target == null)
+			return;
+
+		try
+		{
+			this.EnterStoryboard?.Begin(this.Target);
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex, "Error executing enter storyboard");
+		}
 	}
 
 	private void OnExit()
 	{
 		this.isEntered = false;
 
-		this.ExitStoryboard?.Begin(this.Target);
+		if (this.Target == null)
+			return;
+
+		try
+		{
+			this.ExitStoryboard?.Begin(this.Target);
+		}
+		catch (Exception ex)
+		{
+			Log.Error(ex, "Error executing exit storyboard");
+		}
 	}
 }
