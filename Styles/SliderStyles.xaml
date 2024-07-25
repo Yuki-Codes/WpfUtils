@@ -196,20 +196,7 @@
 									Style="{StaticResource WpfUtilsSliderThumb}" />
 							</Track.Thumb>
 						</Track>
-
-						<Border
-							x:Name="KeyboardFocusBorder"
-							IsHitTestVisible="False"
-							Opacity="0"
-							Style="{DynamicResource WpfUtilsKeyboardFocusBorder}" />
 					</Grid>
-
-					<ControlTemplate.Triggers>
-						<Trigger Property="IsKeyboardFocused" Value="True">
-							<Setter TargetName="KeyboardFocusBorder" Property="Opacity" Value="1" />
-						</Trigger>
-					</ControlTemplate.Triggers>
-
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
