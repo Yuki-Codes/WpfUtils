@@ -1,89 +1,30 @@
 ﻿namespace WpfUtils.Controls;
 
-using PropertyChanged.SourceGenerator;
+using DependencyPropertyGenerator;
 using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WpfUtils;
-using WpfUtils.DependencyProperties;
 
+[DependencyProperty<double>("X", DefaultBindingMode = DefaultBindingMode.TwoWay)]
+[DependencyProperty<double>("Y", DefaultBindingMode = DefaultBindingMode.TwoWay)]
+[DependencyProperty<double>("Z", DefaultBindingMode = DefaultBindingMode.TwoWay)]
+[DependencyProperty<double>("TickFrequency", DefaultValue = 1)]
+[DependencyProperty<double>("Minimum", DefaultValue = double.MinValue)]
+[DependencyProperty<double>("Maximum", DefaultValue = double.MaxValue)]
+[DependencyProperty<bool>("Wrap")]
+[DependencyProperty<object>("Prefix")]
 public partial class MultiNumberBox : TextBox
 {
-	public static readonly IBind<double> XDp = Binder.Register<double, MultiNumberBox>(nameof(X), OnValueChanged);
-	public static readonly IBind<double> YDp = Binder.Register<double, MultiNumberBox>(nameof(Y), OnValueChanged);
-	public static readonly IBind<double> ZDp = Binder.Register<double, MultiNumberBox>(nameof(Z), OnValueChanged);
-
-	public static readonly IBind<double> TickDp = Binder.Register<double, MultiNumberBox>(nameof(TickFrequency), BindMode.OneWay);
-	public static readonly IBind<double> MinDp = Binder.Register<double, MultiNumberBox>(nameof(Minimum), BindMode.OneWay);
-	public static readonly IBind<double> MaxDp = Binder.Register<double, MultiNumberBox>(nameof(Maximum), BindMode.OneWay);
-	public static readonly IBind<bool> WrapDp = Binder.Register<bool, MultiNumberBox>(nameof(Wrap), BindMode.OneWay);
-
-	public static readonly IBind<object> PrefixDp = Binder.Register<object, MultiNumberBox>(nameof(Prefix));
-
 	private Key keyHeld = Key.None;
 	private string? currentEditString = null;
 	private bool isPropagatingValueChange = false;
 
 	public MultiNumberBox()
 	{
-		this.TickFrequency = 1;
-		this.Minimum = double.MinValue;
-		this.Maximum = double.MaxValue;
-		this.Wrap = false;
-
 		this.Text = this.Display;
 		this.TextChanged += this.OnTextChanged;
-	}
-
-	public double X
-	{
-		get => XDp.Get(this);
-		set => XDp.Set(this, value);
-	}
-
-	public double Y
-	{
-		get => YDp.Get(this);
-		set => YDp.Set(this, value);
-	}
-
-	public double Z
-	{
-		get => ZDp.Get(this);
-		set => ZDp.Set(this, value);
-	}
-
-	public double TickFrequency
-	{
-		get => TickDp.Get(this);
-		set => TickDp.Set(this, value);
-	}
-
-	public double Minimum
-	{
-		get => MinDp.Get(this);
-		set => MinDp.Set(this, value);
-	}
-
-	public double Maximum
-	{
-		get => MaxDp.Get(this);
-		set => MaxDp.Set(this, value);
-	}
-
-	public bool Wrap
-	{
-		get => WrapDp.Get(this);
-		set => WrapDp.Set(this, value);
-	}
-
-	public object Prefix
-	{
-		get => PrefixDp.Get(this);
-		set => PrefixDp.Set(this, value);
 	}
 
 	public string Display
@@ -158,15 +99,30 @@ public partial class MultiNumberBox : TextBox
 		this.TickValue(e.Delta > 0);
 	}
 
-	private static void OnValueChanged(MultiNumberBox sender, double value)
+	partial void OnXChanged()
 	{
-		sender.isPropagatingValueChange = true;
+		this.OnValueChanged();
+	}
 
-		int caretIndex = sender.CaretIndex;
-		sender.Text = sender.Display;
-		sender.CaretIndex = caretIndex;
+	partial void OnYChanged()
+	{
+		this.OnValueChanged();
+	}
 
-		sender.isPropagatingValueChange = false;
+	partial void OnZChanged()
+	{
+		this.OnValueChanged();
+	}
+
+	private void OnValueChanged()
+	{
+		this.isPropagatingValueChange = true;
+
+		int caretIndex = this.CaretIndex;
+		this.Text = this.Display;
+		this.CaretIndex = caretIndex;
+
+		this.isPropagatingValueChange = false;
 	}
 
 	private void OnTextChanged(object sender, TextChangedEventArgs e)

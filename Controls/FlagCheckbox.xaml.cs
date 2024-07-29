@@ -3,47 +3,28 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using WpfUtils.DependencyProperties;
+using DependencyPropertyGenerator;
 
+[DependencyProperty<string>("Label")]
+[DependencyProperty<string>("Flag")]
+[DependencyProperty<Enum>("Value")]
 public partial class FlagCheckbox : UserControl
 {
-	public static readonly IBind<string?> LabelDp = Binder.Register<string?, FlagCheckbox>(nameof(Label));
-	public static readonly IBind<string?> FlagDp = Binder.Register<string?, FlagCheckbox>(nameof(Flag));
-	public static readonly IBind<Enum?> ValueDp = Binder.Register<Enum?, FlagCheckbox>(nameof(Value), OnValueChanged);
-
 	public FlagCheckbox()
 	{
 		this.InitializeComponent();
 		this.Checkbox.DataContext = this;
 	}
 
-	public string? Label
+	partial void OnValueChanged(Enum? newValue)
 	{
-		get => LabelDp.Get(this);
-		set => LabelDp.Set(this, value);
-	}
-
-	public Enum? Value
-	{
-		get => ValueDp.Get(this);
-		set => ValueDp.Set(this, value);
-	}
-
-	public string? Flag
-	{
-		get => FlagDp.Get(this);
-		set => FlagDp.Set(this, value);
-	}
-
-	private static void OnValueChanged(FlagCheckbox sender, Enum? value)
-	{
-		if (value == null || sender.Flag == null || sender.Value == null)
+		if (newValue == null || this.Flag == null || this.Value == null)
 			return;
 
-		Type enumType = sender.Value.GetType();
-		Enum flagValue = (Enum)Enum.Parse(enumType, sender.Flag);
+		Type enumType = this.Value.GetType();
+		Enum flagValue = (Enum)Enum.Parse(enumType, this.Flag);
 
-		sender.Checkbox.IsChecked = value.HasFlag(flagValue);
+		this.Checkbox.IsChecked = newValue.HasFlag(flagValue);
 	}
 
 	private void OnChecked(object sender, RoutedEventArgs e)

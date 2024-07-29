@@ -1,57 +1,41 @@
 ﻿namespace WpfUtils.Controls;
 
+using DependencyPropertyGenerator;
 using System;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using PropertyChanged.SourceGenerator;
-using WpfUtils.DependencyProperties;
 using WpfUtils.Logging;
+
 using DrawPoint = System.Drawing.Point;
 using WinCur = System.Windows.Forms.Cursor;
 using WinPoint = System.Windows.Point;
 
-/// <summary>
-/// Interaction logic for NumberBox.xaml.
-/// </summary>
+[DependencyProperty<double>("Value", DefaultValue=0, DefaultBindingMode = DefaultBindingMode.TwoWay)]
+[DependencyProperty<double>("TickFrequency", DefaultValue = 1)]
+[DependencyProperty<SliderModes>("Slider", DefaultValue = SliderModes.None)]
+[DependencyProperty<bool>("Buttons", DefaultValue = false)]
+[DependencyProperty<double>("Minimum", DefaultValue = double.MinValue)]
+[DependencyProperty<double>("Maximum", DefaultValue = double.MaxValue)]
+[DependencyProperty<bool>("Wrap", DefaultValue = false)]
+[DependencyProperty<double>("ValueOffset", DefaultValue = 0)]
+[DependencyProperty<bool>("UncapTextInput", DefaultValue = false)]
+[DependencyProperty<object>("Prefix")]
+[DependencyProperty<object>("Suffix")]
+[DependencyProperty<CornerRadius>("CornerRadius")]
 public partial class NumberBox : UserControl, INotifyPropertyChanged
 {
-	public static readonly IBind<double> ValueDp = Binder.Register<double, NumberBox>(nameof(Value), OnValueChanged);
-	public static readonly IBind<double> TickDp = Binder.Register<double, NumberBox>(nameof(TickFrequency), OnTickChanged, BindMode.OneWay);
-	public static readonly IBind<SliderModes> SliderDp = Binder.Register<SliderModes, NumberBox>(nameof(Slider), OnSliderChanged, BindMode.OneWay);
-	public static readonly IBind<bool> ButtonsDp = Binder.Register<bool, NumberBox>(nameof(Buttons), OnButtonsChanged, BindMode.OneWay);
-	public static readonly IBind<double> MinDp = Binder.Register<double, NumberBox>(nameof(Minimum), OnMinimumChanged, BindMode.OneWay);
-	public static readonly IBind<double> MaxDp = Binder.Register<double, NumberBox>(nameof(Maximum), OnMaximumChanged, BindMode.OneWay);
-	public static readonly IBind<bool> WrapDp = Binder.Register<bool, NumberBox>(nameof(Wrap), BindMode.OneWay);
-	public static readonly IBind<double> OffsetDp = Binder.Register<double, NumberBox>(nameof(ValueOffset), BindMode.OneWay);
-	public static readonly IBind<bool> UncapTextInputDp = Binder.Register<bool, NumberBox>(nameof(UncapTextInput), BindMode.OneWay);
-	public static readonly IBind<object> PrefixDp = Binder.Register<object, NumberBox>(nameof(Prefix), BindMode.OneWay);
-	public static readonly IBind<object> SuffixDp = Binder.Register<object, NumberBox>(nameof(Suffix), BindMode.OneWay);
-	public static readonly IBind<CornerRadius> CornerRadiusDp = Binder.Register<CornerRadius, NumberBox>(nameof(CornerRadius), OnCornerRadiusChanged, BindMode.OneWay);
-
 	private string? inputString;
 	private Key keyHeld = Key.None;
 	private double relativeSliderStart;
 	private double relativeSliderCurrent;
-	private bool bypassFocusLock = false;
 
 	public NumberBox()
 	{
 		this.InitializeComponent();
-		this.TickFrequency = 1;
-		this.Minimum = double.MinValue;
-		this.Maximum = double.MaxValue;
-		this.Wrap = false;
-		this.Text = this.DisplayValue.ToString();
-		this.Slider = SliderModes.None;
-		this.Buttons = false;
-		this.CornerRadius = new(6, 6, 6, 6);
-
 		this.ContentArea.DataContext = this;
 	}
 
@@ -64,78 +48,6 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 		Relative,
 	}
 
-	public double TickFrequency
-	{
-		get => TickDp.Get(this);
-		set => TickDp.Set(this, value);
-	}
-
-	public SliderModes Slider
-	{
-		get => SliderDp.Get(this);
-		set => SliderDp.Set(this, value);
-	}
-
-	public bool Buttons
-	{
-		get => ButtonsDp.Get(this);
-		set => ButtonsDp.Set(this, value);
-	}
-
-	public double Minimum
-	{
-		get => MinDp.Get(this);
-		set => MinDp.Set(this, value);
-	}
-
-	public double Maximum
-	{
-		get => MaxDp.Get(this);
-		set => MaxDp.Set(this, value);
-	}
-
-	public bool Wrap
-	{
-		get => WrapDp.Get(this);
-		set => WrapDp.Set(this, value);
-	}
-
-	public double ValueOffset
-	{
-		get => OffsetDp.Get(this);
-		set => OffsetDp.Set(this, value);
-	}
-
-	public double Value
-	{
-		get => ValueDp.Get(this);
-		set => ValueDp.Set(this, value);
-	}
-
-	public bool UncapTextInput
-	{
-		get => UncapTextInputDp.Get(this);
-		set => UncapTextInputDp.Set(this, value);
-	}
-
-	public object Prefix
-	{
-		get => PrefixDp.Get(this);
-		set => PrefixDp.Set(this, value);
-	}
-
-	public object Suffix
-	{
-		get => SuffixDp.Get(this);
-		set => SuffixDp.Set(this, value);
-	}
-
-	public CornerRadius CornerRadius
-	{
-		get => CornerRadiusDp.Get(this);
-		set => CornerRadiusDp.Set(this, value);
-	}
-
 	public double DisplayValue
 	{
 		get
@@ -145,7 +57,7 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 
 		set
 		{
-			this.Value = value - this.ValueOffset;
+			double newVal = value - this.ValueOffset;
 
 			if (!this.UncapTextInput)
 			{
@@ -153,17 +65,18 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 				{
 					double range = this.Maximum - this.Minimum;
 
-					if (this.Value > this.Maximum)
-						this.Value = this.Minimum + ((this.Value - this.Maximum) % range);
+					if (newVal > this.Maximum)
+						newVal = this.Minimum + ((newVal - this.Maximum) % range);
 
-					if (this.Value < this.Minimum)
-						this.Value = this.Maximum - ((this.Maximum - this.Value) % range);
+					if (newVal < this.Minimum)
+						newVal = this.Maximum - ((this.Maximum - newVal) % range);
 				}
 
-				this.Value = Math.Max(this.Minimum, this.Value);
-				this.Value = Math.Min(this.Maximum, this.Value);
+				newVal = Math.Max(this.Minimum, newVal);
+				newVal = Math.Min(this.Maximum, newVal);
 			}
 
+			this.Value = newVal;
 			this.PropertyChanged?.Invoke(this, new(nameof(NumberBox.DisplayValue)));
 		}
 	}
@@ -218,8 +131,6 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 		}
 		set
 		{
-			this.bypassFocusLock = true;
-
 			if (this.Slider == SliderModes.Absolute)
 			{
 				this.DisplayValue = value;
@@ -236,8 +147,6 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 
 				this.DisplayValue = this.relativeSliderStart + value;
 			}
-
-			this.bypassFocusLock = false;
 
 			this.PropertyChanged?.Invoke(this, new(nameof(NumberBox.SliderValue)));
 		}
@@ -322,61 +231,60 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 		this.TickValue(e.Delta > 0);
 	}
 
-	private static void OnValueChanged(NumberBox sender, double v)
+	partial void OnValueChanged(double newValue)
 	{
-		sender.PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(nameof(NumberBox.SliderValue)));
+		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderValue)));
 
-		if (!sender.bypassFocusLock && sender.InputBox.IsFocused)
-			return;
-
-		sender.Text = sender.DisplayValue.ToString("0.###");
+		int caretIndex = this.InputBox.CaretIndex;
+		this.Text = this.DisplayValue.ToString("0.###");
+		this.InputBox.CaretIndex = caretIndex;
 	}
 
-	private static void OnSliderChanged(NumberBox sender, SliderModes mode)
+	partial void OnSliderChanged(SliderModes newValue)
 	{
-		sender.SliderArea.Visibility = mode != SliderModes.None ? Visibility.Visible : Visibility.Collapsed;
-		sender.BoxBorder.CornerRadius = mode != SliderModes.None ? new(0, sender.CornerRadius.TopRight, sender.CornerRadius.BottomRight, 0) : sender.CornerRadius;
-		sender.SliderArea.CornerRadius = new(sender.CornerRadius.TopLeft, 0, 0, sender.CornerRadius.BottomLeft);
+		this.SliderArea.Visibility = newValue != SliderModes.None ? Visibility.Visible : Visibility.Collapsed;
+		this.BoxBorder.CornerRadius = newValue != SliderModes.None ? new(0, this.CornerRadius.TopRight, this.CornerRadius.BottomRight, 0) : this.CornerRadius;
+		this.SliderArea.CornerRadius = new(this.CornerRadius.TopLeft, 0, 0, this.CornerRadius.BottomLeft);
 
 		int inputColumnWidth = 64;
-		if (sender.Buttons)
+		if (this.Buttons)
 			inputColumnWidth += 48;
 
-		sender.SliderColumn.Width = mode != SliderModes.None ? new GridLength(1, GridUnitType.Star) : new GridLength(0);
-		sender.InputBoxColumn.Width = mode != SliderModes.None ? new GridLength(inputColumnWidth) : new GridLength(1, GridUnitType.Star);
+		this.SliderColumn.Width = newValue != SliderModes.None ? new GridLength(1, GridUnitType.Star) : new GridLength(0);
+		this.InputBoxColumn.Width = newValue != SliderModes.None ? new GridLength(inputColumnWidth) : new GridLength(1, GridUnitType.Star);
 
-		sender.PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(nameof(NumberBox.SliderMaximum)));
-		sender.PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(nameof(NumberBox.SliderMinimum)));
-		sender.PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(nameof(NumberBox.SliderValue)));
+		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMaximum)));
+		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMinimum)));
+		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderValue)));
 	}
 
-	private static void OnCornerRadiusChanged(NumberBox sender, CornerRadius value)
+	partial void OnCornerRadiusChanged(CornerRadius newValue)
 	{
-		sender.BoxBorder.CornerRadius = sender.Slider != SliderModes.None ? new(0, sender.CornerRadius.TopRight, sender.CornerRadius.BottomRight, 0) : sender.CornerRadius;
-		sender.SliderArea.CornerRadius = new(sender.CornerRadius.TopLeft, 0, 0, sender.CornerRadius.BottomLeft);
+		this.BoxBorder.CornerRadius = this.Slider != SliderModes.None ? new(0, this.CornerRadius.TopRight, this.CornerRadius.BottomRight, 0) : this.CornerRadius;
+		this.SliderArea.CornerRadius = new(this.CornerRadius.TopLeft, 0, 0, this.CornerRadius.BottomLeft);
 	}
 
-	private static void OnButtonsChanged(NumberBox sender, bool v)
+	partial void OnButtonsChanged(bool newValue)
 	{
-		sender.DownButton.Visibility = v ? Visibility.Visible : Visibility.Collapsed;
-		sender.UpButton.Visibility = v ? Visibility.Visible : Visibility.Collapsed;
+		this.DownButton.Visibility = newValue ? Visibility.Visible : Visibility.Collapsed;
+		this.UpButton.Visibility = newValue ? Visibility.Visible : Visibility.Collapsed;
 	}
 
-	private static void OnMinimumChanged(NumberBox sender, double value)
+	partial void OnMinimumChanged(double newValue)
 	{
-		sender.PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(nameof(NumberBox.SliderMinimum)));
+		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMinimum)));
 	}
 
-	private static void OnMaximumChanged(NumberBox sender, double value)
+	partial void OnMaximumChanged(double newValue)
 	{
-		sender.PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(nameof(NumberBox.SliderMaximum)));
+		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMaximum)));
 	}
 
-	private static void OnTickChanged(NumberBox sender, double tick)
+	partial void OnTickFrequencyChanged(double newValue)
 	{
-		sender.PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(nameof(NumberBox.SliderMaximum)));
-		sender.PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(nameof(NumberBox.SliderMinimum)));
-		sender.PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(nameof(NumberBox.SliderValue)));
+		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMaximum)));
+		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMinimum)));
+		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderValue)));
 	}
 
 	private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -388,9 +296,9 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 			window.Deactivated += this.OnWindowDeactivated;
 		}
 
-		OnSliderChanged(this, this.Slider);
-		OnButtonsChanged(this, this.Buttons);
-		OnTickChanged(this, this.TickFrequency);
+		this.OnSliderChanged(this.Slider);
+		this.OnButtonsChanged(this.Buttons);
+		this.OnTickFrequencyChanged(this.TickFrequency);
 
 		this.Text = this.DisplayValue.ToString("0.###");
 	}
@@ -492,9 +400,7 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 		if (newValue == value)
 			return;
 
-		this.bypassFocusLock = true;
 		this.DisplayValue = newValue;
-		this.bypassFocusLock = false;
 	}
 
 	private void OnDownClick(object sender, RoutedEventArgs e)

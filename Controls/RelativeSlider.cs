@@ -1,14 +1,13 @@
 ﻿namespace WpfUtils.Controls;
 
+using DependencyPropertyGenerator;
 using System.Windows;
 using System.Windows.Input;
-using WpfUtils.DependencyProperties;
 
-public class RelativeSlider : Slider
+[DependencyProperty<double>("RelativeValue", DefaultValue = 0, DefaultBindingMode = DefaultBindingMode.TwoWay)]
+[DependencyProperty<double>("RelativeRange")]
+public partial class RelativeSlider : Slider
 {
-	public static readonly IBind<double> RelativeValueDp = Binder.Register<double, RelativeSlider>(nameof(RelativeValue));
-	public static readonly IBind<double> RelativeRangeDp = Binder.Register<double, RelativeSlider>(nameof(RelativeRange), OnRelativeRangeChanged, BindMode.OneWay);
-
 	private double relativeSliderStart;
 
 	public RelativeSlider()
@@ -16,20 +15,6 @@ public class RelativeSlider : Slider
 		this.PreviewMouseDown += this.OnPreviewMouseDown;
 		this.PreviewMouseUp += this.OnPreviewMouseUp;
 		this.ValueChanged += this.OnValueChanged;
-
-		this.Value = 0;
-	}
-
-	public double RelativeValue
-	{
-		get => RelativeValueDp.Get(this);
-		set => RelativeValueDp.Set(this, value);
-	}
-
-	public double RelativeRange
-	{
-		get => RelativeRangeDp.Get(this);
-		set => RelativeRangeDp.Set(this, value);
 	}
 
 	protected override void OnPreviewKeyDown(object sender, KeyEventArgs e)
@@ -44,10 +29,10 @@ public class RelativeSlider : Slider
 		base.OnPreviewKeyUp(sender, e);
 	}
 
-	private static void OnRelativeRangeChanged(RelativeSlider sender, double value)
+	partial void OnRelativeRangeChanged(double newValue)
 	{
-		sender.Minimum = -value;
-		sender.Maximum = value;
+		this.Minimum = -newValue;
+		this.Maximum = newValue;
 	}
 
 	private void OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
