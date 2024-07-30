@@ -4,34 +4,6 @@
 	<Style
 		x:Key="ChromedWindowStyle"
 		TargetType="{x:Type Window}">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type Window}">
-					<Grid>
-						<Grid>
-
-							<Grid.RowDefinitions>
-								<RowDefinition Height="27" />
-								<RowDefinition />
-							</Grid.RowDefinitions>
-
-							<Rectangle
-								x:Name="TitleBarArea"
-								Grid.Row="0"
-								Fill="Transparent" />
-							<Rectangle
-								x:Name="BackgroundArea"
-								Grid.Row="1"
-								Fill="{DynamicResource BackgroundLightBrush}" />
-						</Grid>
-
-						<AdornerDecorator>
-							<ContentPresenter Content="{TemplateBinding Content}" />
-						</AdornerDecorator>
-
-					</Grid>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
+		<Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
 	</Style>
 </ResourceDictionary>
