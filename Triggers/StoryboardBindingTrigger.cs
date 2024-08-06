@@ -1,87 +1,39 @@
 ﻿namespace WpfUtils.Triggers;
 
 using System;
-using System.Reflection;
-using System.Windows;
 using System.Windows.Media.Animation;
 using WpfUtils.Logging;
 
-public class StoryboardBindingTrigger : EventTrigger
+public class StoryboardBindingTrigger : StoryboardBindingTriggerBase
 {
-	public static readonly DependencyProperty BindingProperty = DependencyProperty.Register(
-		nameof(StoryboardBindingTrigger.Binding),
-		typeof(object),
-		typeof(StoryboardBindingTrigger),
-		new(null, OnBindingValueChanged));
-
-	public static readonly DependencyProperty TargetProperty = DependencyProperty.Register(
-		nameof(StoryboardBindingTrigger.Target),
-		typeof(FrameworkElement),
-		typeof(StoryboardBindingTrigger),
-		new(null, OnTargetChanged));
-
-	private static readonly MethodInfo? ActionInvokeMethod;
-
-	private static readonly RoutedEvent DummyEvent = EventManager.RegisterRoutedEvent(
-	   "BindMatched",
-	   RoutingStrategy.Bubble,
-	   typeof(RoutedEventHandler),
-	   typeof(StoryboardBindingTrigger));
-
 	private bool? isEntered = null;
-
-	static StoryboardBindingTrigger()
-	{
-		ActionInvokeMethod = typeof(TriggerAction).GetMethod("Invoke", BindingFlags.NonPublic | BindingFlags.Instance, [typeof(FrameworkElement)]);
-	}
-
-	public StoryboardBindingTrigger()
-		: base(DummyEvent)
-	{
-	}
-
-	public object? Binding
-	{
-		get => this.GetValue(BindingProperty);
-		set => this.SetValue(BindingProperty, value);
-	}
-
-	public bool? Value { get; set; }
-
-	public FrameworkElement? Target
-	{
-		get => (FrameworkElement)this.GetValue(TargetProperty);
-		set => this.SetValue(TargetProperty, value);
-	}
 
 	public Storyboard? EnterStoryboard { get; set; }
 	public Storyboard? ExitStoryboard { get; set; }
 
-	private static void OnBindingValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	public bool? Value { get; set; }
+
+	protected override void OnBindingValueChanged(object? newValue)
 	{
-		if (d is StoryboardBindingTrigger trigger)
 		{
-			if (trigger.Binding == null || trigger.Value == null)
+			if (this.Binding == null || this.Value == null)
 				return;
 
-			if (trigger.Binding.Equals(trigger.Value))
+			if (this.Binding.Equals(this.Value))
 			{
-				trigger.OnEnter();
+				this.OnEnter();
 			}
-			else if (trigger.isEntered != false)
+			else if (this.isEntered != false)
 			{
-				trigger.OnExit();
+				this.OnExit();
 			}
 		}
 	}
 
-	private static void OnTargetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	protected override void OnTargetChanged()
 	{
-		if (d is StoryboardBindingTrigger trigger)
-		{
-			trigger.isEntered = null;
-			OnBindingValueChanged(d, default);
-		}
+		this.isEntered = null;
+		base.OnTargetChanged();
 	}
 
 	private void OnEnter()
