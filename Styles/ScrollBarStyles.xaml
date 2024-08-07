@@ -64,6 +64,8 @@
 		x:Key="ScrollViewerStyle"
 		TargetType="{x:Type ScrollViewer}">
 		<Setter Property="OverridesDefaultStyle" Value="True" />
+		<Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+		<Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
 
 		<Setter Property="Template">
 			<Setter.Value>
