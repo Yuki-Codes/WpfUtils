@@ -10,24 +10,18 @@
 		<Border
 			Background="{TemplateBinding Background}"
 			Style="{DynamicResource WpfUtilsControlBorder}">
-			<Grid x:Name="Content">
+			<Grid
+				x:Name="Content"
+				Cursor="Hand">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition />
 				</Grid.ColumnDefinitions>
 
 				<Border
-					x:Name="CheckBorder"
-					Grid.Column="0"
-					Width="25"
-					Background="{TemplateBinding Background}"
-					CornerRadius="6,0,0,6" />
-
-				<Border
 					x:Name="HoverBorder"
 					Grid.Column="0"
-					Width="25"
-					CornerRadius="6,0,0,6"
+					Grid.ColumnSpan="2"
 					Opacity="0"
 					Style="{DynamicResource WpfUtilsControlHoverBorder}" />
 
@@ -36,13 +30,14 @@
 					Grid.Column="0"
 					Width="6"
 					Height="6"
-					Margin="4"
+					Margin="8,0,4,0"
+					VerticalAlignment="Center"
 					Fill="{DynamicResource ForegroundLightBrush}"
 					Opacity="0.25" />
 
 				<ContentPresenter
 					Grid.Column="1"
-					Margin="0"
+					Margin="{TemplateBinding Padding}"
 					HorizontalAlignment="Left"
 					VerticalAlignment="Center"
 					RecognizesAccessKey="True" />
@@ -144,9 +139,10 @@
 		<Setter Property="SnapsToDevicePixels" Value="true" />
 		<Setter Property="OverridesDefaultStyle" Value="true" />
 		<Setter Property="Template" Value="{StaticResource WpfUtilsCheckBoxTemplate}" />
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
+		<Setter Property="Padding" Value="2,0" />
 	</Style>
 
 
