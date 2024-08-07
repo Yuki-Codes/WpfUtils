@@ -25,7 +25,6 @@ using WinPoint = System.Windows.Point;
 [DependencyProperty<bool>("UncapTextInput", DefaultValue = false)]
 [DependencyProperty<object>("Prefix")]
 [DependencyProperty<object>("Suffix")]
-[DependencyProperty<CornerRadius>("CornerRadius")]
 public partial class NumberBox : UserControl, INotifyPropertyChanged
 {
 	private string? inputString;
@@ -242,9 +241,7 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 
 	partial void OnSliderChanged(SliderModes newValue)
 	{
-		this.SliderArea.Visibility = newValue != SliderModes.None ? Visibility.Visible : Visibility.Collapsed;
-		this.BoxBorder.CornerRadius = newValue != SliderModes.None ? new(0, this.CornerRadius.TopRight, this.CornerRadius.BottomRight, 0) : this.CornerRadius;
-		this.SliderArea.CornerRadius = new(this.CornerRadius.TopLeft, 0, 0, this.CornerRadius.BottomLeft);
+		this.InputSlider.Visibility = newValue != SliderModes.None ? Visibility.Visible : Visibility.Collapsed;
 
 		int inputColumnWidth = 64;
 		if (this.Buttons)
@@ -256,12 +253,6 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMaximum)));
 		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMinimum)));
 		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderValue)));
-	}
-
-	partial void OnCornerRadiusChanged(CornerRadius newValue)
-	{
-		this.BoxBorder.CornerRadius = this.Slider != SliderModes.None ? new(0, this.CornerRadius.TopRight, this.CornerRadius.BottomRight, 0) : this.CornerRadius;
-		this.SliderArea.CornerRadius = new(this.CornerRadius.TopLeft, 0, 0, this.CornerRadius.BottomLeft);
 	}
 
 	partial void OnButtonsChanged(bool newValue)

@@ -15,25 +15,25 @@
 	UseLayoutRounding="True"
 	mc:Ignorable="d">
 
+	<UserControl.Resources>
+		<ResourceDictionary Source="../Styles.xaml" />
+	</UserControl.Resources>
 
-	<Grid x:Name="ContentArea">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition x:Name="SliderColumn" />
-			<ColumnDefinition
-				x:Name="InputBoxColumn"
-				Width="Auto" />
-		</Grid.ColumnDefinitions>
+	<Border Style="{DynamicResource WpfUtilsControlBorder}">
 
-		<Border
-			x:Name="SliderArea"
-			Grid.Row="0"
-			Grid.Column="0"
-			Margin="0,0,2,0"
-			Background="{DynamicResource ControlBackgroundBrush}"
-			CornerRadius="6,0,0,6"
-			Style="{DynamicResource WpfUtilsControlBorder}">
+
+		<Grid x:Name="ContentArea">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition x:Name="SliderColumn" />
+				<ColumnDefinition
+					x:Name="InputBoxColumn"
+					Width="Auto" />
+			</Grid.ColumnDefinitions>
+
 			<Slider
 				x:Name="InputSlider"
+				Grid.Row="0"
+				Grid.Column="0"
 				Margin="0"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Center"
@@ -47,19 +47,12 @@
 				PreviewMouseUp="OnSliderPreviewMouseUp"
 				TickFrequency="{Binding TickFrequency}"
 				Value="{Binding SliderValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-		</Border>
 
-		<Border
-			x:Name="BoxBorder"
-			Grid.Row="0"
-			Grid.Column="1"
-			Margin="0"
-			Padding="0"
-			Background="{DynamicResource ControlBackgroundBrush}"
-			CornerRadius="0, 6, 6, 0"
-			Style="{DynamicResource WpfUtilsControlBorder}">
 
-			<Grid>
+
+			<Grid
+				Grid.Row="0"
+				Grid.Column="1">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition MinWidth="40" />
@@ -113,18 +106,15 @@
 					Style="{DynamicResource WpfUtilsRepeatButton}" />
 			</Grid>
 
-
-		</Border>
-
-		<Border
-			x:Name="ErrorDisplay"
-			Grid.Column="1"
-			Margin="2"
-			Background="Transparent"
-			BorderBrush="Red"
-			BorderThickness="1"
-			Style="{DynamicResource WpfUtilsControlHoverBorder}"
-			Visibility="Collapsed" />
-
-	</Grid>
+			<Border
+				x:Name="ErrorDisplay"
+				Grid.Column="1"
+				Margin="2"
+				Background="Transparent"
+				BorderBrush="Red"
+				BorderThickness="1"
+				Style="{DynamicResource WpfUtilsControlHoverBorder}"
+				Visibility="Collapsed" />
+		</Grid>
+	</Border>
 </UserControl>
