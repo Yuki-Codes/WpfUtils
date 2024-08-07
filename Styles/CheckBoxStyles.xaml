@@ -21,14 +21,12 @@
 					Grid.Column="0"
 					Width="25"
 					Background="{TemplateBinding Background}"
-					BorderThickness="1"
 					CornerRadius="6,0,0,6" />
 
 				<Border
 					x:Name="HoverBorder"
 					Grid.Column="0"
 					Width="25"
-					BorderThickness="1"
 					CornerRadius="6,0,0,6"
 					Opacity="0"
 					Style="{DynamicResource WpfUtilsControlHoverBorder}" />
