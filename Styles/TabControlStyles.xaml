@@ -23,7 +23,7 @@
 						</Grid.RowDefinitions>
 
 						<Border
-							Margin="{TemplateBinding Padding}"
+							Margin="1"
 							Background="{TemplateBinding Background}"
 							Style="{DynamicResource WpfUtilsControlBorder}">
 
@@ -37,6 +37,7 @@
 						<Grid
 							Name="ContentPanel"
 							Grid.Row="1"
+							Margin="{TemplateBinding Padding}"
 							KeyboardNavigation.DirectionalNavigation="Contained"
 							KeyboardNavigation.TabIndex="2"
 							KeyboardNavigation.TabNavigation="Local">
