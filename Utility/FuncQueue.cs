@@ -16,6 +16,16 @@ public class FuncQueue
 		this.func = func;
 	}
 
+	public FuncQueue(Action func, int delay)
+	{
+		this.Delay = delay;
+		this.func = () =>
+		{
+			func.Invoke();
+			return Task.CompletedTask;
+		};
+	}
+
 	public int Delay { get; set; }
 	public bool Pending { get; private set; }
 	public bool Executing { get; private set; }
