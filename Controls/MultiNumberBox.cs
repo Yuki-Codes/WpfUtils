@@ -15,6 +15,7 @@ using WpfUtils;
 [DependencyProperty<double>("Maximum", DefaultValue = double.MaxValue)]
 [DependencyProperty<bool>("Wrap")]
 [DependencyProperty<object>("Prefix")]
+[DependencyProperty<int>("DecimalPlaces", DefaultValue = 3)]
 public partial class MultiNumberBox : TextBox
 {
 	private Key keyHeld = Key.None;
@@ -34,7 +35,7 @@ public partial class MultiNumberBox : TextBox
 			if (this.currentEditString != null)
 				return this.currentEditString;
 
-			return $"{Math.Round(this.X, 3)}, {Math.Round(this.Y, 3)}, {Math.Round(this.Z, 3)}";
+			return $"{Math.Round(this.X, this.DecimalPlaces)}, {Math.Round(this.Y, this.DecimalPlaces)}, {Math.Round(this.Z, this.DecimalPlaces)}";
 		}
 
 		set
