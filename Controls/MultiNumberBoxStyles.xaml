@@ -18,7 +18,6 @@
 		<Setter Property="UIElement.AllowDrop" Value="true" />
 		<Setter Property="Padding" Value="3,2" />
 		<Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
-		<Setter Property="Stylus.IsFlicksEnabled" Value="False" />
 		<Setter Property="FrameworkElement.Cursor" Value="IBeam" />
 		<Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
 		<Setter Property="Height" Value="26" />

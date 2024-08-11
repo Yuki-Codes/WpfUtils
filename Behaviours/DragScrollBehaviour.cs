@@ -64,22 +64,11 @@ public class ScrollDragBehaviour
 			}
 		}
 
-		if (Stylus.Captured != null)
-		{
-			if (Stylus.Captured is not ItemsControl)
-			{
-				return;
-			}
-		}
-
 		Point dragPoint = e.GetPosition(this.scrollViewer);
 		Vector delta = dragPoint - this.startDragPoint;
 
 		if (delta.Length <= 10)
 			return;
-
-		////if (e.StylusDevice == null)
-		////	return;
 
 		this.isDragging = true;
 		this.scrollViewer.Cursor = Cursors.ScrollAll;
@@ -101,7 +90,6 @@ public class ScrollDragBehaviour
 			e.Handled = true;
 			this.scrollViewer.Cursor = null;
 			this.scrollViewer.ReleaseMouseCapture();
-			this.scrollViewer.ReleaseStylusCapture();
 		}
 	}
 }
