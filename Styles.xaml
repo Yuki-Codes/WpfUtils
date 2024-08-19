@@ -52,6 +52,14 @@
 		TargetType="{x:Type ListBoxItem}" />
 
 	<Style
+		BasedOn="{StaticResource WpfUtilsListBox}"
+		TargetType="{x:Type controls:ListBoxEx}" />
+
+	<Style
+		BasedOn="{StaticResource WpfUtilsListBoxItem}"
+		TargetType="{x:Type controls:ListBoxItemEx}" />
+
+	<Style
 		BasedOn="{StaticResource WpfUtilsSlider}"
 		TargetType="{x:Type Slider}" />
 
