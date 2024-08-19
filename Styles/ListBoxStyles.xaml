@@ -102,22 +102,19 @@
 						<Grid>
 
 							<Border
-								x:Name="SelectionBorder"
-								Margin="1"
-								Background="{DynamicResource BackgroundLightBrush}"
-								BorderBrush="{DynamicResource BackgroundLightBrush}"
-								BorderThickness="1"
-								CornerRadius="3"
-								Opacity="0" />
-
-							<Border
 								x:Name="HoverBorder"
 								Margin="1"
-								Background="{DynamicResource BackgroundLightBrush}"
-								BorderBrush="{DynamicResource BackgroundLightBrush}"
+								Opacity="0"
+								Style="{DynamicResource WpfUtilsControlHoverBorder}" />
+
+							<Border
+								x:Name="SelectionBorder"
+								Margin="1"
+								Background="Transparent"
+								BorderBrush="{DynamicResource TrimBrush}"
 								BorderThickness="1"
-								CornerRadius="3"
-								Opacity="0" />
+								Opacity="0"
+								Style="{DynamicResource WpfUtilsControlHoverBorder}" />
 
 							<ContentPresenter
 								Margin="{TemplateBinding Padding}"
