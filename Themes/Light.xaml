@@ -4,15 +4,15 @@
 
 	<SolidColorBrush
 		x:Key="ForegroundBrush"
-		Color="#ECECEC" />
+		Color="#000000" />
 
 	<SolidColorBrush
 		x:Key="ForegroundLightBrush"
-		Color="#838383" />
+		Color="#1A1A1A" />
 
 	<SolidColorBrush
 		x:Key="BackgroundBrush"
-		Color="#222222" />
+		Color="#CDCDCD" />
 
 	<SolidColorBrush
 		x:Key="BackgroundLightBrush"
@@ -24,10 +24,10 @@
 
 	<SolidColorBrush
 		x:Key="ControlBackgroundBrush"
-		Color="#171717" />
+		Color="#E7E7E7" />
 
 	<SolidColorBrush
 		x:Key="ControlHighlightBrush"
-		Color="#343434" />
+		Color="#C0C0C0" />
 
 </ResourceDictionary>
