@@ -23,7 +23,9 @@ public static partial class ScrollViewerExtensions
 
 public class ScrollDragBehaviour
 {
-	private const double MaxVelocity = 50;
+	private const double MaxVelocity = 40;
+	private const double MinDragDistance = 10;
+	private const double Drag = 1.05;
 
 	private readonly ScrollViewer scrollViewer;
 	private Point startDragPoint;
@@ -73,7 +75,7 @@ public class ScrollDragBehaviour
 		Point dragPoint = e.GetPosition(this.scrollViewer);
 		Vector totalDelta = dragPoint - this.startDragPoint;
 
-		if (!this.isDragging && totalDelta.Length <= 5)
+		if (!this.isDragging && totalDelta.Length <= MinDragDistance)
 			return;
 
 		if (!this.isDragging)
@@ -154,8 +156,8 @@ public class ScrollDragBehaviour
 			this.scrollViewer.ScrollToHorizontalOffset(this.scrollViewer.HorizontalOffset - velocity.X);
 			this.scrollViewer.ScrollToVerticalOffset(this.scrollViewer.VerticalOffset - velocity.Y);
 
-			velocity.X /= 1.05;
-			velocity.Y /= 1.05;
+			velocity.X /= Drag;
+			velocity.Y /= Drag;
 
 			await Task.Delay(15);
 			await this.scrollViewer.Dispatcher.MainThread();
