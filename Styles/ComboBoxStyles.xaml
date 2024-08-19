@@ -60,7 +60,7 @@
 			<ToggleButton
 				Name="toggleButton"
 				Height="{TemplateBinding Height}"
-				Margin="0"
+				Margin="{TemplateBinding Margin}"
 				Padding="{TemplateBinding Padding}"
 				HorizontalContentAlignment="Stretch"
 				Background="{TemplateBinding Background}"
