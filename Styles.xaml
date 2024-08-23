@@ -80,6 +80,10 @@
 		TargetType="{x:Type TextBox}" />
 
 	<Style
+		BasedOn="{StaticResource WpfUtilsTextBox}"
+		TargetType="{x:Type controls:TextBoxEx}" />
+
+	<Style
 		BasedOn="{StaticResource WpfUtilsProgressBar}"
 		TargetType="{x:Type ProgressBar}" />
 
@@ -153,6 +157,7 @@
 	<converters:GreaterThanToVisibilityConverter x:Key="GreaterThanToVisibility" />
 	<converters:AbsoluteNumberConverter x:Key="AbsoluteNumber" />
 	<converters:NumberConverter x:Key="NumberConverter" />
+	<converters:RectToThicknessConverter x:Key="RectToThickness" />
 
 	<!--  Multi converters  -->
 	<converters:MultiBoolAndConverter x:Key="MultiBoolAnd" />
