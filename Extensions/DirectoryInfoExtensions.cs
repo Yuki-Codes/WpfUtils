@@ -33,4 +33,9 @@ public static class DirectoryInfoExtensions
 
 		return folder;
 	}
+
+	public static bool IsSame(this DirectoryInfo self, DirectoryInfo other)
+	{
+		return Path.GetRelativePath(self.FullName, other.FullName) == ".";
+	}
 }
