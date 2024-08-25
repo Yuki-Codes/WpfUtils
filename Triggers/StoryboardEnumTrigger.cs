@@ -1,6 +1,7 @@
 ﻿namespace WpfUtils.Triggers;
 
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Media.Animation;
 
 public class StoryboardEnumTrigger : StoryboardBindingTriggerBase
@@ -28,6 +29,12 @@ public class StoryboardEnumTrigger : StoryboardBindingTriggerBase
 		{
 			if (storyboard.Name == name)
 			{
+				storyboard.FillBehavior = FillBehavior.HoldEnd;
+				storyboard.Completed += (s, e) =>
+				{
+					this.Binding = "None";
+				};
+
 				storyboard.Begin(this.Target);
 			}
 		}
