@@ -3,9 +3,11 @@
 using DependencyPropertyGenerator;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using WpfUtils.Logging;
 
@@ -21,147 +23,112 @@ public static partial class ScrollViewerExtensions
 	}
 }
 
-public class ScrollDragBehaviour
+public class ScrollDragBehaviour : IManipulator
 {
-	private const double MaxVelocity = 40;
 	private const double MinDragDistance = 10;
-	private const double Drag = 1.05;
 
 	private readonly ScrollViewer scrollViewer;
+	private readonly FieldInfo? panningInfoField;
 	private Point startDragPoint;
-	private double startDragHorizontalOffset;
-	private double startDragVerticalOffset;
-	private bool isDragging = false;
-	private Task? animationTask;
-	private bool isMouseDown = false;
+	private bool isDown = false;
+	private bool isManipulating = false;
 
 	public ScrollDragBehaviour(ScrollViewer scrollViewer)
 	{
 		this.scrollViewer = scrollViewer;
+		this.scrollViewer.IsManipulationEnabled = true;
 
 		this.scrollViewer.PreviewMouseDown += this.OnPreviewMouseDown;
-		this.scrollViewer.PreviewMouseMove += this.OnMouseMove;
-		this.scrollViewer.MouseUp += this.OnMouseUp;
+		this.scrollViewer.MouseMove += this.OnMouseMove;
+		this.scrollViewer.PreviewMouseUp += this.OnPreviewMouseUp;
+		this.scrollViewer.ManipulationBoundaryFeedback += this.OnManipulationBoundaryFeedback;
+
+		this.panningInfoField = typeof(ScrollViewer).GetField("_panningInfo", BindingFlags.Instance | BindingFlags.NonPublic);
 	}
 
-	private void OnPreviewMouseDown(object sender, MouseEventArgs e)
+	public event EventHandler? Updated;
+	public int Id => this.scrollViewer.GetHashCode();
+
+	public Point GetPosition(IInputElement relativeTo) => Mouse.GetPosition(relativeTo);
+
+	public void ManipulationEnded(bool cancel)
+	{
+	}
+
+	private void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
 	{
 		if (e.Handled)
 			return;
 
-		this.isMouseDown = true;
+		if (Mouse.Captured != null)
+			return;
+
+		if (Mouse.DirectlyOver is FrameworkElement fe && fe.FindParent<ScrollBar>() != null)
+			return;
+
+		this.isDown = true;
 		this.startDragPoint = e.GetPosition(this.scrollViewer);
+
+		if (this.panningInfoField?.GetValue(this.scrollViewer) != null)
+		{
+			this.isManipulating = true;
+			Manipulation.AddManipulator(this.scrollViewer, this);
+			Mouse.Capture(this.scrollViewer);
+			e.Handled = true;
+		}
 	}
 
 	private void OnMouseMove(object sender, MouseEventArgs e)
 	{
-		if (e.LeftButton != MouseButtonState.Pressed)
-			return;
-
 		if (e.Handled)
 			return;
 
-		if (this.scrollViewer.ScrollableHeight <= 1 && this.scrollViewer.ScrollableWidth <= 1)
+		if (!this.isDown)
 			return;
 
-		if (Mouse.Captured != null)
-		{
-			if (Mouse.Captured is not ItemsControl)
-			{
-				return;
-			}
-		}
+		if (Mouse.Captured != null && Mouse.Captured != this.scrollViewer)
+			return;
 
 		Point dragPoint = e.GetPosition(this.scrollViewer);
 		Vector totalDelta = dragPoint - this.startDragPoint;
 
-		if (!this.isDragging && totalDelta.Length <= MinDragDistance)
-			return;
-
-		if (!this.isDragging)
+		if (totalDelta.Length > MinDragDistance && !this.isManipulating)
 		{
-			this.startDragPoint = e.GetPosition(this.scrollViewer);
-			this.startDragHorizontalOffset = this.scrollViewer.HorizontalOffset;
-			this.startDragVerticalOffset = this.scrollViewer.VerticalOffset;
-
-			if (this.scrollViewer.Content is FrameworkElement fe)
-				fe.IsHitTestVisible = false;
-
-			this.isDragging = true;
-			this.scrollViewer.Cursor = Cursors.ScrollAll;
-
-			this.Animate();
-		}
-
-		this.scrollViewer.ScrollToHorizontalOffset(this.startDragHorizontalOffset - totalDelta.X);
-		this.scrollViewer.ScrollToVerticalOffset(this.startDragVerticalOffset - totalDelta.Y);
-		e.Handled = true;
-	}
-
-	private void OnMouseUp(object sender, MouseEventArgs e)
-	{
-		this.isMouseDown = false;
-
-		if (e.Handled)
-			return;
-
-		if (this.isDragging)
-		{
-			this.isDragging = false;
-
+			this.isManipulating = true;
+			Manipulation.AddManipulator(this.scrollViewer, this);
+			Mouse.Capture(this.scrollViewer);
 			e.Handled = true;
-			this.scrollViewer.Cursor = null;
+		}
+		else if (this.isManipulating)
+		{
+			this.Updated?.Invoke(this, e);
+			e.Handled = true;
+		}
+	}
 
-			if (this.scrollViewer.Content is FrameworkElement fe)
+	private void OnPreviewMouseUp(object sender, MouseButtonEventArgs e)
+	{
+		this.isDown = false;
+
+		if (this.isManipulating)
+		{
+			try
 			{
-				fe.IsHitTestVisible = true;
+				Manipulation.RemoveManipulator(this.scrollViewer, this);
 			}
+			catch
+			{
+			}
+
+			Mouse.Capture(null);
+			this.isManipulating = false;
+			e.Handled = true;
 		}
 	}
 
-	private void Animate()
+	private void OnManipulationBoundaryFeedback(object? sender, ManipulationBoundaryFeedbackEventArgs e)
 	{
-		if (this.animationTask == null || this.animationTask.IsCompleted)
-		{
-			this.animationTask = this.AnimateToTarget();
-		}
-	}
-
-	private async Task AnimateToTarget()
-	{
-		Vector velocity = new Vector(0, 0);
-		Point lastDragPoint = Mouse.GetPosition(this.scrollViewer);
-
-		// drag
-		do
-		{
-			Point dragPoint = Mouse.GetPosition(this.scrollViewer);
-			velocity = dragPoint - lastDragPoint;
-			lastDragPoint = dragPoint;
-
-			await Task.Delay(100);
-			await this.scrollViewer.Dispatcher.MainThread();
-		}
-		while (this.isMouseDown && this.isDragging);
-
-		// release
-		velocity *= 0.25;
-
-		// slide
-		do
-		{
-			velocity.X = Math.Clamp(velocity.X, -MaxVelocity, MaxVelocity);
-			velocity.Y = Math.Clamp(velocity.Y, -MaxVelocity, MaxVelocity);
-
-			this.scrollViewer.ScrollToHorizontalOffset(this.scrollViewer.HorizontalOffset - velocity.X);
-			this.scrollViewer.ScrollToVerticalOffset(this.scrollViewer.VerticalOffset - velocity.Y);
-
-			velocity.X /= Drag;
-			velocity.Y /= Drag;
-
-			await Task.Delay(15);
-			await this.scrollViewer.Dispatcher.MainThread();
-		}
-		while (velocity.Length > 0.01 && !this.isMouseDown);
+		// don't bounce the window
+		e.Handled = true;
 	}
 }
