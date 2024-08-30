@@ -48,7 +48,8 @@
 				ContentTemplate="{TemplateBinding ContentTemplate}"
 				Focusable="False"
 				RenderTransformOrigin="0.5,0.5"
-				SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+				SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+				TextBlock.Foreground="{TemplateBinding Foreground}">
 				<ContentControl.RenderTransform>
 					<TranslateTransform Y="0" />
 				</ContentControl.RenderTransform>
