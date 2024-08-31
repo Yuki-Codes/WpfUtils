@@ -55,8 +55,7 @@
 		x:Key="Subscript"
 		BasedOn="{StaticResource WpfUtilsTextBlock}"
 		TargetType="{x:Type TextBlock}">
-		<Setter Property="FontSize" Value="10" />
-		<Setter Property="Opacity" Value="0.5" />
+		<Setter Property="FontSize" Value="12" />
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
 	</Style>
 
