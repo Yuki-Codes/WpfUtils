@@ -29,6 +29,7 @@
 		<ResourceDictionary Source="Styles/ToolTipStyles.xaml" />
 		<ResourceDictionary Source="Styles/ResizeGripStyles.xaml" />
 		<ResourceDictionary Source="Styles/RadioButtonStyles.xaml" />
+		<ResourceDictionary Source="Styles/SeparatorStyles.xaml" />
 
 		<!--  Controls  -->
 		<ResourceDictionary Source="Controls/MultiNumberBoxStyles.xaml" />
@@ -126,6 +127,10 @@
 	<Style
 		BasedOn="{StaticResource WpfUtilsRadioButton}"
 		TargetType="{x:Type RadioButton}" />
+
+	<Style
+		BasedOn="{StaticResource WpfUtilsSeparator}"
+		TargetType="{x:Type Separator}" />
 
 	<Style
 		x:Key="{x:Static SystemParameters.FocusVisualStyleKey}"
