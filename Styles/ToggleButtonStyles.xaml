@@ -21,22 +21,6 @@
 				SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
 				Style="{DynamicResource WpfUtilsControlHoverBorder}" />
 
-			<Border
-				x:Name="Border"
-				Height="2"
-				Margin="6,0,6,3"
-				VerticalAlignment="Bottom"
-				Background="{TemplateBinding BorderBrush}"
-				BorderBrush="{TemplateBinding BorderBrush}"
-				BorderThickness="0"
-				CornerRadius="1"
-				RenderTransformOrigin="0.5,0.5"
-				SnapsToDevicePixels="True">
-				<Border.RenderTransform>
-					<ScaleTransform ScaleX="0" />
-				</Border.RenderTransform>
-			</Border>
-
 			<ContentControl
 				x:Name="Content"
 				Margin="0"
@@ -86,69 +70,12 @@
 				</Trigger.ExitActions>
 
 			</Trigger>
+
 			<Trigger Property="IsChecked" Value="true">
+				<!--  TODO: Animate  -->
 				<Setter Property="Foreground" Value="{DynamicResource TrimBrush}" />
-
-				<Trigger.EnterActions>
-					<BeginStoryboard>
-						<Storyboard>
-							<DoubleAnimationUsingKeyFrames
-								BeginTime="00:00:00"
-								Storyboard.TargetName="Content"
-								Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
-								<SplineDoubleKeyFrame
-									KeyTime="00:00:00.00"
-									Value="0" />
-								<SplineDoubleKeyFrame
-									KeyTime="00:00:00.10"
-									Value="-6" />
-								<SplineDoubleKeyFrame
-									KeyTime="00:00:00.15"
-									Value="-1" />
-								<SplineDoubleKeyFrame
-									KeyTime="00:00:00.18"
-									Value="-2" />
-							</DoubleAnimationUsingKeyFrames>
-
-							<DoubleAnimation
-								Storyboard.TargetName="Border"
-								Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-								To="1"
-								Duration="00:00:00.30">
-								<DoubleAnimation.EasingFunction>
-									<SineEase EasingMode="EaseOut" />
-								</DoubleAnimation.EasingFunction>
-							</DoubleAnimation>
-
-						</Storyboard>
-					</BeginStoryboard>
-				</Trigger.EnterActions>
-
-				<Trigger.ExitActions>
-					<BeginStoryboard>
-						<Storyboard>
-							<DoubleAnimation
-								Storyboard.TargetName="Content"
-								Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-								To="0"
-								Duration="00:00:00.30">
-								<DoubleAnimation.EasingFunction>
-									<SineEase EasingMode="EaseOut" />
-								</DoubleAnimation.EasingFunction>
-							</DoubleAnimation>
-							<DoubleAnimation
-								Storyboard.TargetName="Border"
-								Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-								To="0"
-								Duration="00:00:00.30">
-								<DoubleAnimation.EasingFunction>
-									<SineEase EasingMode="EaseOut" />
-								</DoubleAnimation.EasingFunction>
-							</DoubleAnimation>
-						</Storyboard>
-					</BeginStoryboard>
-				</Trigger.ExitActions>
 			</Trigger>
+
 			<Trigger Property="IsEnabled" Value="false">
 				<Trigger.EnterActions>
 					<BeginStoryboard>

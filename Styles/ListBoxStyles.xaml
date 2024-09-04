@@ -15,7 +15,9 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ListBox}">
-					<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+					<controls:RadioButtonHighlighter>
+						<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+					</controls:RadioButtonHighlighter>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
@@ -39,20 +41,21 @@
 						<Setter.Value>
 							<ControlTemplate TargetType="{x:Type ListBoxItem}">
 
-								<ToggleButton
+								<RadioButton
 									x:Name="Button"
 									Margin="0"
+									controls:RadioButtonHighlighter.UseGroupHighlight="True"
 									Background="Transparent"
 									IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"
 									IsEnabled="{TemplateBinding IsEnabled}"
-									Style="{DynamicResource WpfUtilsToggleButton}">
+									Style="{DynamicResource WpfUtilsRadioButtonNoHighlight}">
 
 									<ContentPresenter
 										x:Name="Content"
 										Margin="3"
 										HorizontalAlignment="Center" />
 
-								</ToggleButton>
+								</RadioButton>
 
 							</ControlTemplate>
 						</Setter.Value>
@@ -71,7 +74,9 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ListBox}">
 					<Border Style="{DynamicResource WpfUtilsControlBorder}">
-						<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+						<controls:RadioButtonHighlighter>
+							<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+						</controls:RadioButtonHighlighter>
 					</Border>
 				</ControlTemplate>
 			</Setter.Value>

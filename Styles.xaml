@@ -33,6 +33,7 @@
 
 		<!--  Controls  -->
 		<ResourceDictionary Source="Controls/MultiNumberBoxStyles.xaml" />
+		<ResourceDictionary Source="Controls/RadioButtonHighlighterStyles.xaml" />
 
 	</ResourceDictionary.MergedDictionaries>
 
@@ -131,6 +132,10 @@
 	<Style
 		BasedOn="{StaticResource WpfUtilsSeparator}"
 		TargetType="{x:Type Separator}" />
+
+	<Style
+		BasedOn="{StaticResource WpfUtilsRadioButtonHighlighter}"
+		TargetType="{x:Type controls:RadioButtonHighlighter}" />
 
 	<Style
 		x:Key="{x:Static SystemParameters.FocusVisualStyleKey}"
