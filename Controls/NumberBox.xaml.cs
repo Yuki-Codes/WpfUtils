@@ -89,6 +89,9 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 
 		set
 		{
+			if (value == this.inputString)
+				return;
+
 			this.inputString = value;
 
 			double val;
@@ -291,7 +294,7 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 		this.OnButtonsChanged(this.Buttons);
 		this.OnTickFrequencyChanged(this.TickFrequency);
 
-		this.Text = this.DisplayValue.ToString("0.###");
+		////this.Text = this.DisplayValue.ToString("0.###");
 	}
 
 	private double Validate(double v)
