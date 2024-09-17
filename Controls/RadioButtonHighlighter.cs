@@ -40,12 +40,21 @@ public partial class RadioButtonHighlighter : ContentControl
 		base.OnApplyTemplate();
 
 		this.highlight = this.GetTemplateChild("PART_Highlight") as FrameworkElement;
+
+		this.UpdateBounds();
 	}
 
 	protected void AddButton(RadioButton button)
 	{
 		this.radioButtons.Add(button);
 		button.Checked += this.OnButtonChecked;
+	}
+
+	protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+	{
+		base.OnRenderSizeChanged(sizeInfo);
+
+		this.UpdateBounds();
 	}
 
 	static partial void OnUseGroupHighlightChanged(DependencyObject dependencyObject, bool newValue)
@@ -122,6 +131,26 @@ public partial class RadioButtonHighlighter : ContentControl
 				this.storyboard.Begin();
 			}
 		}
+	}
+
+	private void UpdateBounds()
+	{
+		if (this.highlight == null)
+			return;
+
+		if (this.currentIndex < 0 || this.currentIndex >= this.radioButtons.Count)
+			return;
+
+		RadioButton button = this.radioButtons[this.currentIndex];
+		GeneralTransform transform = button.TransformToAncestor(this);
+		Rect bounds = transform.TransformBounds(new(0, 0, button.ActualWidth, button.ActualHeight));
+
+		Thickness margin = this.highlight.Margin;
+		margin.Left = bounds.Left;
+		margin.Right = this.ActualWidth - bounds.Right;
+		margin.Top = bounds.Top;
+		margin.Bottom = this.ActualHeight - bounds.Bottom;
+		this.highlight.Margin = margin;
 	}
 
 	partial void OnLeftChanged(double newValue)
