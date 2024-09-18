@@ -9,6 +9,7 @@
 		<Setter Property="HasDropShadow" Value="True" />
 		<Setter Property="MinWidth" Value="10" />
 		<Setter Property="MinHeight" Value="10" />
+		<Setter Property="MaxWidth" Value="250" />
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="Template" Value="{StaticResource PanelTemplate}" />
 		<Setter Property="UseLayoutRounding" Value="True" />
@@ -47,7 +48,13 @@
 							Grid.Row="1"
 							Margin="{TemplateBinding Padding}"
 							Content="{TemplateBinding Content}"
-							ContentTemplate="{TemplateBinding ContentTemplate}" />
+							ContentTemplate="{TemplateBinding ContentTemplate}">
+							<ContentPresenter.Resources>
+								<Style TargetType="{x:Type TextBlock}">
+									<Setter Property="TextWrapping" Value="Wrap" />
+								</Style>
+							</ContentPresenter.Resources>
+						</ContentPresenter>
 
 					</Grid>
 				</ControlTemplate>
