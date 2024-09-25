@@ -238,7 +238,7 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderValue)));
 
 		int caretIndex = this.InputBox.CaretIndex;
-		this.Text = this.DisplayValue.ToString("0.###");
+		this.Text = this.DisplayValue.ToString("0.###").Replace("-0", "0"); ;
 		this.InputBox.CaretIndex = caretIndex;
 	}
 
@@ -294,7 +294,7 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 		this.OnButtonsChanged(this.Buttons);
 		this.OnTickFrequencyChanged(this.TickFrequency);
 
-		////this.Text = this.DisplayValue.ToString("0.###");
+		////this.Text = this.DisplayValue.ToString("0.###").Replace("-0", "0");;
 	}
 
 	private double Validate(double v)
@@ -325,7 +325,7 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 
 	private void OnLostFocus(object sender, RoutedEventArgs e)
 	{
-		this.Text = this.DisplayValue.ToString("0.###");
+		this.Text = this.DisplayValue.ToString("0.###").Replace("-0", "0");
 		////this.Commit(false);
 	}
 
@@ -341,7 +341,7 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 			this.ErrorDisplay.Visibility = Visibility.Visible;
 		}
 
-		this.Text = this.DisplayValue.ToString("0.###");
+		this.Text = this.DisplayValue.ToString("0.###").Replace("-0", "0");
 
 		if (refocus)
 		{
