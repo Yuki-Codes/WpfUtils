@@ -35,9 +35,17 @@ public partial class MultiNumberBox : TextBox
 			if (this.currentEditString != null)
 				return this.currentEditString;
 
-			string xStr = Math.Round(this.X, this.DecimalPlaces).ToString().Replace("-0", "0");
-			string yStr = Math.Round(this.Y, this.DecimalPlaces).ToString().Replace("-0", "0");
-			string zStr = Math.Round(this.Z, this.DecimalPlaces).ToString().Replace("-0", "0");
+			string xStr = Math.Round(this.X, this.DecimalPlaces).ToString();
+			if (xStr == "-0")
+				xStr = "0";
+
+			string yStr = Math.Round(this.Y, this.DecimalPlaces).ToString();
+			if (yStr == "-0")
+				yStr = "0";
+
+			string zStr = Math.Round(this.Z, this.DecimalPlaces).ToString();
+			if (zStr == "-0")
+				zStr = "0";
 
 			return $"{xStr}, {yStr}, {zStr}";
 		}
