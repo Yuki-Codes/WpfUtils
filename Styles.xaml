@@ -30,6 +30,7 @@
 		<ResourceDictionary Source="Styles/ResizeGripStyles.xaml" />
 		<ResourceDictionary Source="Styles/RadioButtonStyles.xaml" />
 		<ResourceDictionary Source="Styles/SeparatorStyles.xaml" />
+		<ResourceDictionary Source="Styles/PopupStyles.xaml" />
 
 		<!--  Controls  -->
 		<ResourceDictionary Source="Controls/MultiNumberBoxStyles.xaml" />
@@ -140,6 +141,10 @@
 	<Style
 		x:Key="{x:Static SystemParameters.FocusVisualStyleKey}"
 		BasedOn="{StaticResource WpfUtilsFocusVisualStyle}" />
+
+	<Style
+		BasedOn="{StaticResource WpfUtilsPopup}"
+		TargetType="{x:Type Popup}" />
 
 	<!--  Custom converters  -->
 	<converters:StringHasContentToVisibilityConverter x:Key="StringHasContentToVisibility" />

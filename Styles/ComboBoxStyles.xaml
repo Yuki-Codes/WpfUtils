@@ -52,6 +52,8 @@
 
 	</Style>
 
+
+
 	<ControlTemplate
 		x:Key="wpfUtilsComboBoxTemplate"
 		TargetType="{x:Type ComboBox}">
@@ -79,50 +81,28 @@
 			<Popup
 				Name="PART_Popup"
 				Grid.Column="0"
-				AllowsTransparency="True"
-				Focusable="False"
 				IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
 				Placement="Bottom"
 				PlacementTarget="{Binding ElementName=toggleButton}"
-				PopupAnimation="Fade"
-				SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-				UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+				Style="{DynamicResource WpfUtilsPopup}">
 
-				<Grid
-					MinWidth="{TemplateBinding ActualWidth}"
-					MaxHeight="{TemplateBinding MaxDropDownHeight}"
-					Margin="16">
+				<ContentControl Style="{DynamicResource WpfUtilsPopupContent}">
 					<Border
-						Background="Black"
-						CornerRadius="6">
-						<Border.Effect>
-							<DropShadowEffect
-								Direction="270"
-								ShadowDepth="0" />
-						</Border.Effect>
+						MinWidth="{TemplateBinding ActualWidth}"
+						MaxHeight="{TemplateBinding MaxDropDownHeight}"
+						Margin="2"
+						Style="{DynamicResource WpfUtilsControlBorder}">
+						<ScrollViewer
+							MinHeight="1"
+							MaxHeight="{TemplateBinding MaxDropDownHeight}"
+							behaviours:SmoothScrollBehaviour.SmoothScroll="True">
+							<ItemsPresenter
+								Name="ItemsPresenter"
+								KeyboardNavigation.DirectionalNavigation="Contained" />
+						</ScrollViewer>
 					</Border>
-
-					<Border
-						Background="{DynamicResource BackgroundBrush}"
-						CornerRadius="6">
-						<Border
-							Margin="2"
-							Style="{DynamicResource WpfUtilsControlBorder}">
-							<ScrollViewer
-								MinHeight="1"
-								MaxHeight="{TemplateBinding MaxDropDownHeight}"
-								behaviours:SmoothScrollBehaviour.SmoothScroll="True">
-								<ItemsPresenter
-									Name="ItemsPresenter"
-									KeyboardNavigation.DirectionalNavigation="Contained" />
-							</ScrollViewer>
-						</Border>
-					</Border>
-				</Grid>
-
+				</ContentControl>
 			</Popup>
-
-
 		</Grid>
 	</ControlTemplate>
 
