@@ -35,6 +35,7 @@
 		<!--  Controls  -->
 		<ResourceDictionary Source="Controls/MultiNumberBoxStyles.xaml" />
 		<ResourceDictionary Source="Controls/RadioButtonHighlighterStyles.xaml" />
+		<ResourceDictionary Source="Controls/AreaSliderStyles.xaml" />
 
 	</ResourceDictionary.MergedDictionaries>
 
@@ -145,6 +146,11 @@
 	<Style
 		BasedOn="{StaticResource WpfUtilsPopup}"
 		TargetType="{x:Type Popup}" />
+
+
+	<Style
+		BasedOn="{StaticResource WpfUtilsAreaSlider}"
+		TargetType="{x:Type controls:AreaSlider}" />
 
 	<!--  Custom converters  -->
 	<converters:StringHasContentToVisibilityConverter x:Key="StringHasContentToVisibility" />
