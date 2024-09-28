@@ -16,12 +16,13 @@
 	</Style>
 
 	<Style
-		x:Key="InsetPanel"
+		x:Key="WpfUtilsGroupBorder"
 		TargetType="{x:Type Border}">
-		<Setter Property="Background" Value="#33000000" />
+		<Setter Property="Margin" Value="1" />
+		<Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
 		<Setter Property="BorderThickness" Value="1" />
 		<Setter Property="SnapsToDevicePixels" Value="True" />
-		<Setter Property="BorderBrush" Value="#55000000" />
+		<Setter Property="BorderBrush" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="CornerRadius" Value="6" />
 		<Setter Property="ClipToBounds" Value="True" />
 		<Setter Property="UseLayoutRounding" Value="True" />
