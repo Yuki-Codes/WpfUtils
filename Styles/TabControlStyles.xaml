@@ -105,7 +105,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type TabControl}">
 					<Grid
-						ClipToBounds="True"
+						ClipToBounds="False"
 						KeyboardNavigation.TabNavigation="Local"
 						SnapsToDevicePixels="True">
 
