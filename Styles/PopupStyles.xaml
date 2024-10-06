@@ -34,6 +34,7 @@
 					Background="{DynamicResource BackgroundBrush}"
 					CornerRadius="6">
 					<ContentPresenter
+						Margin="{TemplateBinding Padding}"
 						Content="{TemplateBinding Content}"
 						ContentTemplate="{TemplateBinding ContentTemplate}" />
 				</Border>
@@ -44,6 +45,7 @@
 	<Style
 		x:Key="WpfUtilsPopupContent"
 		TargetType="{x:Type ContentControl}">
+		<Setter Property="Padding" Value="3" />
 		<Setter Property="Template" Value="{StaticResource WpfUtilsPopupContentTemplate}" />
 	</Style>
 
