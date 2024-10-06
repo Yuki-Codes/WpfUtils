@@ -234,7 +234,9 @@
 						Style="{DynamicResource WpfUtilsControlBorder}">
 						<ScrollViewer
 							Padding="{TemplateBinding Padding}"
-							Focusable="false">
+							Focusable="false"
+							HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+							VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
 							<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
 						</ScrollViewer>
 					</Border>
