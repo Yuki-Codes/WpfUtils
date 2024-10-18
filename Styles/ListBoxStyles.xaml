@@ -43,12 +43,14 @@
 
 								<RadioButton
 									x:Name="Button"
+									Height="Auto"
 									Margin="0"
 									controls:RadioButtonHighlighter.UseGroupHighlight="True"
 									Background="Transparent"
 									IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"
 									IsEnabled="{TemplateBinding IsEnabled}"
 									Style="{DynamicResource WpfUtilsRadioButtonNoHighlight}">
+
 
 									<ContentPresenter
 										x:Name="Content"
@@ -81,6 +83,36 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
+	</Style>
+
+	<Style
+		x:Key="WpfUtilsSwitchSelectorVertical"
+		BasedOn="{StaticResource WpfUtilsSwitchSelector}"
+		TargetType="{x:Type ListBox}">
+
+		<Setter Property="Height" Value="Auto" />
+
+
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<StackPanel />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ListBox}">
+					<Border Style="{DynamicResource WpfUtilsControlBorder}">
+						<controls:RadioButtonHighlighter Orientation="Vertical">
+							<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+						</controls:RadioButtonHighlighter>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+
 	</Style>
 
 	<Style
