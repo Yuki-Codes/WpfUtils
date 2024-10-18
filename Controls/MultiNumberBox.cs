@@ -112,22 +112,7 @@ public partial class MultiNumberBox : TextBox
 		this.TickValue(e.Delta > 0);
 	}
 
-	partial void OnXChanged()
-	{
-		this.OnValueChanged();
-	}
-
-	partial void OnYChanged()
-	{
-		this.OnValueChanged();
-	}
-
-	partial void OnZChanged()
-	{
-		this.OnValueChanged();
-	}
-
-	private void OnValueChanged()
+	protected virtual void OnComponentValueChanged()
 	{
 		this.isPropagatingValueChange = true;
 
@@ -136,6 +121,21 @@ public partial class MultiNumberBox : TextBox
 		this.CaretIndex = caretIndex;
 
 		this.isPropagatingValueChange = false;
+	}
+
+	partial void OnXChanged()
+	{
+		this.OnComponentValueChanged();
+	}
+
+	partial void OnYChanged()
+	{
+		this.OnComponentValueChanged();
+	}
+
+	partial void OnZChanged()
+	{
+		this.OnComponentValueChanged();
 	}
 
 	private void OnTextChanged(object sender, TextChangedEventArgs e)
