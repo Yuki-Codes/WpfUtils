@@ -34,7 +34,7 @@
 				<Rectangle
 					Width="1"
 					MinHeight="10"
-					Margin="4,10,0,10"
+					Margin="4,6,0,6"
 					HorizontalAlignment="Left"
 					VerticalAlignment="Stretch"
 					Fill="{DynamicResource TrimBrush}"
