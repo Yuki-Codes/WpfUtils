@@ -7,19 +7,19 @@
 		x:Key="WpfUtilsRadioButtonHorizontalHighlight"
 		TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
 		<Grid>
-			<ContentPresenter />
+
 			<Grid
 				x:Name="PART_Highlight"
 				IsHitTestVisible="False">
-				<Rectangle
-					Height="1"
-					MinWidth="10"
-					Margin="10,0,10,3"
+				<Border
+					Margin="2"
 					HorizontalAlignment="Stretch"
-					VerticalAlignment="Bottom"
-					Fill="{DynamicResource TrimBrush}"
+					VerticalAlignment="Stretch"
+					Background="{DynamicResource BackgroundBrush}"
+					CornerRadius="4"
 					SnapsToDevicePixels="True" />
 			</Grid>
+			<ContentPresenter />
 		</Grid>
 	</ControlTemplate>
 

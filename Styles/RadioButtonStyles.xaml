@@ -11,11 +11,6 @@
 			TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
 
 			<Border
-				x:Name="BackgroundBorder"
-				Background="{TemplateBinding Background}"
-				Style="{DynamicResource WpfUtilsControlBorder}" />
-
-			<Border
 				x:Name="HoverBorder"
 				Opacity="0"
 				SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
@@ -150,11 +145,6 @@
 		TargetType="{x:Type RadioButton}">
 
 		<Grid Cursor="Hand">
-
-			<Border
-				x:Name="BackgroundBorder"
-				Background="{TemplateBinding Background}"
-				Style="{DynamicResource WpfUtilsControlBorder}" />
 
 			<Border
 				x:Name="HoverBorder"
