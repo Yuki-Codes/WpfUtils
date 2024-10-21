@@ -194,6 +194,8 @@
 						</Trigger>
 
 						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+
 							<Trigger.EnterActions>
 								<BeginStoryboard>
 									<Storyboard>

@@ -37,6 +37,8 @@
 		<ResourceDictionary Source="Controls/RadioButtonHighlighterStyles.xaml" />
 		<ResourceDictionary Source="Controls/AreaSliderStyles.xaml" />
 
+		<!--<ResourceDictionary Source="Themes/Nier.xaml" />-->
+
 	</ResourceDictionary.MergedDictionaries>
 
 	<Style
