@@ -42,7 +42,7 @@
 				Margin="2,0,0,0"
 				Foreground="{TemplateBinding Foreground}"
 				IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-				Style="{DynamicResource WpfUtilsToggleButton}">
+				Style="{DynamicResource WpfUtilsIconToggleButton}">
 				<Path
 					Margin="3"
 					HorizontalAlignment="Center"

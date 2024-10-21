@@ -11,7 +11,7 @@
 
 	<Style
 		x:Key="WpfUtilsComboBoxButton"
-		BasedOn="{StaticResource WpfUtilsToggleButton}"
+		BasedOn="{StaticResource WpfUtilsIconToggleButton}"
 		TargetType="{x:Type ToggleButton}">
 
 		<Setter Property="Margin" Value="0" />
