@@ -282,6 +282,7 @@
 						Style="{DynamicResource WpfUtilsControlBorder}">
 						<ScrollViewer
 							Padding="{TemplateBinding Padding}"
+							Background="{DynamicResource BackgroundBrush}"
 							Focusable="false"
 							HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
 							VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
