@@ -10,9 +10,7 @@
 		<Border
 			Background="{TemplateBinding Background}"
 			Style="{DynamicResource WpfUtilsControlBorder}">
-			<Grid
-				x:Name="Content"
-				Cursor="Hand">
+			<Grid x:Name="Content">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition />

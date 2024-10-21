@@ -7,9 +7,7 @@
 		x:Key="WpfUtilsIconToggleButtonTemplate"
 		TargetType="{x:Type ToggleButton}">
 
-		<Grid
-			Cursor="Hand"
-			TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
+		<Grid TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
 
 			<Border
 				x:Name="BackgroundBorder"
@@ -128,7 +126,6 @@
 
 		<Grid
 			Background="Transparent"
-			Cursor="Hand"
 			TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
 
 			<Grid.ColumnDefinitions>

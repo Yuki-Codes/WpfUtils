@@ -19,9 +19,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
 
-					<Grid
-						Cursor="Hand"
-						TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
+					<Grid TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
 
 						<ContentPresenter
 							Margin="{TemplateBinding Padding}"
@@ -74,9 +72,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="RepeatButton">
 
-					<Grid
-						Cursor="Hand"
-						TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
+					<Grid TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
 
 						<Border
 							x:Name="HoverBorder"
@@ -136,9 +132,7 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="Button">
 
-					<Grid
-						Cursor="Hand"
-						TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
+					<Grid TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
 
 						<Border
 							Background="{TemplateBinding Background}"

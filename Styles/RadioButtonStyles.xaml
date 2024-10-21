@@ -6,9 +6,7 @@
 		x:Key="WpfUtilsRadioButtonTemplate"
 		TargetType="{x:Type RadioButton}">
 
-		<Grid
-			Cursor="Hand"
-			TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
+		<Grid TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
 
 			<Border
 				x:Name="HoverBorder"
@@ -144,7 +142,7 @@
 		x:Key="WpfUtilsRadioButtonNoHighlightTemplate"
 		TargetType="{x:Type RadioButton}">
 
-		<Grid Cursor="Hand">
+		<Grid>
 
 			<Border
 				x:Name="HoverBorder"

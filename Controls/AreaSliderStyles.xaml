@@ -7,7 +7,7 @@
 		x:Key="WpfUtilsAreaSliderThumbTemplate"
 		TargetType="{x:Type Thumb}">
 
-		<Grid Cursor="SizeAll">
+		<Grid>
 			<Ellipse
 				x:Name="BackgroundEllipse"
 				Fill="{DynamicResource ControlHighlightBrush}"
