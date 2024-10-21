@@ -9,56 +9,56 @@
 		TargetType="{x:Type TabControl}">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="Padding" Value="3" />
+		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type TabControl}">
-					<Border
-						Background="{TemplateBinding Background}"
-						Style="{DynamicResource WpfUtilsControlBorder}">
+					<Grid
+						ClipToBounds="True"
+						KeyboardNavigation.TabNavigation="Local"
+						SnapsToDevicePixels="True">
+
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition />
+						</Grid.RowDefinitions>
+
+						<Border
+							Margin="{TemplateBinding Padding}"
+							Background="{TemplateBinding Background}"
+							Style="{DynamicResource WpfUtilsControlBorder}">
+
+							<wpfUtils:RadioButtonHighlighter>
+								<UniformGrid
+									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+									VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+									IsItemsHost="True"
+									KeyboardNavigation.TabIndex="1"
+									Rows="1" />
+							</wpfUtils:RadioButtonHighlighter>
+						</Border>
 
 						<Grid
-							ClipToBounds="True"
-							KeyboardNavigation.TabNavigation="Local"
-							SnapsToDevicePixels="True">
+							Name="ContentPanel"
+							Grid.Row="1"
+							Margin="{TemplateBinding Padding}"
+							KeyboardNavigation.DirectionalNavigation="Contained"
+							KeyboardNavigation.TabIndex="2"
+							KeyboardNavigation.TabNavigation="Local">
 
-							<Grid.RowDefinitions>
-								<RowDefinition Height="Auto" />
-								<RowDefinition />
-							</Grid.RowDefinitions>
-
-							<UniformGrid
+							<ContentPresenter
+								Name="PART_SelectedContentHost"
+								Margin="0"
 								HorizontalAlignment="Stretch"
 								VerticalAlignment="Stretch"
-								IsItemsHost="True"
-								KeyboardNavigation.TabIndex="1"
-								Rows="1" />
-
-							<Grid
-								Name="ContentPanel"
-								Grid.Row="1"
-								Margin="0,-2,0,0"
-								KeyboardNavigation.DirectionalNavigation="Contained"
-								KeyboardNavigation.TabIndex="2"
-								KeyboardNavigation.TabNavigation="Local">
-
-								<Border
-									Margin="2"
-									Background="{DynamicResource BackgroundBrush}"
-									CornerRadius="6">
-
-									<ContentPresenter
-										Name="PART_SelectedContentHost"
-										Margin="{TemplateBinding Padding}"
-										Content="{TemplateBinding SelectedContent}"
-										ContentSource="SelectedContent"
-										ContentStringFormat="{TemplateBinding SelectedContentStringFormat}"
-										ContentTemplate="{TemplateBinding SelectedContentTemplate}"
-										SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
-								</Border>
-							</Grid>
+								Content="{TemplateBinding SelectedContent}"
+								ContentSource="SelectedContent"
+								ContentStringFormat="{TemplateBinding SelectedContentStringFormat}"
+								ContentTemplate="{TemplateBinding SelectedContentTemplate}"
+								SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
 
 						</Grid>
-					</Border>
+					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
@@ -70,61 +70,21 @@
 					<Setter Property="VerticalContentAlignment" Value="Stretch" />
 					<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 					<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
-					<Setter Property="Padding" Value="6" />
 					<Setter Property="Template">
 						<Setter.Value>
 							<ControlTemplate TargetType="{x:Type TabItem}">
-
-								<Grid Cursor="Hand">
-									<Border
-										x:Name="HoverBorder"
-										Margin="1,1,1,-6"
-										Background="{DynamicResource ControlHighlightBrush}"
-										BorderBrush="{TemplateBinding Background}"
-										BorderThickness="1"
-										CornerRadius="6,6,0,0"
-										Opacity="0" />
-
-									<Border
-										x:Name="Background"
-										Margin="1,1,1,-6"
-										Background="{DynamicResource BackgroundBrush}"
-										BorderBrush="{TemplateBinding Background}"
-										BorderThickness="1"
-										CornerRadius="6,6,0,0"
-										Opacity="0" />
-
-									<ContentPresenter
-										x:Name="Content"
-										Margin="{TemplateBinding Padding}"
-										HorizontalAlignment="Center"
-										VerticalAlignment="Center"
-										Content="{TemplateBinding Header}"
-										ContentTemplate="{TemplateBinding HeaderTemplate}" />
-								</Grid>
-
-
-								<ControlTemplate.Triggers>
-									<Trigger Property="IsSelected" Value="True">
-										<Setter TargetName="Background" Property="Opacity" Value="1" />
-									</Trigger>
-									<Trigger Property="IsEnabled" Value="False">
-										<Setter TargetName="Content" Property="Opacity" Value="0.5" />
-									</Trigger>
-									<Trigger Property="IsMouseOver" Value="True">
-										<Setter TargetName="HoverBorder" Property="Opacity" Value="1" />
-									</Trigger>
-								</ControlTemplate.Triggers>
+								<RadioButton
+									wpfUtils:RadioButtonHighlighter.UseGroupHighlight="True"
+									Background="Transparent"
+									Content="{TemplateBinding Header}"
+									ContentTemplate="{TemplateBinding HeaderTemplate}"
+									IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}"
+									IsEnabled="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType=TabItem}}"
+									Style="{DynamicResource WpfUtilsRadioButtonNoHighlight}" />
 
 							</ControlTemplate>
 						</Setter.Value>
 					</Setter>
-
-					<Style.Triggers>
-						<Trigger Property="IsSelected" Value="True">
-							<Setter Property="Foreground" Value="{DynamicResource TrimBrush}" />
-						</Trigger>
-					</Style.Triggers>
 				</Style>
 			</Setter.Value>
 		</Setter>
@@ -144,52 +104,53 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type TabControl}">
-					<Border
-						Background="{TemplateBinding Background}"
-						Style="{DynamicResource WpfUtilsControlBorder}">
+					<Grid
+						ClipToBounds="False"
+						KeyboardNavigation.TabNavigation="Local"
+						SnapsToDevicePixels="True">
+
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+
+						<Border
+							Grid.Column="0"
+							Margin="{TemplateBinding Padding}"
+							Background="{TemplateBinding Background}"
+							Style="{DynamicResource WpfUtilsControlBorder}">
+
+							<wpfUtils:RadioButtonHighlighter Orientation="Vertical">
+								<UniformGrid
+									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+									VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+									Columns="1"
+									IsItemsHost="True"
+									KeyboardNavigation.TabIndex="1" />
+							</wpfUtils:RadioButtonHighlighter>
+						</Border>
 
 						<Grid
-							ClipToBounds="False"
-							KeyboardNavigation.TabNavigation="Local"
-							SnapsToDevicePixels="True">
+							Name="ContentPanel"
+							Grid.Column="1"
+							Margin="{TemplateBinding Padding}"
+							KeyboardNavigation.DirectionalNavigation="Contained"
+							KeyboardNavigation.TabIndex="2"
+							KeyboardNavigation.TabNavigation="Local">
 
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition />
-							</Grid.ColumnDefinitions>
+							<ContentPresenter
+								Name="PART_SelectedContentHost"
+								Margin="0"
+								HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch"
+								Content="{TemplateBinding SelectedContent}"
+								ContentSource="SelectedContent"
+								ContentStringFormat="{TemplateBinding SelectedContentStringFormat}"
+								ContentTemplate="{TemplateBinding SelectedContentTemplate}"
+								SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
 
-							<UniformGrid
-								VerticalAlignment="Top"
-								Columns="1"
-								IsItemsHost="True"
-								KeyboardNavigation.TabIndex="1" />
-
-							<Grid
-								Name="ContentPanel"
-								Grid.Column="1"
-								KeyboardNavigation.DirectionalNavigation="Contained"
-								KeyboardNavigation.TabIndex="2"
-								KeyboardNavigation.TabNavigation="Local">
-								<Border
-									Margin="2"
-									Background="{DynamicResource BackgroundBrush}"
-									CornerRadius="6">
-
-									<ContentPresenter
-										Name="PART_SelectedContentHost"
-										Margin="{TemplateBinding Padding}"
-										HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-										VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-										Content="{TemplateBinding SelectedContent}"
-										ContentSource="SelectedContent"
-										ContentStringFormat="{TemplateBinding SelectedContentStringFormat}"
-										ContentTemplate="{TemplateBinding SelectedContentTemplate}"
-										SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
-								</Border>
-
-							</Grid>
 						</Grid>
-					</Border>
+					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
@@ -205,47 +166,15 @@
 					<Setter Property="Template">
 						<Setter.Value>
 							<ControlTemplate TargetType="{x:Type TabItem}">
-
-								<Grid Cursor="Hand">
-									<Border
-										x:Name="HoverBorder"
-										Margin="1,1,-10,1"
-										Background="{DynamicResource ControlHighlightBrush}"
-										BorderBrush="{TemplateBinding Background}"
-										BorderThickness="1"
-										CornerRadius="6,0,0,6"
-										Opacity="0" />
-
-									<Border
-										x:Name="Background"
-										Margin="1,1,-10,1"
-										Background="{DynamicResource BackgroundBrush}"
-										BorderBrush="{TemplateBinding Background}"
-										BorderThickness="1"
-										CornerRadius="6,0,0,6"
-										Opacity="0" />
-
-									<ContentPresenter
-										x:Name="Content"
-										Margin="{TemplateBinding Padding}"
-										HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-										Content="{TemplateBinding Header}"
-										ContentTemplate="{TemplateBinding HeaderTemplate}" />
-								</Grid>
-
-
-								<ControlTemplate.Triggers>
-									<Trigger Property="IsSelected" Value="True">
-										<Setter TargetName="Background" Property="Opacity" Value="1" />
-									</Trigger>
-									<Trigger Property="IsEnabled" Value="False">
-										<Setter TargetName="Content" Property="Opacity" Value="0.5" />
-									</Trigger>
-									<Trigger Property="IsMouseOver" Value="True">
-										<Setter TargetName="HoverBorder" Property="Opacity" Value="1" />
-									</Trigger>
-								</ControlTemplate.Triggers>
-
+								<RadioButton
+									Height="Auto"
+									wpfUtils:RadioButtonHighlighter.UseGroupHighlight="True"
+									Background="Transparent"
+									Content="{TemplateBinding Header}"
+									ContentTemplate="{TemplateBinding HeaderTemplate}"
+									IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}"
+									IsEnabled="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType=TabItem}}"
+									Style="{DynamicResource WpfUtilsRadioButtonNoHighlight}" />
 							</ControlTemplate>
 						</Setter.Value>
 					</Setter>
@@ -255,6 +184,7 @@
 							<Setter Property="Foreground" Value="{DynamicResource TrimBrush}" />
 						</Trigger>
 					</Style.Triggers>
+
 				</Style>
 			</Setter.Value>
 		</Setter>
