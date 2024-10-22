@@ -34,4 +34,8 @@
 		x:Key="ControlForegroundHighlightBrush"
 		Color="#ECECEC" />
 
+	<SolidColorBrush
+		x:Key="ControlBackgroundSelectedBrush"
+		Color="#222222" />
+
 </ResourceDictionary>

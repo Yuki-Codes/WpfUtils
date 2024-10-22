@@ -78,32 +78,31 @@
 
 			</ToggleButton>
 
-			<Popup
-				Name="PART_Popup"
+			<controls:PopOut
+				x:Name="PART_Popup"
 				Grid.Column="0"
+				MaxWidth="400"
+				MaxHeight="{TemplateBinding MaxDropDownHeight}"
+				Background="{DynamicResource ControlBackgroundBrush}"
+				Header="{TemplateBinding controls:PopOut.Header}"
+				HeaderTemplate="{TemplateBinding controls:PopOut.HeaderTemplate}"
 				IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-				Placement="Bottom"
-				PlacementTarget="{Binding ElementName=toggleButton}"
-				Style="{DynamicResource WpfUtilsPopup}">
+				PlacementTarget="{Binding ElementName=toggleButton}">
 
-				<ContentControl Style="{DynamicResource WpfUtilsPopupContent}">
-					<Border
-						MinWidth="{TemplateBinding ActualWidth}"
-						MaxHeight="{TemplateBinding MaxDropDownHeight}"
-						Margin="2"
-						Style="{DynamicResource WpfUtilsControlBorder}">
-						<ScrollViewer
-							MinHeight="1"
-							MaxHeight="{TemplateBinding MaxDropDownHeight}"
-							behaviours:SmoothScrollBehaviour.SmoothScroll="True">
-							<ItemsPresenter
-								Name="ItemsPresenter"
-								KeyboardNavigation.DirectionalNavigation="Contained" />
-						</ScrollViewer>
-					</Border>
-				</ContentControl>
-			</Popup>
+				<ScrollViewer behaviours:SmoothScrollBehaviour.SmoothScroll="True">
+					<ItemsPresenter
+						Name="ItemsPresenter"
+						KeyboardNavigation.DirectionalNavigation="Contained" />
+				</ScrollViewer>
+			</controls:PopOut>
 		</Grid>
+
+		<ControlTemplate.Triggers>
+			<Trigger Property="IsDropDownOpen" Value="True">
+				<Setter TargetName="toggleButton" Property="IsHitTestVisible" Value="False" />
+			</Trigger>
+		</ControlTemplate.Triggers>
+
 	</ControlTemplate>
 
 	<Style
@@ -111,6 +110,8 @@
 		TargetType="{x:Type ComboBoxItem}">
 
 		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -138,6 +139,12 @@
 					</Grid>
 
 					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsSelected" Value="True">
+							<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+							<Setter Property="Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+						</Trigger>
+
 						<Trigger Property="IsMouseOver" Value="True">
 							<Trigger.EnterActions>
 								<BeginStoryboard>

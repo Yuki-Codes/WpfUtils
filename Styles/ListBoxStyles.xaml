@@ -169,11 +169,8 @@
 							<Border
 								x:Name="SelectionBorder"
 								Margin="1"
-								Background="Transparent"
-								BorderBrush="{DynamicResource TrimBrush}"
-								BorderThickness="1"
 								Opacity="0"
-								Style="{DynamicResource WpfUtilsControlHoverBorder}" />
+								Style="{DynamicResource WpfUtilsSelectedBorder}" />
 
 							<ContentPresenter
 								Margin="{TemplateBinding Padding}"
@@ -195,6 +192,7 @@
 
 						<Trigger Property="IsMouseOver" Value="True">
 							<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+							<Setter Property="Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
 
 							<Trigger.EnterActions>
 								<BeginStoryboard>
@@ -223,13 +221,17 @@
 						</Trigger>
 
 						<Trigger Property="IsSelected" Value="True">
+
+							<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+							<Setter Property="Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+
 							<Trigger.EnterActions>
 								<BeginStoryboard>
 									<Storyboard>
 										<DoubleAnimation
 											Storyboard.TargetName="SelectionBorder"
 											Storyboard.TargetProperty="Opacity"
-											To="0.5"
+											To="1"
 											Duration="0:0:0.100" />
 									</Storyboard>
 								</BeginStoryboard>

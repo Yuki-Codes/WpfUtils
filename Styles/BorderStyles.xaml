@@ -47,14 +47,12 @@
 	<Style
 		x:Key="WpfUtilsSelectedBorder"
 		TargetType="{x:Type Border}">
-		<Setter Property="Background" Value="{DynamicResource TrimBrush}" />
+		<Setter Property="Background" Value="{DynamicResource ControlBackgroundSelectedBrush}" />
 		<Setter Property="BorderThickness" Value="0" />
 		<Setter Property="SnapsToDevicePixels" Value="True" />
-		<Setter Property="CornerRadius" Value="4,0,0,4" />
+		<Setter Property="CornerRadius" Value="{DynamicResource WpfUtilsBorderInnerCornerRadius}" />
 		<Setter Property="Padding" Value="0" />
 		<Setter Property="Margin" Value="2" />
-		<Setter Property="HorizontalAlignment" Value="Left" />
-		<Setter Property="Width" Value="4" />
 		<Setter Property="UseLayoutRounding" Value="True" />
 	</Style>
 
