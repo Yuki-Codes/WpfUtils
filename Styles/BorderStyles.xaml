@@ -4,6 +4,8 @@
 
 	<CornerRadius x:Key="WpfUtilsBorderInnerCornerRadius">4</CornerRadius>
 	<CornerRadius x:Key="WpfUtilsBorderOuterCornerRadius">6</CornerRadius>
+	<CornerRadius x:Key="WpfUtilsBorderOuterCornerRadiusBottom">0,0,6,6</CornerRadius>
+	<CornerRadius x:Key="WpfUtilsBorderOuterCornerRadiusTop">6,6,0,0</CornerRadius>
 
 	<Style
 		x:Key="WpfUtilsControlHoverBorder"
