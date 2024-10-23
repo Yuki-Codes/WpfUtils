@@ -1,6 +1,47 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="clr-namespace:WpfUtils.Controls"
+	xmlns:sys="clr-namespace:System;assembly=netstandard">
+
+	<sys:Double x:Key="WpfUtilsMaxTooltipWidth">250</sys:Double>
+
+	<ControlTemplate
+		x:Key="WofUtilsTooltipTemplate"
+		TargetType="{x:Type ToolTip}">
+		<Grid
+			x:Name="MainGrid"
+			Margin="12"
+			HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+			VerticalAlignment="{TemplateBinding VerticalAlignment}">
+
+			<Grid>
+				<Grid.Effect>
+					<DropShadowEffect
+						Direction="270"
+						ShadowDepth="0" />
+				</Grid.Effect>
+
+				<Border
+					Background="{TemplateBinding Background}"
+					BorderBrush="{DynamicResource BackgroundBrush}"
+					BorderThickness="1"
+					CornerRadius="6" />
+			</Grid>
+
+			<ContentPresenter
+				Margin="{TemplateBinding Padding}"
+				Content="{TemplateBinding Content}"
+				ContentTemplate="{TemplateBinding ContentTemplate}">
+				<ContentPresenter.Resources>
+					<Style TargetType="{x:Type TextBlock}">
+						<Setter Property="TextWrapping" Value="Wrap" />
+					</Style>
+				</ContentPresenter.Resources>
+			</ContentPresenter>
+		</Grid>
+	</ControlTemplate>
+
 	<Style
 		x:Key="WpfUtilsToolTip"
 		TargetType="{x:Type ToolTip}">
@@ -9,57 +50,14 @@
 		<Setter Property="HasDropShadow" Value="True" />
 		<Setter Property="MinWidth" Value="10" />
 		<Setter Property="MinHeight" Value="10" />
-		<Setter Property="MaxWidth" Value="250" />
-		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="MaxWidth" Value="{DynamicResource WpfUtilsMaxTooltipWidth}" />
+		<Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
 		<Setter Property="Template" Value="{StaticResource PanelTemplate}" />
 		<Setter Property="UseLayoutRounding" Value="True" />
 		<Setter Property="Padding" Value="6" />
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+		<Setter Property="Template" Value="{DynamicResource WofUtilsTooltipTemplate}" />
 
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="ToolTip">
-					<Grid
-						x:Name="MainGrid"
-						Margin="12"
-						HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-						VerticalAlignment="{TemplateBinding VerticalAlignment}">
-
-						<Border
-							x:Name="PanelShadow"
-							Background="Black"
-							CornerRadius="6"
-							Opacity="0.25">
-							<Border.BitmapEffect>
-								<DropShadowBitmapEffect
-									ShadowDepth="0"
-									Softness="0.75" />
-							</Border.BitmapEffect>
-						</Border>
-
-						<Border
-							x:Name="PanelBackground"
-							Background="{DynamicResource BackgroundBrush}"
-							BorderBrush="{DynamicResource BackgroundLightBrush}"
-							BorderThickness="1"
-							CornerRadius="6" />
-
-						<ContentPresenter
-							Grid.Row="1"
-							Margin="{TemplateBinding Padding}"
-							Content="{TemplateBinding Content}"
-							ContentTemplate="{TemplateBinding ContentTemplate}">
-							<ContentPresenter.Resources>
-								<Style TargetType="{x:Type TextBlock}">
-									<Setter Property="TextWrapping" Value="Wrap" />
-								</Style>
-							</ContentPresenter.Resources>
-						</ContentPresenter>
-
-					</Grid>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
 	</Style>
 
 </ResourceDictionary>

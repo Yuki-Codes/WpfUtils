@@ -271,6 +271,7 @@
 		<Setter Property="ScrollViewer.PanningMode" Value="VerticalOnly" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />
 		<Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel" />
+		<Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
 
 		<Setter Property="ItemsPanel">
 			<Setter.Value>

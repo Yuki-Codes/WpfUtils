@@ -87,7 +87,8 @@
 				Header="{TemplateBinding controls:PopOut.Header}"
 				HeaderTemplate="{TemplateBinding controls:PopOut.HeaderTemplate}"
 				IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-				PlacementTarget="{Binding ElementName=toggleButton}">
+				PlacementTarget="{Binding ElementName=toggleButton}"
+				Style="{DynamicResource WpfUtilsPopOut}">
 
 				<ScrollViewer behaviours:SmoothScrollBehaviour.SmoothScroll="True">
 					<ItemsPresenter
