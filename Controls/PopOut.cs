@@ -7,6 +7,8 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Threading;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 [DependencyProperty<ControlTemplate>("Template")]
 [DependencyProperty<object>("Content")]
@@ -15,7 +17,6 @@ using System.Windows.Media;
 [AttachedDependencyProperty<DataTemplate>("HeaderTemplate")]
 [DependencyProperty<Thickness>("Padding")]
 [DependencyProperty<Brush>("Background")]
-[DependencyProperty<bool>("FitTarget", DefaultValue = true)]
 [ContentProperty("Content")]
 public partial class PopOut : Popup, IAddChild
 {
@@ -26,6 +27,7 @@ public partial class PopOut : Popup, IAddChild
 		this.contentPresenter.Padding = this.Padding;
 		this.contentPresenter.Background = this.Background;
 		this.Child = this.contentPresenter;
+		this.Placement = PlacementMode.Center;
 	}
 
 	public static PopOut Show(UIElement placementTarget, UIElement content)
@@ -34,7 +36,6 @@ public partial class PopOut : Popup, IAddChild
 		host.Content = content;
 		host.PlacementTarget = placementTarget;
 		host.Placement = PlacementMode.Bottom;
-		host.FitTarget = false;
 		host.Width = 300;
 		host.AllowsTransparency = true;
 
@@ -51,40 +52,11 @@ public partial class PopOut : Popup, IAddChild
 	{
 		base.OnOpened(e);
 
-		if (this.Placement == PlacementMode.Bottom)
+		if (this.Placement == PlacementMode.Center
+			&& this.PlacementTarget is FrameworkElement el
+			&& this.Child is FrameworkElement childEl)
 		{
-			if (this.FitTarget)
-			{
-				this.HorizontalOffset = -this.Margin.Left;
-			}
-
-			if (this.PlacementTarget is FrameworkElement el)
-			{
-				double fullWidth = this.Width;
-
-				if (this.FitTarget)
-					fullWidth = el.ActualWidth;
-
-				fullWidth = fullWidth - (this.Margin.Left + this.Margin.Right);
-
-				if (fullWidth > this.MaxWidth)
-				{
-					double delta = fullWidth - this.MaxWidth;
-					fullWidth = this.MaxWidth;
-
-					this.HorizontalOffset -= delta / 2;
-				}
-
-				if (this.FitTarget)
-					this.Width = fullWidth;
-
-				this.VerticalOffset = -(el.ActualHeight / 2);
-			}
-
-			if (!this.FitTarget)
-			{
-				this.HorizontalOffset = 40;
-			}
+			this.VerticalOffset = (el.ActualHeight / 2) + (childEl.ActualHeight / 2) + this.Margin.Top;
 		}
 	}
 

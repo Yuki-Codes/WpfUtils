@@ -60,7 +60,7 @@
 		TargetType="{x:Type controls:PopOut}">
 
 		<Setter Property="AllowsTransparency" Value="True" />
-		<Setter Property="Focusable" Value="False" />
+		<Setter Property="Focusable" Value="True" />
 		<Setter Property="Placement" Value="Bottom" />
 		<Setter Property="PopupAnimation" Value="Fade" />
 		<Setter Property="SnapsToDevicePixels" Value="True" />
