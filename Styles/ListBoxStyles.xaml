@@ -12,6 +12,8 @@
 		<Setter Property="Margin" Value="0" />
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -44,6 +46,12 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
+
+		<Style.Triggers>
+			<Trigger Property="IsSelected" Value="True">
+				<Setter Property="TextBlock.Foreground" Value="{DynamicResource TrimBrush}" />
+			</Trigger>
+		</Style.Triggers>
 	</Style>
 
 	<Style
