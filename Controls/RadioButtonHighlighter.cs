@@ -142,8 +142,16 @@ public partial class RadioButtonHighlighter : ContentControl
 			return;
 
 		RadioButton button = this.radioButtons[this.currentIndex];
-		GeneralTransform transform = button.TransformToAncestor(this);
-		Rect bounds = transform.TransformBounds(new(0, 0, button.ActualWidth, button.ActualHeight));
+		Rect bounds;
+
+		try
+		{
+			GeneralTransform transform = button.TransformToAncestor(this);
+			bounds = transform.TransformBounds(new(0, 0, button.ActualWidth, button.ActualHeight));
+		}
+		catch (InvalidOperationException)
+		{
+		}
 
 		Thickness margin = this.highlight.Margin;
 		margin.Left = bounds.Left;
