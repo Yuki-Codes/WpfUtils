@@ -64,7 +64,7 @@ public class ScrollInfoAdapter : UIElement, IScrollInfo
 	public bool CanVerticallyScroll
 	{
 		get => this.Original.CanVerticallyScroll;
-		set => this.Original.CanHorizontallyScroll = value;
+		set => this.Original.CanVerticallyScroll = value;
 	}
 
 	public bool CanHorizontallyScroll
@@ -130,8 +130,6 @@ public class ScrollInfoAdapter : UIElement, IScrollInfo
 
 	private void VerticalScroll(double val)
 	{
-		Logging.Log.Message($"!! {val}");
-
 		if (this.targetVerticalOffset == null)
 			this.targetVerticalOffset = this.Original.VerticalOffset;
 
