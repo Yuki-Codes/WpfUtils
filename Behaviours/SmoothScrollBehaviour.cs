@@ -1,5 +1,6 @@
 ﻿namespace WpfUtils.Behaviours;
 
+using DependencyPropertyGenerator;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -8,35 +9,14 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
-public class SmoothScrollBehaviour : Behaviour
+[AttachedDependencyProperty<bool, ScrollViewer>("SmoothScroll")]
+public static partial class SmoothScrollBehaviour
 {
 	public static readonly PropertyInfo? ScrollInfoProperty = typeof(ScrollViewer).GetProperty("ScrollInfo", BindingFlags.NonPublic | BindingFlags.Instance);
 
-	public SmoothScrollBehaviour(DependencyObject host)
-		: base(host)
+	static partial void OnSmoothScrollChanged(ScrollViewer scrollViewer, bool newValue)
 	{
-	}
-
-	public SmoothScrollBehaviour(DependencyObject el, object? value)
-		: base(el, value)
-	{
-	}
-
-	public static void SetSmoothScroll(DependencyObject host, bool enable)
-	{
-		host.AttachHandler<SmoothScrollBehaviour>(enable);
-	}
-
-	public override void OnLoaded()
-	{
-		base.OnLoaded();
-
-		ScrollViewer? scrollViewer = this.Host as ScrollViewer;
-
-		if (scrollViewer == null)
-			scrollViewer = this.Host.FindChild<ScrollViewer>();
-
-		if (scrollViewer == null)
+		if (newValue != true)
 			return;
 
 		IScrollInfo? scrollInfo = ScrollInfoProperty?.GetValue(scrollViewer) as IScrollInfo;
