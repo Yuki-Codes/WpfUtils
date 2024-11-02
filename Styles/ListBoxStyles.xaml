@@ -11,6 +11,7 @@
 
 		<Setter Property="Margin" Value="0" />
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="Padding" Value="6,0" />
 
 		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 
@@ -22,6 +23,7 @@
 						x:Name="Button"
 						Height="Auto"
 						Margin="0"
+						Padding="{TemplateBinding Padding}"
 						HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
 						controls:RadioButtonHighlighter.UseGroupHighlight="True"
 						Background="Transparent"
@@ -29,10 +31,8 @@
 						IsEnabled="{TemplateBinding IsEnabled}"
 						Style="{DynamicResource WpfUtilsRadioButtonNoHighlight}">
 
-
 						<ContentPresenter
 							x:Name="Content"
-							Margin="3"
 							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
 
 					</RadioButton>
@@ -61,12 +61,15 @@
 		<Setter Property="Height" Value="26" />
 		<Setter Property="Margin" Value="1" />
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+		<Setter Property="Padding" Value="0" />
 
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type ListBox}">
 					<controls:RadioButtonHighlighter>
-						<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+						<ItemsPresenter
+							Margin="{TemplateBinding Padding}"
+							SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
 					</controls:RadioButtonHighlighter>
 				</ControlTemplate>
 			</Setter.Value>
