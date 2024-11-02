@@ -19,8 +19,17 @@ public static partial class SmoothScrollBehaviour
 		if (newValue != true)
 			return;
 
-		IScrollInfo? scrollInfo = ScrollInfoProperty?.GetValue(scrollViewer) as IScrollInfo;
+		if (!scrollViewer.IsLoaded)
+		{
+			scrollViewer.Loaded += (s, e) =>
+			{
+				OnSmoothScrollChanged(scrollViewer, newValue);
+			};
 
+			return;
+		}
+
+		IScrollInfo? scrollInfo = ScrollInfoProperty?.GetValue(scrollViewer) as IScrollInfo;
 		if (scrollInfo == null)
 			return;
 
@@ -121,6 +130,8 @@ public class ScrollInfoAdapter : UIElement, IScrollInfo
 
 	private void VerticalScroll(double val)
 	{
+		Logging.Log.Message($"!! {val}");
+
 		if (this.targetVerticalOffset == null)
 			this.targetVerticalOffset = this.Original.VerticalOffset;
 

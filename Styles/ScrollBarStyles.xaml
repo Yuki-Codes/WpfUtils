@@ -205,6 +205,7 @@
 		<Setter Property="VerticalScrollBarVisibility" Value="Auto" />
 		<Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
 		<Setter Property="behaviours:ScrollViewerExtensions.DragScroll" Value="True" />
+		<Setter Property="behaviours:SmoothScrollBehaviour.SmoothScroll" Value="True" />
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 
 		<Setter Property="Template">
