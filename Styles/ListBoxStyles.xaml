@@ -142,6 +142,7 @@
 					BasedOn="{StaticResource WpfUtilsSwitchSelectorItemStyle}"
 					TargetType="{x:Type ListBoxItem}">
 					<Setter Property="HorizontalContentAlignment" Value="stretch" />
+					<Setter Property="Padding" Value="0,6" />
 				</Style>
 			</Setter.Value>
 		</Setter>
