@@ -146,6 +146,10 @@
 								</BeginStoryboard>
 							</Trigger.ExitActions>
 						</Trigger>
+
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Foreground" Value="{DynamicResource BackgroundLightBrush}" />
+						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
 
