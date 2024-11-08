@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-public class SimpleCommand : ICommand
+public class SimpleCommand : ICommand, INotifyPropertyChanged
 {
 	protected Action? action;
 	protected Func<Task>? asyncFunc;
@@ -37,6 +37,8 @@ public class SimpleCommand : ICommand
 	{
 		this.asyncFunc = func;
 	}
+
+	public event PropertyChangedEventHandler? PropertyChanged;
 
 	public event EventHandler? CanExecuteChanged
 	{
@@ -99,6 +101,11 @@ public class SimpleCommand : ICommand
 	protected virtual bool CanExecute()
 	{
 		return this.canExecute?.Invoke() ?? true;
+	}
+
+	protected virtual void NotifyPropertyChanged(string propertyName)
+	{
+		this.PropertyChanged?.Invoke(this, new(propertyName));
 	}
 
 	protected virtual Task Execute()
