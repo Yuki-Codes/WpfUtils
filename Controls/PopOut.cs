@@ -35,10 +35,7 @@ public partial class PopOut : Popup, IAddChild
 		PopOut host = new();
 		host.Content = content;
 		host.PlacementTarget = placementTarget;
-		host.Placement = PlacementMode.Bottom;
-		host.Width = 300;
 		host.AllowsTransparency = true;
-
 		host.IsOpen = true;
 		return host;
 	}

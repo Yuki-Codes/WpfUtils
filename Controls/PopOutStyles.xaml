@@ -7,9 +7,7 @@
 		x:Key="WpfUtilsPopOutTemplate"
 		TargetType="{x:Type ContentControl}">
 
-		<Grid
-			Margin="12"
-			HorizontalAlignment="Center">
+		<Grid Margin="12">
 			<Grid>
 				<Grid.Effect>
 					<DropShadowEffect
@@ -70,7 +68,6 @@
 		<Setter Property="Margin" Value="-12" />
 		<Setter Property="Padding" Value="4" />
 		<Setter Property="Template" Value="{StaticResource WpfUtilsPopOutTemplate}" />
-		<Setter Property="Width" Value="324" />
 		<Setter Property="MinWidth" Value="100" />
 		<Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
 
