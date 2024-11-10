@@ -81,6 +81,7 @@
 			<controls:PopOut
 				x:Name="PART_Popup"
 				Grid.Column="0"
+				MinWidth="100"
 				MaxWidth="400"
 				MaxHeight="{TemplateBinding MaxDropDownHeight}"
 				Background="{DynamicResource ControlBackgroundBrush}"

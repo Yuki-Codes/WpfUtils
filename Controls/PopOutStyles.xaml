@@ -7,7 +7,9 @@
 		x:Key="WpfUtilsPopOutTemplate"
 		TargetType="{x:Type ContentControl}">
 
-		<Grid Margin="12">
+		<Grid
+			Margin="12"
+			HorizontalAlignment="Center">
 			<Grid>
 				<Grid.Effect>
 					<DropShadowEffect
