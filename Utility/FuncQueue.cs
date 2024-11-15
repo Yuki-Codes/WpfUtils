@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 public class FuncQueue
 {
 	private readonly Func<Task> func;
-
 	private int currentDelayValue;
 	private Task? task;
+	private bool isCanceling;
 
 	public FuncQueue(Func<Task> func, int delay)
 	{
@@ -43,6 +43,7 @@ public class FuncQueue
 	public void Invoke()
 	{
 		this.currentDelayValue = this.Delay;
+		this.isCanceling = false;
 
 		if (this.task == null || this.task.IsCompleted)
 		{
@@ -53,6 +54,12 @@ public class FuncQueue
 	public void ClearDelay()
 	{
 		this.currentDelayValue = 0;
+	}
+
+	public void Cancel()
+	{
+		this.ClearDelay();
+		this.isCanceling = true;
 	}
 
 	public void InvokeImmediate()
@@ -74,6 +81,13 @@ public class FuncQueue
 			{
 				await Task.Delay(10);
 				this.currentDelayValue -= 10;
+			}
+
+			if (this.isCanceling)
+			{
+				this.currentDelayValue -= 1;
+				this.isCanceling = false;
+				return;
 			}
 
 			lock (this)
