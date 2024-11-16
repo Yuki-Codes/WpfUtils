@@ -27,7 +27,7 @@ using WinPoint = System.Windows.Point;
 [DependencyProperty<object>("Suffix")]
 public partial class NumberBox : UserControl, INotifyPropertyChanged
 {
-	private string? inputString;
+	private string? inputString = "0";
 	private Key keyHeld = Key.None;
 	private double relativeSliderStart;
 	private double relativeSliderCurrent;
