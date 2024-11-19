@@ -16,6 +16,7 @@ using WpfUtils;
 [DependencyProperty<bool>("Wrap")]
 [DependencyProperty<object>("Prefix")]
 [DependencyProperty<int>("DecimalPlaces", DefaultValue = 3)]
+[DependencyProperty<int>("AxisCount", DefaultValue = 3)]
 public partial class MultiNumberBox : TextBox
 {
 	private Key keyHeld = Key.None;
@@ -47,21 +48,51 @@ public partial class MultiNumberBox : TextBox
 			if (zStr == "-0")
 				zStr = "0";
 
-			return $"{xStr}, {yStr}, {zStr}";
+			if (this.AxisCount == 1)
+			{
+				return $"{xStr}";
+			}
+			else if (this.AxisCount == 2)
+			{
+				return $"{xStr}, {yStr}";
+			}
+			else if (this.AxisCount == 3)
+			{
+				return $"{xStr}, {yStr}, {zStr}";
+			}
+
+			return string.Empty;
 		}
 
 		set
 		{
 			string[] parts = value.Split(',');
-			if (parts.Length == 3
-				&& double.TryParse(parts[0], out var x)
-				&& double.TryParse(parts[1], out var y)
-				&& double.TryParse(parts[2], out var z))
+			if (parts.Length == this.AxisCount)
 			{
-				this.currentEditString = null;
-				this.X = x;
-				this.Y = y;
-				this.Z = z;
+				if (parts.Length == 3
+					&& double.TryParse(parts[0], out var x3)
+					&& double.TryParse(parts[1], out var y3)
+					&& double.TryParse(parts[2], out var z3))
+				{
+					this.currentEditString = null;
+					this.X = x3;
+					this.Y = y3;
+					this.Z = z3;
+				}
+				else if (parts.Length == 2
+					&& double.TryParse(parts[0], out var x2)
+					&& double.TryParse(parts[1], out var y2))
+				{
+					this.currentEditString = null;
+					this.X = x2;
+					this.Y = y2;
+				}
+				else if (parts.Length == 1
+					&& double.TryParse(parts[0], out var x1))
+				{
+					this.currentEditString = null;
+					this.X = x1;
+				}
 			}
 			else
 			{
