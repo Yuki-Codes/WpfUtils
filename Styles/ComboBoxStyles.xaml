@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:behaviours="clr-namespace:WpfUtils.Behaviours"
+	xmlns:behaviors="clr-namespace:WpfUtils.Behaviors"
 	xmlns:controls="clr-namespace:WpfUtils.Controls"
 	xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes">
 
@@ -91,7 +91,7 @@
 				PlacementTarget="{Binding ElementName=toggleButton}"
 				Style="{DynamicResource WpfUtilsPopOut}">
 
-				<ScrollViewer behaviours:SmoothScrollBehaviour.SmoothScroll="True">
+				<ScrollViewer behaviors:SmoothScrollBehavior.SmoothScroll="True">
 					<ItemsPresenter
 						Name="ItemsPresenter"
 						KeyboardNavigation.DirectionalNavigation="Contained" />

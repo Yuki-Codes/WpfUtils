@@ -3,7 +3,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using WpfUtils.Behaviours;
+using WpfUtils.Behaviors;
 
 public class SmoothScrollVirtualizingStackPanel : VirtualizingStackPanel
 {
@@ -26,6 +26,8 @@ public class SmoothScrollVirtualizingStackPanel : VirtualizingStackPanel
 
 	private void VerticalScroll(double val)
 	{
+		Logging.Log.Message($"SCROL: {val}");
+
 		if (this.targetVerticalOffset == null)
 			this.targetVerticalOffset = this.VerticalOffset;
 

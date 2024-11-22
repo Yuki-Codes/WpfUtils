@@ -1,4 +1,4 @@
-﻿namespace WpfUtils.Behaviours;
+﻿namespace WpfUtils.Behaviors;
 
 using DependencyPropertyGenerator;
 using System;
@@ -19,11 +19,11 @@ public static partial class ScrollViewerExtensions
 		if (newValue != true)
 			return;
 
-		new ScrollDragBehaviour(scrollViewer);
+		new ScrollDragBehavior(scrollViewer);
 	}
 }
 
-public class ScrollDragBehaviour : IManipulator
+public class ScrollDragBehavior : IManipulator
 {
 	private const double MinDragDistance = 10;
 
@@ -33,7 +33,7 @@ public class ScrollDragBehaviour : IManipulator
 	private bool isDown = false;
 	private bool isManipulating = false;
 
-	public ScrollDragBehaviour(ScrollViewer scrollViewer)
+	public ScrollDragBehavior(ScrollViewer scrollViewer)
 	{
 		this.scrollViewer = scrollViewer;
 		this.scrollViewer.IsManipulationEnabled = true;

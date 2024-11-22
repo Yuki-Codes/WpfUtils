@@ -1,4 +1,4 @@
-﻿namespace WpfUtils.Behaviours;
+﻿namespace WpfUtils.Behaviors;
 
 using DependencyPropertyGenerator;
 using System;
@@ -10,7 +10,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
 [AttachedDependencyProperty<bool, ScrollViewer>("SmoothScroll")]
-public static partial class SmoothScrollBehaviour
+public static partial class SmoothScrollBehavior
 {
 	public static readonly PropertyInfo? ScrollInfoProperty = typeof(ScrollViewer).GetProperty("ScrollInfo", BindingFlags.NonPublic | BindingFlags.Instance);
 
