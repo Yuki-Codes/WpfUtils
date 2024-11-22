@@ -61,6 +61,16 @@ public partial class PopOut : Popup, IAddChild
 				this.VerticalOffset = (this.PlacementRectangle.Height / 2) + (childEl.ActualHeight / 2) + this.Margin.Top;
 			}
 		}
+
+		if (this.PlacementTarget is FrameworkElement fe)
+		{
+			fe.Unloaded += this.OnTargetUnloaded;
+		}
+	}
+
+	private void OnTargetUnloaded(object sender, RoutedEventArgs e)
+	{
+		this.IsOpen = false;
 	}
 
 	partial void OnTemplateChanged(ControlTemplate? newValue)
