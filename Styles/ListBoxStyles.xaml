@@ -149,125 +149,120 @@
 
 	</Style>
 
+
+	<ControlTemplate
+		x:Key="WpfUtilsListBoxItemTemplate"
+		TargetType="{x:Type ListBoxItem}">
+
+		<Border
+			Margin="{TemplateBinding Margin}"
+			Background="Transparent"
+			BorderBrush="{TemplateBinding BorderBrush}"
+			BorderThickness="{TemplateBinding BorderThickness}"
+			ClipToBounds="{TemplateBinding ClipToBounds}">
+			<Grid>
+				<Border
+					x:Name="HoverBorder"
+					Margin="1"
+					Opacity="0"
+					Style="{DynamicResource WpfUtilsControlHoverBorder}" />
+
+				<Border
+					x:Name="SelectionBorder"
+					Margin="1"
+					Opacity="0"
+					Style="{DynamicResource WpfUtilsSelectedBorder}" />
+
+				<ContentPresenter
+					Margin="{TemplateBinding Padding}"
+					HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+					VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+					Content="{TemplateBinding Content}"
+					ContentTemplate="{TemplateBinding ContentTemplate}"
+					ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+					Focusable="False"
+					RecognizesAccessKey="False"
+					SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+			</Grid>
+		</Border>
+
+		<ControlTemplate.Triggers>
+			<Trigger Property="IsEnabled" Value="False">
+				<Setter Property="Opacity" Value="0.5" />
+			</Trigger>
+
+			<Trigger Property="IsMouseOver" Value="True">
+				<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+				<Setter Property="Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+
+				<Trigger.EnterActions>
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation
+								Storyboard.TargetName="HoverBorder"
+								Storyboard.TargetProperty="Opacity"
+								To="1"
+								Duration="0:0:0.100" />
+						</Storyboard>
+					</BeginStoryboard>
+				</Trigger.EnterActions>
+
+				<Trigger.ExitActions>
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation
+								Storyboard.TargetName="HoverBorder"
+								Storyboard.TargetProperty="Opacity"
+								From="1"
+								To="0"
+								Duration="0:0:0.250" />
+						</Storyboard>
+					</BeginStoryboard>
+				</Trigger.ExitActions>
+			</Trigger>
+
+			<Trigger Property="IsSelected" Value="True">
+				<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+				<Setter Property="Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+
+				<Trigger.EnterActions>
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation
+								Storyboard.TargetName="SelectionBorder"
+								Storyboard.TargetProperty="Opacity"
+								To="1"
+								Duration="0:0:0.100" />
+						</Storyboard>
+					</BeginStoryboard>
+				</Trigger.EnterActions>
+
+				<Trigger.ExitActions>
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation
+								Storyboard.TargetName="SelectionBorder"
+								Storyboard.TargetProperty="Opacity"
+								To="0"
+								Duration="0:0:0.250" />
+						</Storyboard>
+					</BeginStoryboard>
+				</Trigger.ExitActions>
+			</Trigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
+
+
 	<Style
 		x:Key="WpfUtilsListBoxItem"
 		TargetType="{x:Type ListBoxItem}">
-
 
 		<Setter Property="HorizontalAlignment" Value="Stretch" />
 		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="Padding" Value="2" />
-
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type ListBoxItem}">
-
-					<Border
-						Margin="{TemplateBinding Margin}"
-						Background="Transparent"
-						BorderBrush="{TemplateBinding BorderBrush}"
-						BorderThickness="{TemplateBinding BorderThickness}"
-						ClipToBounds="{TemplateBinding ClipToBounds}">
-						<Grid>
-
-							<Border
-								x:Name="HoverBorder"
-								Margin="1"
-								Opacity="0"
-								Style="{DynamicResource WpfUtilsControlHoverBorder}" />
-
-							<Border
-								x:Name="SelectionBorder"
-								Margin="1"
-								Opacity="0"
-								Style="{DynamicResource WpfUtilsSelectedBorder}" />
-
-							<ContentPresenter
-								Margin="{TemplateBinding Padding}"
-								HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-								VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-								Content="{TemplateBinding Content}"
-								ContentTemplate="{TemplateBinding ContentTemplate}"
-								ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-								Focusable="False"
-								RecognizesAccessKey="False"
-								SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-						</Grid>
-					</Border>
-
-					<ControlTemplate.Triggers>
-						<Trigger Property="IsEnabled" Value="False">
-							<Setter Property="Opacity" Value="0.5" />
-						</Trigger>
-
-						<Trigger Property="IsMouseOver" Value="True">
-							<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
-							<Setter Property="Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
-
-							<Trigger.EnterActions>
-								<BeginStoryboard>
-									<Storyboard>
-										<DoubleAnimation
-											Storyboard.TargetName="HoverBorder"
-											Storyboard.TargetProperty="Opacity"
-											To="1"
-											Duration="0:0:0.100" />
-									</Storyboard>
-								</BeginStoryboard>
-							</Trigger.EnterActions>
-
-							<Trigger.ExitActions>
-								<BeginStoryboard>
-									<Storyboard>
-										<DoubleAnimation
-											Storyboard.TargetName="HoverBorder"
-											Storyboard.TargetProperty="Opacity"
-											From="1"
-											To="0"
-											Duration="0:0:0.250" />
-									</Storyboard>
-								</BeginStoryboard>
-							</Trigger.ExitActions>
-						</Trigger>
-
-						<Trigger Property="IsSelected" Value="True">
-
-							<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
-							<Setter Property="Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
-
-							<Trigger.EnterActions>
-								<BeginStoryboard>
-									<Storyboard>
-										<DoubleAnimation
-											Storyboard.TargetName="SelectionBorder"
-											Storyboard.TargetProperty="Opacity"
-											To="1"
-											Duration="0:0:0.100" />
-									</Storyboard>
-								</BeginStoryboard>
-							</Trigger.EnterActions>
-
-							<Trigger.ExitActions>
-								<BeginStoryboard>
-									<Storyboard>
-										<DoubleAnimation
-											Storyboard.TargetName="SelectionBorder"
-											Storyboard.TargetProperty="Opacity"
-											To="0"
-											Duration="0:0:0.250" />
-									</Storyboard>
-								</BeginStoryboard>
-							</Trigger.ExitActions>
-						</Trigger>
-
-
-					</ControlTemplate.Triggers>
-
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
+		<Setter Property="Template" Value="{StaticResource WpfUtilsListBoxItemTemplate}" />
 	</Style>
 
 	<Style
