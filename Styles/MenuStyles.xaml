@@ -64,13 +64,13 @@
 				PlacementTarget="{Binding ElementName=Content}"
 				Style="{DynamicResource WpfUtilsPopOut}">
 
-				<wpfUtils:PopOut.Header>
+				<!--<wpfUtils:PopOut.Header>
 					<ContentPresenter
 						Margin="10"
 						HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
 						Content="{TemplateBinding Header}"
 						ContentTemplate="{Binding HeaderTemplate}" />
-				</wpfUtils:PopOut.Header>
+				</wpfUtils:PopOut.Header>-->
 
 				<ItemsPresenter
 					Margin="0"
