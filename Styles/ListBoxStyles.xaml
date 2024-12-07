@@ -263,6 +263,7 @@
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="Padding" Value="2" />
 		<Setter Property="Template" Value="{StaticResource WpfUtilsListBoxItemTemplate}" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 	</Style>
 
 	<Style
@@ -279,6 +280,7 @@
 		<Setter Property="VerticalContentAlignment" Value="Center" />
 		<Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel" />
 		<Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
+		<Setter Property="Focusable" Value="False" />
 
 		<Setter Property="ItemsPanel">
 			<Setter.Value>
