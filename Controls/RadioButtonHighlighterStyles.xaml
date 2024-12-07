@@ -28,6 +28,7 @@
 		TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
 
 		<Setter Property="Template" Value="{StaticResource WpfUtilsRadioButtonHighlight}" />
+		<Setter Property="Focusable" Value="False" />
 	</Style>
 
 </ResourceDictionary>
