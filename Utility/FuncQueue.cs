@@ -2,6 +2,7 @@
 
 using System;
 using System.Threading.Tasks;
+using WpfUtils.Logging;
 
 public class FuncQueue
 {
@@ -96,7 +97,16 @@ public class FuncQueue
 				this.Pending = false;
 			}
 
-			await this.func.Invoke();
+			try
+			{
+				await this.func.Invoke();
+			}
+			catch (Exception ex)
+			{
+				Log.Error(ex, "Error invoking function queue");
+				throw;
+			}
+
 			this.currentDelayValue -= 1;
 
 			lock (this)
