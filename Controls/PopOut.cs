@@ -2,12 +2,14 @@
 
 using DependencyPropertyGenerator;
 using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Threading;
+using WpfUtils.Logging;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 [DependencyProperty<ControlTemplate>("Template")]
@@ -20,10 +22,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 [ContentProperty("Content")]
 public partial class PopOut : Popup, IAddChild
 {
-	private readonly ContentControl contentPresenter = new();
+	private readonly PopOutContentControl contentPresenter;
 
 	public PopOut()
 	{
+		this.contentPresenter = new(this);
 		this.contentPresenter.Padding = this.Padding;
 		this.contentPresenter.Background = this.Background;
 		this.Child = this.contentPresenter;
@@ -68,6 +71,11 @@ public partial class PopOut : Popup, IAddChild
 		}
 	}
 
+	protected new DependencyObject? GetTemplateChild(string childName)
+	{
+		return this.contentPresenter.GetTemplateChildWrapper(childName);
+	}
+
 	private void OnTargetUnloaded(object sender, RoutedEventArgs e)
 	{
 		this.IsOpen = false;
@@ -94,5 +102,20 @@ public partial class PopOut : Popup, IAddChild
 			newValue = new SolidColorBrush(Colors.Transparent);
 
 		this.contentPresenter.Background = newValue;
+	}
+}
+
+public class PopOutContentControl(PopOut owner)
+	: ContentControl
+{
+	public override void OnApplyTemplate()
+	{
+		base.OnApplyTemplate();
+		owner.OnApplyTemplate();
+	}
+
+	public DependencyObject? GetTemplateChildWrapper(string childName)
+	{
+		return this.GetTemplateChild(childName);
 	}
 }
