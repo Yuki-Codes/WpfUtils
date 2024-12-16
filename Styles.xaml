@@ -191,6 +191,8 @@
 	<converters:AbsoluteNumberConverter x:Key="AbsoluteNumber" />
 	<converters:NumberConverter x:Key="NumberConverter" />
 	<converters:RectToThicknessConverter x:Key="RectToThickness" />
+	<converters:MultiplyConverter x:Key="Multiply" />
+	<converters:ColumnVisibilityConverter x:Key="ColumnVisibility" />
 
 	<!--  Multi converters  -->
 	<converters:MultiBoolAndConverter x:Key="MultiBoolAnd" />
