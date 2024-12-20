@@ -43,6 +43,22 @@ public partial class RelativeSlider : Slider
 	private void OnPreviewMouseDown(object? sender, MouseButtonEventArgs e)
 	{
 		this.relativeSliderStart = this.RelativeValue;
+
+		if (Keyboard.IsKeyDown(Key.LeftShift))
+		{
+			this.Minimum = -this.RelativeRange * 10;
+			this.Maximum = this.RelativeRange * 10;
+		}
+		else if (Keyboard.IsKeyDown(Key.LeftCtrl))
+		{
+			this.Minimum = -this.RelativeRange / 10;
+			this.Maximum = this.RelativeRange / 10;
+		}
+		else
+		{
+			this.Minimum = -this.RelativeRange;
+			this.Maximum = this.RelativeRange;
+		}
 	}
 
 	private void OnPreviewMouseUp(object? sender, MouseButtonEventArgs e)
