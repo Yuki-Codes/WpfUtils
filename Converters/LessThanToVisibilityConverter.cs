@@ -1,11 +1,22 @@
 ﻿namespace WpfUtils.Converters;
 
+using System;
+using System.Globalization;
 using System.Windows;
+using System.Windows.Data;
 
-public class LessThanToVisibilityConverter : ConverterBase<double, Visibility, double>
+public class LessThanToVisibilityConverter : IValueConverter
 {
-	protected override Visibility Convert(double value)
+	public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 	{
-		return value < this.Parameter ? Visibility.Visible : Visibility.Collapsed;
+		double dV = System.Convert.ToDouble(value);
+		double dP = System.Convert.ToDouble(parameter);
+
+		return dV < dP ? Visibility.Visible : Visibility.Collapsed;
+	}
+
+	public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+	{
+		throw new NotSupportedException();
 	}
 }
