@@ -3,13 +3,9 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:controls="clr-namespace:WpfUtils.Controls">
 
-	<ControlTemplate
-		x:Key="WpfUtilsCheckBoxTemplate"
-		TargetType="{x:Type CheckBox}">
+	<ControlTemplate x:Key="WpfUtilsCheckBoxTemplate" TargetType="{x:Type CheckBox}">
 
-		<Border
-			Background="{TemplateBinding Background}"
-			Style="{DynamicResource WpfUtilsControlBorder}">
+		<Border Background="{TemplateBinding Background}" Style="{DynamicResource WpfUtilsControlBorder}">
 			<Grid x:Name="Content">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
@@ -129,9 +125,7 @@
 
 	</ControlTemplate>
 
-	<Style
-		x:Key="WpfUtilsCheckBox"
-		TargetType="{x:Type CheckBox}">
+	<Style x:Key="WpfUtilsCheckBox" TargetType="{x:Type CheckBox}">
 
 		<Setter Property="Height" Value="26" />
 		<Setter Property="SnapsToDevicePixels" Value="true" />
@@ -140,17 +134,13 @@
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
-		<Setter Property="Padding" Value="2,0" />
+		<Setter Property="Padding" Value="2,0,6,0" />
 	</Style>
 
 
-	<ControlTemplate
-		x:Key="WpfUtilsLockCheckBoxTemplate"
-		TargetType="{x:Type CheckBox}">
+	<ControlTemplate x:Key="WpfUtilsLockCheckBoxTemplate" TargetType="{x:Type CheckBox}">
 
-		<Border
-			Background="{TemplateBinding Background}"
-			Style="{DynamicResource WpfUtilsControlBorder}">
+		<Border Background="{TemplateBinding Background}" Style="{DynamicResource WpfUtilsControlBorder}">
 			<Grid x:Name="Content">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
@@ -199,18 +189,10 @@
 								BeginTime="00:00:00"
 								Storyboard.TargetName="CheckMark"
 								Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
-								<SplineDoubleKeyFrame
-									KeyTime="00:00:00.00"
-									Value="0" />
-								<SplineDoubleKeyFrame
-									KeyTime="00:00:00.10"
-									Value="-3" />
-								<SplineDoubleKeyFrame
-									KeyTime="00:00:00.15"
-									Value="-2" />
-								<SplineDoubleKeyFrame
-									KeyTime="00:00:00.18"
-									Value="0" />
+								<SplineDoubleKeyFrame KeyTime="00:00:00.00" Value="0" />
+								<SplineDoubleKeyFrame KeyTime="00:00:00.10" Value="-3" />
+								<SplineDoubleKeyFrame KeyTime="00:00:00.15" Value="-2" />
+								<SplineDoubleKeyFrame KeyTime="00:00:00.18" Value="0" />
 							</DoubleAnimationUsingKeyFrames>
 						</Storyboard>
 					</BeginStoryboard>
@@ -277,9 +259,7 @@
 
 	</ControlTemplate>
 
-	<Style
-		x:Key="WpfUtilsLockCheckBox"
-		TargetType="{x:Type CheckBox}">
+	<Style x:Key="WpfUtilsLockCheckBox" TargetType="{x:Type CheckBox}">
 
 		<Setter Property="Height" Value="22" />
 		<Setter Property="Margin" Value="0,1,1,1" />
