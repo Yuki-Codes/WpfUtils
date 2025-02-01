@@ -3,14 +3,15 @@
 using DependencyPropertyGenerator;
 using System;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Interop;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Threading;
 using WpfUtils.Logging;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 [DependencyProperty<ControlTemplate>("Template")]
 [DependencyProperty<object>("Content")]
@@ -31,6 +32,8 @@ public partial class PopOut : Popup, IAddChild
 		this.contentPresenter.Background = this.Background;
 		this.Child = this.contentPresenter;
 		this.Placement = PlacementMode.Center;
+
+		this.IsHitTestVisibleChanged += this.OnIsHitTestVisibleChanged;
 	}
 
 	public static PopOut Show(UIElement placementTarget, UIElement content)
@@ -39,6 +42,7 @@ public partial class PopOut : Popup, IAddChild
 		host.Content = content;
 		host.PlacementTarget = placementTarget;
 		host.AllowsTransparency = true;
+		host.IsHitTestVisible = false;
 		host.IsOpen = true;
 		return host;
 	}
@@ -51,6 +55,8 @@ public partial class PopOut : Popup, IAddChild
 	protected override void OnOpened(EventArgs e)
 	{
 		base.OnOpened(e);
+
+		this.SetHitTestable(this.IsHitTestVisible);
 
 		if (this.Placement == PlacementMode.Center
 			&& this.Child is FrameworkElement childEl)
@@ -102,6 +108,23 @@ public partial class PopOut : Popup, IAddChild
 			newValue = new SolidColorBrush(Colors.Transparent);
 
 		this.contentPresenter.Background = newValue;
+	}
+
+	private void OnIsHitTestVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+	{
+		this.SetHitTestable(this.IsHitTestVisible);
+	}
+
+	private void SetHitTestable(bool hitTestable)
+	{
+		try
+		{
+			MethodInfo? method = typeof(Popup).GetMethod("SetHitTestable", BindingFlags.NonPublic | BindingFlags.Instance);
+			method?.Invoke(this, [hitTestable]);
+		}
+		catch(Exception)
+		{
+		}
 	}
 }
 
