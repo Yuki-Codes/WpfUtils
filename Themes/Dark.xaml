@@ -20,7 +20,7 @@
 
 	<SolidColorBrush
 		x:Key="TrimBrush"
-		Color="DeepPink" />
+		Color="#FF1493" />
 
 	<SolidColorBrush
 		x:Key="ControlBackgroundBrush"
