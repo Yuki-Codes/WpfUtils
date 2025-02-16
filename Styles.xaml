@@ -193,6 +193,7 @@
 	<converters:RectToThicknessConverter x:Key="RectToThickness" />
 	<converters:MultiplyConverter x:Key="Multiply" />
 	<converters:ColumnVisibilityConverter x:Key="ColumnVisibility" />
+	<converters:EnumToIndexConverter x:Key="EnumToIndex" />
 
 	<!--  Multi converters  -->
 	<converters:MultiBoolAndConverter x:Key="MultiBoolAnd" />
