@@ -139,7 +139,7 @@
 				Grid.Row="0"
 				Grid.Column="0"
 				Content="{TemplateBinding Header}"
-				ContentTemplate="{TemplateBinding ContentTemplate}" />
+				ContentTemplate="{TemplateBinding HeaderTemplate}" />
 
 			<Grid
 				x:Name="ExpandArea"
@@ -198,6 +198,113 @@
 		<Setter Property="Template" Value="{StaticResource WpfUtilsInvisibleExpanderTemplate}" />
 		<Setter Property="Margin" Value="1" />
 		<Setter Property="Padding" Value="12,0,0,0" />
+	</Style>
+
+
+
+	<ControlTemplate
+		x:Key="WpfUtilsClickableExpanderTemplate"
+		TargetType="{x:Type Expander}">
+
+		<Grid KeyboardNavigation.TabNavigation="Local">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<ToggleButton
+				x:Name="HeaderSite"
+				Grid.Row="0"
+				Margin="0"
+				HorizontalContentAlignment="Stretch"
+				Background="{TemplateBinding Background}"
+				Foreground="{TemplateBinding Foreground}"
+				IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+				Style="{DynamicResource WpfUtilsIconToggleButton}">
+				<Grid>
+
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition />
+						<ColumnDefinition Width="26" />
+					</Grid.ColumnDefinitions>
+
+					<ContentPresenter
+						Grid.Column="0"
+						Margin="6,0"
+						Content="{TemplateBinding Header}"
+						ContentTemplate="{TemplateBinding HeaderTemplate}" />
+
+					<Path
+						Grid.Column="1"
+						Margin="3"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Data="M 0,0 5,3 10,0"
+						Stroke="{DynamicResource ForegroundLightBrush}"
+						StrokeThickness="1" />
+				</Grid>
+			</ToggleButton>
+
+			<Grid
+				x:Name="ExpandArea"
+				Grid.Row="1"
+				IsEnabled="False"
+				IsHitTestVisible="False">
+				<Grid.LayoutTransform>
+					<ScaleTransform x:Name="ExpandScale" ScaleY="0" />
+				</Grid.LayoutTransform>
+
+				<ContentPresenter
+					Margin="{TemplateBinding Padding}"
+					HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+					VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+					Focusable="false" />
+			</Grid>
+
+
+
+		</Grid>
+
+
+		<ControlTemplate.Triggers>
+			<Trigger Property="IsExpanded" Value="true">
+
+				<Setter TargetName="ExpandArea" Property="IsHitTestVisible" Value="True" />
+				<Setter TargetName="ExpandArea" Property="IsEnabled" Value="True" />
+
+				<Trigger.EnterActions>
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation
+								Storyboard.TargetName="ExpandScale"
+								Storyboard.TargetProperty="ScaleY"
+								To="1"
+								Duration="0:00:00.150" />
+						</Storyboard>
+					</BeginStoryboard>
+				</Trigger.EnterActions>
+				<Trigger.ExitActions>
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation
+								Storyboard.TargetName="ExpandScale"
+								Storyboard.TargetProperty="ScaleY"
+								To="0"
+								Duration="0:00:00.150" />
+						</Storyboard>
+					</BeginStoryboard>
+				</Trigger.ExitActions>
+			</Trigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
+
+	<Style
+		x:Key="WpfUtilsClickableExpander"
+		TargetType="{x:Type Expander}">
+		<Setter Property="Template" Value="{StaticResource WpfUtilsClickableExpanderTemplate}" />
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Margin" Value="1" />
+		<Setter Property="Padding" Value="1" />
 	</Style>
 
 </ResourceDictionary>
