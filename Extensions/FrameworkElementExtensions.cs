@@ -42,6 +42,11 @@ public static class FrameworkElementExtensions
 		sb.Stop();
 	}
 
+	public static void StopStoryboard(this FrameworkElement self, Storyboard storyboard)
+	{
+		storyboard.Stop();
+	}
+
 	public static void SetFocusToWindow(this FrameworkElement self)
 	{
 		FocusManager.SetFocusedElement(FocusManager.GetFocusScope(self), Window.GetWindow(self));
