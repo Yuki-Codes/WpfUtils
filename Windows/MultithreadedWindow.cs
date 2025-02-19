@@ -58,12 +58,13 @@ public class MultithreadedWindow : Window
 			AppDomain.CurrentDomain.UnhandledException += (s, e) =>
 			{
 				Exception? ex = e.ExceptionObject as Exception;
-				Logging.Log.Error(ex, $"Unhandled Exception in window: {this.windowType}");
+				Logging.Log.Error(ex, $"Unhandled Exception in domain: {this.windowType}");
 			};
 
 			System.Windows.Threading.Dispatcher.CurrentDispatcher.UnhandledException += (s, e) =>
 			{
 				Logging.Log.Error(e.Exception, $"Unhandled Exception in window: {this.windowType}");
+				e.Handled = true;
 			};
 
 			try
