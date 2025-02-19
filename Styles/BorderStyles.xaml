@@ -47,6 +47,14 @@
 	</Style>
 
 	<Style
+		x:Key="WpfUtilsControlPressedBorder"
+		BasedOn="{StaticResource WpfUtilsControlHoverBorder}"
+		TargetType="{x:Type Border}">
+		<Setter Property="Background" Value="{DynamicResource TrimBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource TrimBrush}" />
+	</Style>
+
+	<Style
 		x:Key="WpfUtilsSelectedBorder"
 		TargetType="{x:Type Border}">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundSelectedBrush}" />
