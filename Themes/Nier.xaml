@@ -88,5 +88,6 @@
 
 	<CornerRadius x:Key="WpfUtilsBorderInnerCornerRadius">0</CornerRadius>
 	<CornerRadius x:Key="WpfUtilsBorderOuterCornerRadius">0</CornerRadius>
+	<CornerRadius x:Key="WpfUtilsScrollBarCornerRadius">0</CornerRadius>
 
 </ResourceDictionary>
