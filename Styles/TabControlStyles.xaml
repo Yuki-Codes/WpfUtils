@@ -38,8 +38,9 @@
 					Margin="1,1,-10,1"
 					HorizontalAlignment="Stretch"
 					VerticalAlignment="Stretch"
+					extensions:BorderExtensions.FlattenedCorners="Right"
 					Background="{DynamicResource BackgroundBrush}"
-					CornerRadius="4,0,0,4"
+					CornerRadius="{DynamicResource WpfUtilsBorderInnerCornerRadius}"
 					SnapsToDevicePixels="True" />
 			</Grid>
 			<ContentPresenter />
@@ -197,7 +198,7 @@
 									Grid.Row="1"
 									Margin="0,2,2,2"
 									Background="{DynamicResource BackgroundBrush}"
-									CornerRadius="4">
+									CornerRadius="{DynamicResource WpfUtilsBorderInnerCornerRadius}">
 
 									<ContentPresenter
 										Name="PART_SelectedContentHost"
