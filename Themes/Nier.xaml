@@ -79,6 +79,10 @@
 		Color="#585438" />
 
 	<SolidColorBrush
+		x:Key="ControlBackgroundSelectedBrush"
+		Color="#585438" />
+
+	<SolidColorBrush
 		x:Key="ControlForegroundHighlightBrush"
 		Color="#CCC8AF" />
 
