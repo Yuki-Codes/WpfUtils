@@ -154,7 +154,7 @@
 					Margin="2"
 					HorizontalAlignment="Left"
 					Background="{DynamicResource BackgroundBrush}"
-					CornerRadius="4" />
+					CornerRadius="{DynamicResource WpfUtilsBorderInnerCornerRadius}" />
 
 				<controls:IconBlock
 					x:Name="IndicatorCross"
