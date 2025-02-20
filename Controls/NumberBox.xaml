@@ -15,10 +15,6 @@
 	UseLayoutRounding="True"
 	mc:Ignorable="d">
 
-	<UserControl.Resources>
-		<ResourceDictionary Source="../Styles.xaml" />
-	</UserControl.Resources>
-
 	<Border Style="{DynamicResource WpfUtilsControlBorder}">
 
 
