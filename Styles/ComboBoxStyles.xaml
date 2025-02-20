@@ -22,7 +22,9 @@
 		<Setter Property="ContentTemplate">
 			<Setter.Value>
 				<DataTemplate>
-					<Grid Margin="0,0,3,0">
+					<Grid
+						x:Name="MainGrid"
+						Margin="0,0,3,0">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition />
 							<ColumnDefinition Width="Auto" />
@@ -37,19 +39,19 @@
 							IsHitTestVisible="False" />
 
 						<Path
+							x:Name="Chevron"
 							Grid.Column="1"
 							Margin="3"
 							HorizontalAlignment="Center"
 							VerticalAlignment="Center"
 							Data="M 0,0 5,3 10,0"
-							Stroke="{DynamicResource ForegroundLightBrush}"
+							Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}, Path=Foreground}"
 							StrokeThickness="1" />
 
 					</Grid>
 				</DataTemplate>
 			</Setter.Value>
 		</Setter>
-
 	</Style>
 
 
@@ -63,7 +65,6 @@
 				Name="toggleButton"
 				HorizontalContentAlignment="Stretch"
 				Background="{TemplateBinding Background}"
-				Foreground="{TemplateBinding Foreground}"
 				IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
 				Style="{StaticResource WpfUtilsComboBoxButton}">
 
@@ -143,11 +144,12 @@
 					<ControlTemplate.Triggers>
 
 						<Trigger Property="IsSelected" Value="True">
-							<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
 							<Setter Property="Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
 						</Trigger>
 
 						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+
 							<Trigger.EnterActions>
 								<BeginStoryboard>
 									<Storyboard>
