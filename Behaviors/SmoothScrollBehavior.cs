@@ -143,12 +143,24 @@ public partial class ScrollInfoAdapter : UIElement, IScrollInfo, ISmoothScroll
 
 	public void SetVerticalOffset(double offset)
 	{
+		if (offset >= double.PositiveInfinity)
+			offset = double.MaxValue;
+
+		if (offset <= double.NegativeInfinity)
+			offset = -double.MaxValue;
+
 		this.verticalAnimation.To = offset;
 		this.Original.SetVerticalOffset(offset);
 	}
 
 	public void SetHorizontalOffset(double offset)
 	{
+		if (offset >= double.PositiveInfinity)
+			offset = double.MaxValue;
+
+		if (offset <= double.NegativeInfinity)
+			offset = -double.MaxValue;
+
 		this.verticalAnimation.To = offset;
 		this.Original.SetHorizontalOffset(offset);
 	}
