@@ -53,16 +53,17 @@ public interface ISmoothScroll
 [DependencyProperty<double>("HorizontalScrollActual")]
 public partial class ScrollInfoAdapter : UIElement, IScrollInfo, ISmoothScroll
 {
-	public const int AnimationDurationMs = 350;
+	public const int AnimationDurationMs = 250;
 
 	public const double ScrollLineDelta = 16.0;
 	public const double MouseWheelDelta = 160.0;
 
 	public readonly IScrollInfo Original;
-
 	private readonly Storyboard storyboard;
 	private readonly DoubleAnimation verticalAnimation;
 	private readonly DoubleAnimation horizontalAnimation;
+
+	private bool storyboardIsAttached = false;
 
 	public ScrollInfoAdapter(IScrollInfo original)
 	{
@@ -168,7 +169,7 @@ public partial class ScrollInfoAdapter : UIElement, IScrollInfo, ISmoothScroll
 	private void VerticalScroll(double val)
 	{
 		double? to = this.verticalAnimation.To;
-		if (to == null || this.storyboard.GetCurrentTime() >= this.verticalAnimation.Duration)
+		if (to == null || (this.storyboardIsAttached && this.storyboard.GetCurrentTime() >= this.verticalAnimation.Duration))
 			to = this.Original.VerticalOffset;
 
 		to += val;
@@ -177,12 +178,13 @@ public partial class ScrollInfoAdapter : UIElement, IScrollInfo, ISmoothScroll
 		this.verticalAnimation.From = this.Original.VerticalOffset;
 		this.verticalAnimation.To = to;
 		this.storyboard.Begin();
+		this.storyboardIsAttached = true;
 	}
 
 	private void HorizontalScroll(double val)
 	{
 		double? to = this.horizontalAnimation.To;
-		if (to == null || this.storyboard.GetCurrentTime() >= this.horizontalAnimation.Duration)
+		if (to == null || (this.storyboardIsAttached && this.storyboard.GetCurrentTime() >= this.horizontalAnimation.Duration))
 			to = this.Original.HorizontalOffset;
 
 		to += val;
@@ -191,6 +193,7 @@ public partial class ScrollInfoAdapter : UIElement, IScrollInfo, ISmoothScroll
 		this.horizontalAnimation.From = this.Original.HorizontalOffset;
 		this.horizontalAnimation.To = to;
 		this.storyboard.Begin();
+		this.storyboardIsAttached = true;
 	}
 
 	partial void OnVerticalScrollActualChanged(double newValue)
