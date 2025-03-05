@@ -242,4 +242,131 @@
 		</Setter>
 	</Style>
 
+	<Style
+		x:Key="WpfUtilsButtonNoDisabledFade"
+		TargetType="{x:Type Button}">
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+		<Setter Property="BorderBrush" Value="{DynamicResource TrimBrush}" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="Margin" Value="1" />
+		<Setter Property="Padding" Value="6,0" />
+		<Setter Property="MinWidth" Value="18" />
+		<Setter Property="MinHeight" Value="18" />
+		<Setter Property="Height" Value="26" />
+		<Setter Property="SnapsToDevicePixels" Value="True" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+
+					<Grid TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
+
+						<Border
+							Background="{TemplateBinding Background}"
+							Style="{DynamicResource WpfUtilsControlBorder}" />
+
+						<Border
+							x:Name="HoverBorder"
+							Opacity="0"
+							Style="{DynamicResource WpfUtilsControlHoverBorder}" />
+
+						<Border
+							x:Name="PressedBorder"
+							Background="{DynamicResource Trim}"
+							Opacity="0"
+							Style="{DynamicResource WpfUtilsControlPressedBorder}" />
+
+						<ContentPresenter
+							x:Name="Content"
+							Margin="{TemplateBinding Padding}"
+							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+							VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+							Content="{TemplateBinding Content}"
+							ContentStringFormat="{TemplateBinding ContentStringFormat}"
+							ContentTemplate="{TemplateBinding ContentTemplate}"
+							Focusable="False"
+							SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+
+					</Grid>
+
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsMouseOver" Value="true">
+
+							<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+
+							<Trigger.EnterActions>
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation
+											Storyboard.TargetName="HoverBorder"
+											Storyboard.TargetProperty="Opacity"
+											To="1"
+											Duration="0:0:0.150">
+											<DoubleAnimation.EasingFunction>
+												<SineEase EasingMode="EaseOut" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</BeginStoryboard>
+							</Trigger.EnterActions>
+							<Trigger.ExitActions>
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation
+											Storyboard.TargetName="HoverBorder"
+											Storyboard.TargetProperty="Opacity"
+											To="0"
+											Duration="0:0:0.250">
+											<DoubleAnimation.EasingFunction>
+												<SineEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</BeginStoryboard>
+							</Trigger.ExitActions>
+						</Trigger>
+
+						<Trigger Property="IsPressed" Value="True">
+							<Trigger.EnterActions>
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation
+											Storyboard.TargetName="PressedBorder"
+											Storyboard.TargetProperty="Opacity"
+											To="1"
+											Duration="0:0:0.150">
+											<DoubleAnimation.EasingFunction>
+												<SineEase EasingMode="EaseOut" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</BeginStoryboard>
+							</Trigger.EnterActions>
+							<Trigger.ExitActions>
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation
+											Storyboard.TargetName="PressedBorder"
+											Storyboard.TargetProperty="Opacity"
+											To="0"
+											Duration="0:0:0.250">
+											<DoubleAnimation.EasingFunction>
+												<SineEase EasingMode="EaseIn" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+									</Storyboard>
+								</BeginStoryboard>
+							</Trigger.ExitActions>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
 </ResourceDictionary>
