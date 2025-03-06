@@ -31,7 +31,7 @@ public partial class PopOut : Popup, IAddChild
 		this.contentPresenter.Padding = this.Padding;
 		this.contentPresenter.Background = this.Background;
 		this.Child = this.contentPresenter;
-		this.Placement = PlacementMode.Center;
+		this.Placement = PlacementMode.RelativePoint;
 
 		this.IsHitTestVisibleChanged += this.OnIsHitTestVisibleChanged;
 	}
@@ -58,18 +58,7 @@ public partial class PopOut : Popup, IAddChild
 
 		this.SetHitTestable(this.IsHitTestVisible);
 
-		if (this.Placement == PlacementMode.Center
-			&& this.Child is FrameworkElement childEl)
-		{
-			if (this.PlacementTarget is FrameworkElement el)
-			{
-				this.VerticalOffset = (el.ActualHeight / 2) + (childEl.ActualHeight / 2) + this.Margin.Top;
-			}
-			else
-			{
-				this.VerticalOffset = (this.PlacementRectangle.Height / 2) + (childEl.ActualHeight / 2) + this.Margin.Top;
-			}
-		}
+		this.UpdatePlacement();
 
 		if (this.PlacementTarget is FrameworkElement fe)
 		{
@@ -124,6 +113,17 @@ public partial class PopOut : Popup, IAddChild
 		}
 		catch(Exception)
 		{
+		}
+	}
+
+	private void UpdatePlacement()
+	{
+		if (this.Placement == PlacementMode.RelativePoint
+			&& this.PlacementTarget is FrameworkElement el
+			&& this.Child is FrameworkElement childEl)
+		{
+			this.HorizontalOffset = (el.ActualWidth / 2) + (childEl.ActualWidth / 2);
+			this.VerticalOffset = el.ActualHeight + this.Margin.Top;
 		}
 	}
 }
