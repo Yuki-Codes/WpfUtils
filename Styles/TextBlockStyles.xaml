@@ -56,7 +56,6 @@
 		BasedOn="{StaticResource WpfUtilsTextBlock}"
 		TargetType="{x:Type TextBlock}">
 		<Setter Property="FontSize" Value="11" />
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 		<Setter Property="Opacity" Value="0.75" />
 	</Style>
 
