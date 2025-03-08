@@ -67,11 +67,6 @@
 
 			</Trigger>
 
-			<Trigger Property="IsChecked" Value="true">
-				<!--  TODO: Animate  -->
-				<Setter Property="Foreground" Value="{DynamicResource TrimBrush}" />
-			</Trigger>
-
 			<Trigger Property="IsEnabled" Value="false">
 				<Trigger.EnterActions>
 					<BeginStoryboard>
@@ -104,7 +99,7 @@
 	</ControlTemplate>
 
 	<Style
-		x:Key="WpfUtilsIconToggleButton"
+		x:Key="WpfUtilsIconToggleButtonNoChecked"
 		TargetType="{x:Type ToggleButton}">
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
@@ -120,6 +115,18 @@
 		<Setter Property="MinHeight" Value="26" />
 		<Setter Property="Template" Value="{StaticResource WpfUtilsIconToggleButtonTemplate}" />
 		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
+	</Style>
+
+	<Style
+		x:Key="WpfUtilsIconToggleButton"
+		TargetType="{x:Type ToggleButton}"
+		BasedOn="{StaticResource WpfUtilsIconToggleButtonNoChecked}">
+
+		<Style.Triggers>
+			<Trigger Property="IsChecked" Value="true">
+				<Setter Property="Foreground" Value="{DynamicResource TrimBrush}" />
+			</Trigger>
+		</Style.Triggers>
 	</Style>
 
 	<ControlTemplate
