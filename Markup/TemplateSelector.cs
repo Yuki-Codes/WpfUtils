@@ -16,7 +16,7 @@ public partial class TemplateSelector : DataTemplateSelector
 	{
 		if (container is FrameworkElement element && item != null)
 		{
-			foreach(TemplateSelectorEntry entry in this.Entries)
+			foreach (TemplateSelectorEntry entry in this.Entries)
 			{
 				if (entry.TargetType == item.GetType())
 				{

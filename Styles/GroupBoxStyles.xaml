@@ -3,14 +3,12 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:local="clr-namespace:WpfUtils">
 
-	<Style
-		x:Key="WpfUtilsGroupBox"
-		TargetType="{x:Type GroupBox}">
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
-		<Setter Property="FontWeight" Value="Normal" />
+	<Style x:Key="WpfUtilsGroupBox" TargetType="{x:Type GroupBox}">
 		<Setter Property="Background" Value="Transparent" />
-		<Setter Property="Margin" Value="3,3,3,0" />
 		<Setter Property="FontSize" Value="12" />
+		<Setter Property="FontWeight" Value="Normal" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+		<Setter Property="Margin" Value="3,3,3,0" />
 		<Setter Property="Padding" Value="0" />
 		<Setter Property="Template">
 			<Setter.Value>

@@ -20,9 +20,7 @@
 			BorderThickness="1"
 			CornerRadius="3">
 			<Border.Effect>
-				<DropShadowEffect
-					BlurRadius="10"
-					ShadowDepth="0" />
+				<DropShadowEffect BlurRadius="10" ShadowDepth="0" />
 			</Border.Effect>
 		</Border>
 

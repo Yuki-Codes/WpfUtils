@@ -126,15 +126,15 @@
 	</ControlTemplate>
 
 	<Style x:Key="WpfUtilsCheckBox" TargetType="{x:Type CheckBox}">
-
-		<Setter Property="Height" Value="26" />
-		<Setter Property="SnapsToDevicePixels" Value="true" />
-		<Setter Property="OverridesDefaultStyle" Value="true" />
-		<Setter Property="Template" Value="{StaticResource WpfUtilsCheckBoxTemplate}" />
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+
+		<Setter Property="Height" Value="26" />
+		<Setter Property="OverridesDefaultStyle" Value="true" />
 		<Setter Property="Padding" Value="2,0,6,0" />
+		<Setter Property="SnapsToDevicePixels" Value="true" />
+		<Setter Property="Template" Value="{StaticResource WpfUtilsCheckBoxTemplate}" />
 	</Style>
 
 
@@ -260,15 +260,15 @@
 	</ControlTemplate>
 
 	<Style x:Key="WpfUtilsLockCheckBox" TargetType="{x:Type CheckBox}">
+		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
 
 		<Setter Property="Height" Value="22" />
 		<Setter Property="Margin" Value="0,1,1,1" />
-		<Setter Property="SnapsToDevicePixels" Value="true" />
 		<Setter Property="OverridesDefaultStyle" Value="true" />
+		<Setter Property="SnapsToDevicePixels" Value="true" />
 		<Setter Property="Template" Value="{StaticResource WpfUtilsLockCheckBoxTemplate}" />
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
-		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
-		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 	</Style>
 
 </ResourceDictionary>

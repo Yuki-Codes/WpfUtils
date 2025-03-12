@@ -21,9 +21,7 @@
 		<Grid x:Name="ContentArea">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition x:Name="SliderColumn" />
-				<ColumnDefinition
-					x:Name="InputBoxColumn"
-					Width="Auto" />
+				<ColumnDefinition x:Name="InputBoxColumn" Width="Auto" />
 			</Grid.ColumnDefinitions>
 
 			<Slider
@@ -46,9 +44,7 @@
 
 
 
-			<Grid
-				Grid.Row="0"
-				Grid.Column="1">
+			<Grid Grid.Row="0" Grid.Column="1">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition MinWidth="40" />
@@ -73,9 +69,7 @@
 					LostKeyboardFocus="OnLostFocus"
 					Text="{Binding Text, UpdateSourceTrigger=PropertyChanged, FallbackValue=000.000}" />
 
-				<ContentPresenter
-					Grid.Column="2"
-					Content="{Binding Suffix}" />
+				<ContentPresenter Grid.Column="2" Content="{Binding Suffix}" />
 
 				<RepeatButton
 					x:Name="DownButton"

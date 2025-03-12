@@ -3,9 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:controls="clr-namespace:WpfUtils.Controls">
 
-	<ControlTemplate
-		x:Key="WpfUtilsTextBoxTemplate"
-		TargetType="{x:Type TextBox}">
+	<ControlTemplate x:Key="WpfUtilsTextBoxTemplate" TargetType="{x:Type TextBox}">
 		<ControlTemplate.Triggers>
 			<Trigger Property="IsKeyboardFocused" Value="True">
 				<Trigger.EnterActions>
@@ -82,9 +80,7 @@
 
 		<Grid>
 
-			<Border
-				Background="{TemplateBinding Background}"
-				Style="{DynamicResource WpfUtilsControlBorder}" />
+			<Border Background="{TemplateBinding Background}" Style="{DynamicResource WpfUtilsControlBorder}" />
 
 			<Border
 				x:Name="HoverHighlight"
@@ -127,24 +123,22 @@
 	</ControlTemplate>
 
 
-	<Style
-		x:Key="WpfUtilsTextBox"
-		TargetType="{x:Type TextBox}">
-		<Setter Property="Margin" Value="1" />
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
-		<Setter Property="BorderBrush" Value="{DynamicResource TrimBrush}" />
+	<Style x:Key="WpfUtilsTextBox" TargetType="{x:Type TextBox}">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
-		<Setter Property="TextBoxBase.CaretBrush" Value="{DynamicResource TrimBrush}" />
-		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
-		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="BorderBrush" Value="{DynamicResource TrimBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+		<Setter Property="FrameworkElement.Cursor" Value="IBeam" />
 		<Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}" />
-		<Setter Property="UIElement.AllowDrop" Value="true" />
+		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+		<Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
+		<Setter Property="Margin" Value="1" />
+		<Setter Property="MinHeight" Value="26" />
 		<Setter Property="Padding" Value="3,2" />
 		<Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
 		<Setter Property="Stylus.IsFlicksEnabled" Value="False" />
-		<Setter Property="FrameworkElement.Cursor" Value="IBeam" />
-		<Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
-		<Setter Property="MinHeight" Value="26" />
 		<Setter Property="Template" Value="{StaticResource WpfUtilsTextBoxTemplate}" />
+		<Setter Property="TextBoxBase.CaretBrush" Value="{DynamicResource TrimBrush}" />
+		<Setter Property="UIElement.AllowDrop" Value="true" />
+		<Setter Property="VerticalContentAlignment" Value="Center" />
 	</Style>
 </ResourceDictionary>

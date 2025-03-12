@@ -14,7 +14,7 @@ public static class TaskExtensions
 			{
 				await self;
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				Log.Error(ex, "Error in Task");
 			}

@@ -3,17 +3,15 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:converters="clr-namespace:WpfUtils.Converters">
 
-	<Style
-		x:Key="LinkButton"
-		TargetType="Button">
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+	<Style x:Key="LinkButton" TargetType="Button">
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="BorderBrush" Value="{DynamicResource TrimBrush}" />
 		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 		<Setter Property="HorizontalContentAlignment" Value="Left" />
 		<Setter Property="Padding" Value="0" />
 		<Setter Property="SnapsToDevicePixels" Value="True" />
-		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -54,19 +52,16 @@
 		</Setter>
 	</Style>
 
-	<Style
-		x:Key="WpfUtilsRepeatButton"
-		TargetType="{x:Type RepeatButton}">
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+	<Style x:Key="WpfUtilsRepeatButton" TargetType="{x:Type RepeatButton}">
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="BorderBrush" Value="{DynamicResource TrimBrush}" />
 		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
-		<Setter Property="VerticalContentAlignment" Value="Stretch" />
 		<Setter Property="Margin" Value="1" />
 		<Setter Property="Padding" Value="0" />
 		<Setter Property="SnapsToDevicePixels" Value="True" />
-		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -104,6 +99,7 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
+		<Setter Property="VerticalContentAlignment" Value="Stretch" />
 	</Style>
 
 	<Style
@@ -111,22 +107,19 @@
 		BasedOn="{StaticResource WpfUtilsRepeatButton}"
 		TargetType="RepeatButton" />
 
-	<Style
-		x:Key="WpfUtilsButton"
-		TargetType="{x:Type Button}">
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+	<Style x:Key="WpfUtilsButton" TargetType="{x:Type Button}">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="BorderBrush" Value="{DynamicResource TrimBrush}" />
 		<Setter Property="BorderThickness" Value="1" />
-		<Setter Property="HorizontalContentAlignment" Value="Center" />
-		<Setter Property="VerticalContentAlignment" Value="Center" />
-		<Setter Property="Margin" Value="1" />
-		<Setter Property="Padding" Value="6,0" />
-		<Setter Property="MinWidth" Value="18" />
-		<Setter Property="MinHeight" Value="18" />
-		<Setter Property="Height" Value="26" />
-		<Setter Property="SnapsToDevicePixels" Value="True" />
 		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+		<Setter Property="Height" Value="26" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="Margin" Value="1" />
+		<Setter Property="MinHeight" Value="18" />
+		<Setter Property="MinWidth" Value="18" />
+		<Setter Property="Padding" Value="6,0" />
+		<Setter Property="SnapsToDevicePixels" Value="True" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -134,9 +127,7 @@
 
 					<Grid TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
 
-						<Border
-							Background="{TemplateBinding Background}"
-							Style="{DynamicResource WpfUtilsControlBorder}" />
+						<Border Background="{TemplateBinding Background}" Style="{DynamicResource WpfUtilsControlBorder}" />
 
 						<Border
 							x:Name="HoverBorder"
@@ -240,24 +231,22 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
+		<Setter Property="VerticalContentAlignment" Value="Center" />
 	</Style>
 
-	<Style
-		x:Key="WpfUtilsButtonNoDisabledFade"
-		TargetType="{x:Type Button}">
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+	<Style x:Key="WpfUtilsButtonNoDisabledFade" TargetType="{x:Type Button}">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="BorderBrush" Value="{DynamicResource TrimBrush}" />
 		<Setter Property="BorderThickness" Value="1" />
-		<Setter Property="HorizontalContentAlignment" Value="Center" />
-		<Setter Property="VerticalContentAlignment" Value="Center" />
-		<Setter Property="Margin" Value="1" />
-		<Setter Property="Padding" Value="6,0" />
-		<Setter Property="MinWidth" Value="18" />
-		<Setter Property="MinHeight" Value="18" />
-		<Setter Property="Height" Value="26" />
-		<Setter Property="SnapsToDevicePixels" Value="True" />
 		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+		<Setter Property="Height" Value="26" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="Margin" Value="1" />
+		<Setter Property="MinHeight" Value="18" />
+		<Setter Property="MinWidth" Value="18" />
+		<Setter Property="Padding" Value="6,0" />
+		<Setter Property="SnapsToDevicePixels" Value="True" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -265,9 +254,7 @@
 
 					<Grid TextBlock.Foreground="{DynamicResource ForegroundLightBrush}">
 
-						<Border
-							Background="{TemplateBinding Background}"
-							Style="{DynamicResource WpfUtilsControlBorder}" />
+						<Border Background="{TemplateBinding Background}" Style="{DynamicResource WpfUtilsControlBorder}" />
 
 						<Border
 							x:Name="HoverBorder"
@@ -367,6 +354,7 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
+		<Setter Property="VerticalContentAlignment" Value="Center" />
 	</Style>
 
 </ResourceDictionary>

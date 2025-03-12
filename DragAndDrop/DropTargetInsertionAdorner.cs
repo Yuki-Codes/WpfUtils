@@ -71,36 +71,36 @@ public class DropTargetInsertionAdorner : DropTargetAdorner
 		switch (this.InsertPosition)
 		{
 			case InsertPositions.Left:
-			{
-				point1 = new Point(itemRect.X, itemRect.Y);
-				point2 = new Point(itemRect.X, itemRect.Bottom);
-				rotation = 90;
-				break;
-			}
+				{
+					point1 = new Point(itemRect.X, itemRect.Y);
+					point2 = new Point(itemRect.X, itemRect.Bottom);
+					rotation = 90;
+					break;
+				}
 
 			case InsertPositions.Top:
-			{
-				point1 = new Point(itemRect.X, itemRect.Y);
-				point2 = new Point(itemRect.Right, itemRect.Y);
-				break;
-			}
+				{
+					point1 = new Point(itemRect.X, itemRect.Y);
+					point2 = new Point(itemRect.Right, itemRect.Y);
+					break;
+				}
 
 			case InsertPositions.Right:
-			{
-				itemRect.X += itemContainer.RenderSize.Width;
-				point1 = new Point(itemRect.X, itemRect.Y);
-				point2 = new Point(itemRect.X, itemRect.Bottom);
-				rotation = 90;
-				break;
-			}
+				{
+					itemRect.X += itemContainer.RenderSize.Width;
+					point1 = new Point(itemRect.X, itemRect.Y);
+					point2 = new Point(itemRect.X, itemRect.Bottom);
+					rotation = 90;
+					break;
+				}
 
 			case InsertPositions.Bottom:
-			{
-				itemRect.Y += itemContainer.RenderSize.Height;
-				point1 = new Point(itemRect.X, itemRect.Y);
-				point2 = new Point(itemRect.Right, itemRect.Y);
-				break;
-			}
+				{
+					itemRect.Y += itemContainer.RenderSize.Height;
+					point1 = new Point(itemRect.X, itemRect.Y);
+					point2 = new Point(itemRect.Right, itemRect.Y);
+					break;
+				}
 		}
 
 		drawingContext.DrawLine(Pen, point1, point2);

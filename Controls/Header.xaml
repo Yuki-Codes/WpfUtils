@@ -10,16 +10,12 @@
 	d:DesignWidth="800"
 	mc:Ignorable="d">
 
-	<StackPanel
-		x:Name="ContentArea"
-		Orientation="Horizontal">
+	<StackPanel x:Name="ContentArea" Orientation="Horizontal">
 		<ana:IconBlock
 			Margin="2,2,6,0"
 			FontSize="10"
 			Icon="{Binding Icon}"
 			Style="{DynamicResource Header}" />
-		<TextBlock
-			Style="{DynamicResource Header}"
-			Text="{Binding Text}" />
+		<TextBlock Style="{DynamicResource Header}" Text="{Binding Text}" />
 	</StackPanel>
 </UserControl>

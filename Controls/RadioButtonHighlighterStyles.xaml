@@ -3,14 +3,10 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:wpfUtils="clr-namespace:WpfUtils.Controls">
 
-	<ControlTemplate
-		x:Key="WpfUtilsRadioButtonHighlight"
-		TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
+	<ControlTemplate x:Key="WpfUtilsRadioButtonHighlight" TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
 		<Grid>
 
-			<Grid
-				x:Name="PART_Highlight"
-				IsHitTestVisible="False">
+			<Grid x:Name="PART_Highlight" IsHitTestVisible="False">
 				<Border
 					Margin="2"
 					HorizontalAlignment="Stretch"
@@ -23,12 +19,10 @@
 		</Grid>
 	</ControlTemplate>
 
-	<Style
-		x:Key="WpfUtilsRadioButtonHighlighter"
-		TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
+	<Style x:Key="WpfUtilsRadioButtonHighlighter" TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
+		<Setter Property="Focusable" Value="False" />
 
 		<Setter Property="Template" Value="{StaticResource WpfUtilsRadioButtonHighlight}" />
-		<Setter Property="Focusable" Value="False" />
 	</Style>
 
 </ResourceDictionary>

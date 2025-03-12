@@ -6,7 +6,7 @@ using System.Numerics;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-[DependencyProperty<double>("MinimumX", DefaultValue=0)]
+[DependencyProperty<double>("MinimumX", DefaultValue = 0)]
 [DependencyProperty<double>("MaximumX", DefaultValue = 1)]
 [DependencyProperty<double>("MinimumY", DefaultValue = 0)]
 [DependencyProperty<double>("MaximumY", DefaultValue = 1)]

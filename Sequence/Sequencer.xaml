@@ -11,9 +11,7 @@
 	mc:Ignorable="d">
 
 	<UserControl.Resources>
-		<ControlTemplate
-			x:Key="WpfUtilsSequenceNodeControlTemplate"
-			TargetType="{x:Type local:SequenceNodeControl}">
+		<ControlTemplate x:Key="WpfUtilsSequenceNodeControlTemplate" TargetType="{x:Type local:SequenceNodeControl}">
 			<Grid>
 				<Grid
 					Width="{Binding Width}"
@@ -31,9 +29,7 @@
 								x:Name="HoverElements"
 								Grid.RowSpan="2"
 								Opacity="0">
-								<Border
-									Background="{DynamicResource ControlHighlightBrush}"
-									Style="{DynamicResource WpfUtilsControlHoverBorder}" />
+								<Border Background="{DynamicResource ControlHighlightBrush}" Style="{DynamicResource WpfUtilsControlHoverBorder}" />
 
 								<Border
 									Width="20"
@@ -70,9 +66,7 @@
 								</Border>
 							</Grid>
 
-							<Grid
-								Margin="2"
-								IsHitTestVisible="False">
+							<Grid Margin="2" IsHitTestVisible="False">
 								<Grid.RowDefinitions>
 									<RowDefinition Height="Auto" />
 									<RowDefinition />
@@ -120,9 +114,7 @@
 			HorizontalScrollBarVisibility="Disabled"
 			VerticalScrollBarVisibility="Visible">
 
-			<Grid
-				x:Name="ContentArea"
-				Margin="3">
+			<Grid x:Name="ContentArea" Margin="3">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition />
@@ -144,9 +136,7 @@
 								Margin="0,1,0,0"
 								Background="{DynamicResource BackgroundBrush}"
 								CornerRadius="4,0,0,4">
-								<TextBlock
-									VerticalAlignment="Center"
-									Text="{Binding Name}" />
+								<TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
 							</Border>
 						</DataTemplate>
 					</ItemsControl.ItemTemplate>
@@ -164,9 +154,7 @@
 
 						<ItemsControl.ItemTemplate>
 							<DataTemplate DataType="{x:Type local:SequenceTrack}">
-								<Grid
-									Height="32"
-									Margin="0,1,0,0">
+								<Grid Height="32" Margin="0,1,0,0">
 
 									<Line
 										Margin="0,-1,0,0"

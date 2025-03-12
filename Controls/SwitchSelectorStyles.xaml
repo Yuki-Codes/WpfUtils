@@ -3,15 +3,12 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:controls="clr-namespace:WpfUtils.Controls">
 
-	<Style
-		x:Key="WpfUtilsSwitchSelectorItemStyle"
-		TargetType="{x:Type ListBoxItem}">
+	<Style x:Key="WpfUtilsSwitchSelectorItemStyle" TargetType="{x:Type ListBoxItem}">
+		<Setter Property="Focusable" Value="False" />
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
 
 		<Setter Property="Margin" Value="0" />
-		<Setter Property="HorizontalContentAlignment" Value="Center" />
 		<Setter Property="Padding" Value="6,0" />
-		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ForegroundLightBrush}" />
-		<Setter Property="Focusable" Value="False" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -30,9 +27,7 @@
 						IsEnabled="{TemplateBinding IsEnabled}"
 						Style="{DynamicResource WpfUtilsRadioButtonNoHighlight}">
 
-						<ContentPresenter
-							x:Name="Content"
-							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+						<ContentPresenter x:Name="Content" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
 
 					</RadioButton>
 
@@ -45,6 +40,7 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
+		<Setter Property="TextBlock.Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 
 		<Style.Triggers>
 			<Trigger Property="IsSelected" Value="True">
@@ -53,30 +49,15 @@
 		</Style.Triggers>
 	</Style>
 
-	<Style
-		x:Key="WpfUtilsSwitchSelectorNoBorder"
-		TargetType="{x:Type controls:SwitchSelector}">
+	<Style x:Key="WpfUtilsSwitchSelectorNoBorder" TargetType="{x:Type controls:SwitchSelector}">
+		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
+		<Setter Property="Focusable" Value="True" />
 
 		<Setter Property="Height" Value="26" />
-		<Setter Property="Margin" Value="1" />
-		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
-		<Setter Property="Padding" Value="0" />
-		<Setter Property="KeyboardNavigation.DirectionalNavigation" Value="Continue" />
-		<Setter Property="Focusable" Value="True" />
 		<Setter Property="IsTabStop" Value="True" />
-		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type controls:SwitchSelector}">
-					<controls:RadioButtonHighlighter>
-						<ItemsPresenter
-							Margin="{TemplateBinding Padding}"
-							SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-					</controls:RadioButtonHighlighter>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
+		<Setter Property="ItemContainerStyle" Value="{DynamicResource WpfUtilsSwitchSelectorItemStyle}" />
 
 		<Setter Property="ItemsPanel">
 			<Setter.Value>
@@ -85,8 +66,19 @@
 				</ItemsPanelTemplate>
 			</Setter.Value>
 		</Setter>
+		<Setter Property="KeyboardNavigation.DirectionalNavigation" Value="Continue" />
+		<Setter Property="Margin" Value="1" />
+		<Setter Property="Padding" Value="0" />
 
-		<Setter Property="ItemContainerStyle" Value="{DynamicResource WpfUtilsSwitchSelectorItemStyle}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type controls:SwitchSelector}">
+					<controls:RadioButtonHighlighter>
+						<ItemsPresenter Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+					</controls:RadioButtonHighlighter>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
 	</Style>
 
 	<Style
@@ -97,9 +89,7 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type controls:SwitchSelector}">
-					<Border
-						Background="{TemplateBinding Background}"
-						Style="{DynamicResource WpfUtilsControlBorder}">
+					<Border Background="{TemplateBinding Background}" Style="{DynamicResource WpfUtilsControlBorder}">
 						<controls:RadioButtonHighlighter>
 							<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
 						</controls:RadioButtonHighlighter>
@@ -116,6 +106,15 @@
 
 		<Setter Property="Height" Value="Auto" />
 
+		<Setter Property="ItemContainerStyle">
+			<Setter.Value>
+				<Style BasedOn="{StaticResource WpfUtilsSwitchSelectorItemStyle}" TargetType="{x:Type ListBoxItem}">
+					<Setter Property="HorizontalContentAlignment" Value="stretch" />
+					<Setter Property="Padding" Value="0,6" />
+				</Style>
+			</Setter.Value>
+		</Setter>
+
 
 		<Setter Property="ItemsPanel">
 			<Setter.Value>
@@ -128,9 +127,7 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type controls:SwitchSelector}">
-					<Border
-						Background="{TemplateBinding Background}"
-						Style="{DynamicResource WpfUtilsControlBorder}">
+					<Border Background="{TemplateBinding Background}" Style="{DynamicResource WpfUtilsControlBorder}">
 						<controls:RadioButtonHighlighter Orientation="Vertical">
 							<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
 						</controls:RadioButtonHighlighter>
@@ -138,21 +135,8 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
-
-		<Setter Property="ItemContainerStyle">
-			<Setter.Value>
-				<Style
-					BasedOn="{StaticResource WpfUtilsSwitchSelectorItemStyle}"
-					TargetType="{x:Type ListBoxItem}">
-					<Setter Property="HorizontalContentAlignment" Value="stretch" />
-					<Setter Property="Padding" Value="0,6" />
-				</Style>
-			</Setter.Value>
-		</Setter>
 	</Style>
 
-	<Style
-		BasedOn="{StaticResource WpfUtilsSwitchSelector}"
-		TargetType="{x:Type controls:SwitchSelector}" />
+	<Style BasedOn="{StaticResource WpfUtilsSwitchSelector}" TargetType="{x:Type controls:SwitchSelector}" />
 
 </ResourceDictionary>

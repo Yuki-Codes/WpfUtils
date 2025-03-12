@@ -6,9 +6,7 @@
 
 	<sys:Double x:Key="WpfUtilsMaxTooltipWidth">250</sys:Double>
 
-	<ControlTemplate
-		x:Key="WofUtilsTooltipTemplate"
-		TargetType="{x:Type ToolTip}">
+	<ControlTemplate x:Key="WofUtilsTooltipTemplate" TargetType="{x:Type ToolTip}">
 		<Grid
 			x:Name="MainGrid"
 			Margin="12"
@@ -17,9 +15,7 @@
 
 			<Grid>
 				<Grid.Effect>
-					<DropShadowEffect
-						Direction="270"
-						ShadowDepth="0" />
+					<DropShadowEffect Direction="270" ShadowDepth="0" />
 				</Grid.Effect>
 
 				<Border
@@ -42,21 +38,19 @@
 		</Grid>
 	</ControlTemplate>
 
-	<Style
-		x:Key="WpfUtilsToolTip"
-		TargetType="{x:Type ToolTip}">
+	<Style x:Key="WpfUtilsToolTip" TargetType="{x:Type ToolTip}">
+		<Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+		<Setter Property="HasDropShadow" Value="True" />
+		<Setter Property="MaxWidth" Value="{DynamicResource WpfUtilsMaxTooltipWidth}" />
+		<Setter Property="MinHeight" Value="10" />
+		<Setter Property="MinWidth" Value="10" />
 
 		<Setter Property="OverridesDefaultStyle" Value="true" />
-		<Setter Property="HasDropShadow" Value="True" />
-		<Setter Property="MinWidth" Value="10" />
-		<Setter Property="MinHeight" Value="10" />
-		<Setter Property="MaxWidth" Value="{DynamicResource WpfUtilsMaxTooltipWidth}" />
-		<Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
-		<Setter Property="Template" Value="{StaticResource PanelTemplate}" />
-		<Setter Property="UseLayoutRounding" Value="True" />
 		<Setter Property="Padding" Value="6" />
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+		<Setter Property="Template" Value="{StaticResource PanelTemplate}" />
 		<Setter Property="Template" Value="{DynamicResource WofUtilsTooltipTemplate}" />
+		<Setter Property="UseLayoutRounding" Value="True" />
 
 	</Style>
 

@@ -14,7 +14,7 @@ using DrawPoint = System.Drawing.Point;
 using WinCur = System.Windows.Forms.Cursor;
 using WinPoint = System.Windows.Point;
 
-[DependencyProperty<double>("Value", DefaultValue=0, DefaultBindingMode = DefaultBindingMode.TwoWay)]
+[DependencyProperty<double>("Value", DefaultValue = 0, DefaultBindingMode = DefaultBindingMode.TwoWay)]
 [DependencyProperty<double>("TickFrequency", DefaultValue = 1)]
 [DependencyProperty<SliderModes>("Slider", DefaultValue = SliderModes.None)]
 [DependencyProperty<bool>("Buttons", DefaultValue = false)]

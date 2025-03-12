@@ -4,9 +4,7 @@
 	xmlns:controls="clr-namespace:WpfUtils.Controls"
 	xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes">
 
-	<ControlTemplate
-		x:Key="WpfUtilsListBoxItemTemplate"
-		TargetType="{x:Type ListBoxItem}">
+	<ControlTemplate x:Key="WpfUtilsListBoxItemTemplate" TargetType="{x:Type ListBoxItem}">
 
 		<Border
 			Margin="{TemplateBinding Margin}"
@@ -46,8 +44,8 @@
 			</Trigger>
 
 			<Trigger Property="IsMouseOver" Value="True">
-				<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
 				<Setter Property="Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+				<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
 
 				<Trigger.EnterActions>
 					<BeginStoryboard>
@@ -76,8 +74,8 @@
 			</Trigger>
 
 			<Trigger Property="IsSelected" Value="True">
-				<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
 				<Setter Property="Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+				<Setter Property="TextBlock.Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
 
 				<Trigger.EnterActions>
 					<BeginStoryboard>
@@ -107,35 +105,23 @@
 	</ControlTemplate>
 
 
-	<Style
-		x:Key="WpfUtilsListBoxItem"
-		TargetType="{x:Type ListBoxItem}">
+	<Style x:Key="WpfUtilsListBoxItem" TargetType="{x:Type ListBoxItem}">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
 
 		<Setter Property="HorizontalAlignment" Value="Stretch" />
 		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
-		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="Padding" Value="2" />
 		<Setter Property="Template" Value="{StaticResource WpfUtilsListBoxItemTemplate}" />
-		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
 	</Style>
 
-	<Style
-		x:Key="WpfUtilsListBox"
-		TargetType="{x:Type ListBox}">
-		<Setter Property="ItemContainerStyle" Value="{DynamicResource WpfUtilsListBoxItem}" />
+	<Style x:Key="WpfUtilsListBox" TargetType="{x:Type ListBox}">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
-		<Setter Property="BorderThickness" Value="0" />
 		<Setter Property="BorderBrush" Value="Transparent" />
-		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
-		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-		<Setter Property="ScrollViewer.CanContentScroll" Value="true" />
-		<Setter Property="ScrollViewer.PanningMode" Value="VerticalOnly" />
-		<Setter Property="VerticalContentAlignment" Value="Center" />
-		<Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel" />
-		<Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
+		<Setter Property="BorderThickness" Value="0" />
 		<Setter Property="Focusable" Value="False" />
-		<Setter Property="KeyboardNavigation.DirectionalNavigation" Value="Continue" />
+		<Setter Property="ItemContainerStyle" Value="{DynamicResource WpfUtilsListBoxItem}" />
 
 		<Setter Property="ItemsPanel">
 			<Setter.Value>
@@ -144,6 +130,11 @@
 				</ItemsPanelTemplate>
 			</Setter.Value>
 		</Setter>
+		<Setter Property="KeyboardNavigation.DirectionalNavigation" Value="Continue" />
+		<Setter Property="ScrollViewer.CanContentScroll" Value="true" />
+		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+		<Setter Property="ScrollViewer.PanningMode" Value="VerticalOnly" />
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -168,6 +159,9 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
+		<Setter Property="VerticalContentAlignment" Value="Center" />
+		<Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
+		<Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel" />
 	</Style>
 
 </ResourceDictionary>

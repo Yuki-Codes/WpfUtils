@@ -5,14 +5,10 @@
 	xmlns:extensions="clr-namespace:WpfUtils.MarkupExtensions"
 	xmlns:wpfUtils="clr-namespace:WpfUtils.Controls">
 
-	<ControlTemplate
-		x:Key="WpfUtilsTabHighlightTemplate"
-		TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
+	<ControlTemplate x:Key="WpfUtilsTabHighlightTemplate" TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
 		<Grid>
 
-			<Grid
-				x:Name="PART_Highlight"
-				IsHitTestVisible="False">
+			<Grid x:Name="PART_Highlight" IsHitTestVisible="False">
 				<Border
 					Margin="1,1,1,-10"
 					HorizontalAlignment="Stretch"
@@ -26,14 +22,10 @@
 		</Grid>
 	</ControlTemplate>
 
-	<ControlTemplate
-		x:Key="WpfUtilsVerticalTabHighlightTemplate"
-		TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
+	<ControlTemplate x:Key="WpfUtilsVerticalTabHighlightTemplate" TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
 		<Grid>
 
-			<Grid
-				x:Name="PART_Highlight"
-				IsHitTestVisible="False">
+			<Grid x:Name="PART_Highlight" IsHitTestVisible="False">
 				<Border
 					Margin="1,1,-10,1"
 					HorizontalAlignment="Stretch"
@@ -47,18 +39,49 @@
 		</Grid>
 	</ControlTemplate>
 
-	<Style
-		x:Key="WpfUtilsTabControl"
-		TargetType="{x:Type TabControl}">
+	<Style x:Key="WpfUtilsTabControl" TargetType="{x:Type TabControl}">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
-		<Setter Property="Padding" Value="3" />
 		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+
+		<Setter Property="ItemContainerStyle">
+			<Setter.Value>
+				<Style TargetType="TabItem">
+					<Setter Property="Background" Value="Transparent" />
+					<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+					<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="{x:Type TabItem}">
+								<RadioButton
+									wpfUtils:RadioButtonHighlighter.UseGroupHighlight="True"
+									Background="Transparent"
+									Content="{TemplateBinding Header}"
+									ContentTemplate="{TemplateBinding HeaderTemplate}"
+									IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}"
+									IsEnabled="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType=TabItem}}"
+									Style="{DynamicResource WpfUtilsRadioButtonNoHighlight}" />
+
+								<ControlTemplate.Triggers>
+									<Trigger Property="IsSelected" Value="True">
+										<Setter Property="IsHitTestVisible" Value="False" />
+									</Trigger>
+									<Trigger Property="IsMouseOver" Value="true">
+										<Setter Property="Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
+									</Trigger>
+								</ControlTemplate.Triggers>
+
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+					<Setter Property="VerticalContentAlignment" Value="Stretch" />
+				</Style>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Padding" Value="3" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type TabControl}">
-					<Border
-						Background="{TemplateBinding Background}"
-						Style="{DynamicResource WpfUtilsControlBorder}">
+					<Border Background="{TemplateBinding Background}" Style="{DynamicResource WpfUtilsControlBorder}">
 						<Grid
 							ClipToBounds="True"
 							KeyboardNavigation.TabNavigation="Local"
@@ -109,18 +132,27 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
+	</Style>
+
+
+
+	<Style x:Key="WpfUtilsSideTabs" TargetType="TabControl">
+		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
+		<Setter Property="BorderBrush" Value="Transparent" />
+		<Setter Property="BorderThickness" Value="0" />
 
 		<Setter Property="ItemContainerStyle">
 			<Setter.Value>
 				<Style TargetType="TabItem">
 					<Setter Property="Background" Value="Transparent" />
-					<Setter Property="VerticalContentAlignment" Value="Stretch" />
-					<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 					<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
+					<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+					<Setter Property="Margin" Value="0" />
 					<Setter Property="Template">
 						<Setter.Value>
 							<ControlTemplate TargetType="{x:Type TabItem}">
 								<RadioButton
+									Height="Auto"
 									wpfUtils:RadioButtonHighlighter.UseGroupHighlight="True"
 									Background="Transparent"
 									Content="{TemplateBinding Header}"
@@ -133,29 +165,23 @@
 									<Trigger Property="IsSelected" Value="True">
 										<Setter Property="IsHitTestVisible" Value="False" />
 									</Trigger>
-									<Trigger Property="IsMouseOver" Value="true">
-										<Setter Property="Foreground" Value="{DynamicResource ControlForegroundHighlightBrush}" />
-									</Trigger>
 								</ControlTemplate.Triggers>
 
 							</ControlTemplate>
 						</Setter.Value>
 					</Setter>
+					<Setter Property="VerticalContentAlignment" Value="Stretch" />
+
+					<Style.Triggers>
+						<Trigger Property="IsSelected" Value="True">
+							<Setter Property="Foreground" Value="{DynamicResource TrimBrush}" />
+						</Trigger>
+					</Style.Triggers>
+
 				</Style>
 			</Setter.Value>
 		</Setter>
-	</Style>
-
-
-
-	<Style
-		x:Key="WpfUtilsSideTabs"
-		TargetType="TabControl">
-		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
-		<Setter Property="BorderThickness" Value="0" />
-		<Setter Property="BorderBrush" Value="Transparent" />
 		<Setter Property="Padding" Value="3" />
-		<Setter Property="VerticalContentAlignment" Value="Top" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -174,9 +200,7 @@
 								<ColumnDefinition />
 							</Grid.ColumnDefinitions>
 
-							<wpfUtils:RadioButtonHighlighter
-								Orientation="Vertical"
-								Template="{StaticResource WpfUtilsVerticalTabHighlightTemplate}">
+							<wpfUtils:RadioButtonHighlighter Orientation="Vertical" Template="{StaticResource WpfUtilsVerticalTabHighlightTemplate}">
 								<UniformGrid
 									Margin="0"
 									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -218,46 +242,6 @@
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>
-
-		<Setter Property="ItemContainerStyle">
-			<Setter.Value>
-				<Style TargetType="TabItem">
-					<Setter Property="Background" Value="Transparent" />
-					<Setter Property="VerticalContentAlignment" Value="Stretch" />
-					<Setter Property="HorizontalContentAlignment" Value="Stretch" />
-					<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
-					<Setter Property="Margin" Value="0" />
-					<Setter Property="Template">
-						<Setter.Value>
-							<ControlTemplate TargetType="{x:Type TabItem}">
-								<RadioButton
-									Height="Auto"
-									wpfUtils:RadioButtonHighlighter.UseGroupHighlight="True"
-									Background="Transparent"
-									Content="{TemplateBinding Header}"
-									ContentTemplate="{TemplateBinding HeaderTemplate}"
-									IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}"
-									IsEnabled="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType=TabItem}}"
-									Style="{DynamicResource WpfUtilsRadioButtonNoHighlight}" />
-
-								<ControlTemplate.Triggers>
-									<Trigger Property="IsSelected" Value="True">
-										<Setter Property="IsHitTestVisible" Value="False" />
-									</Trigger>
-								</ControlTemplate.Triggers>
-
-							</ControlTemplate>
-						</Setter.Value>
-					</Setter>
-
-					<Style.Triggers>
-						<Trigger Property="IsSelected" Value="True">
-							<Setter Property="Foreground" Value="{DynamicResource TrimBrush}" />
-						</Trigger>
-					</Style.Triggers>
-
-				</Style>
-			</Setter.Value>
-		</Setter>
+		<Setter Property="VerticalContentAlignment" Value="Top" />
 	</Style>
 </ResourceDictionary>

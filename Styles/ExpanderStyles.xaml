@@ -3,9 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
-	<ControlTemplate
-		x:Key="WpfUtilsExpanderTemplate"
-		TargetType="{x:Type Expander}">
+	<ControlTemplate x:Key="WpfUtilsExpanderTemplate" TargetType="{x:Type Expander}">
 
 		<Grid KeyboardNavigation.TabNavigation="Local">
 			<Grid.RowDefinitions>
@@ -85,9 +83,9 @@
 
 		<ControlTemplate.Triggers>
 			<Trigger Property="IsExpanded" Value="true">
+				<Setter TargetName="ExpandArea" Property="IsEnabled" Value="True" />
 
 				<Setter TargetName="ExpandArea" Property="IsHitTestVisible" Value="True" />
-				<Setter TargetName="ExpandArea" Property="IsEnabled" Value="True" />
 				<Setter TargetName="ExpandPutty" Property="Visibility" Value="Visible" />
 
 				<Trigger.EnterActions>
@@ -116,18 +114,14 @@
 		</ControlTemplate.Triggers>
 	</ControlTemplate>
 
-	<Style
-		x:Key="WpfUtilsExpander"
-		TargetType="{x:Type Expander}">
-		<Setter Property="Template" Value="{StaticResource WpfUtilsExpanderTemplate}" />
+	<Style x:Key="WpfUtilsExpander" TargetType="{x:Type Expander}">
 		<Setter Property="Margin" Value="1" />
+		<Setter Property="Template" Value="{StaticResource WpfUtilsExpanderTemplate}" />
 	</Style>
 
 
 
-	<ControlTemplate
-		x:Key="WpfUtilsInvisibleExpanderTemplate"
-		TargetType="{x:Type Expander}">
+	<ControlTemplate x:Key="WpfUtilsInvisibleExpanderTemplate" TargetType="{x:Type Expander}">
 
 		<Grid KeyboardNavigation.TabNavigation="Local">
 			<Grid.RowDefinitions>
@@ -162,9 +156,9 @@
 
 		<ControlTemplate.Triggers>
 			<Trigger Property="IsExpanded" Value="true">
+				<Setter TargetName="ExpandArea" Property="IsEnabled" Value="True" />
 
 				<Setter TargetName="ExpandArea" Property="IsHitTestVisible" Value="True" />
-				<Setter TargetName="ExpandArea" Property="IsEnabled" Value="True" />
 
 				<Trigger.EnterActions>
 					<BeginStoryboard>
@@ -192,19 +186,15 @@
 		</ControlTemplate.Triggers>
 	</ControlTemplate>
 
-	<Style
-		x:Key="WpfUtilsInvisibleExpander"
-		TargetType="{x:Type Expander}">
-		<Setter Property="Template" Value="{StaticResource WpfUtilsInvisibleExpanderTemplate}" />
+	<Style x:Key="WpfUtilsInvisibleExpander" TargetType="{x:Type Expander}">
 		<Setter Property="Margin" Value="1" />
 		<Setter Property="Padding" Value="12,0,0,0" />
+		<Setter Property="Template" Value="{StaticResource WpfUtilsInvisibleExpanderTemplate}" />
 	</Style>
 
 
 
-	<ControlTemplate
-		x:Key="WpfUtilsClickableExpanderTemplate"
-		TargetType="{x:Type Expander}">
+	<ControlTemplate x:Key="WpfUtilsClickableExpanderTemplate" TargetType="{x:Type Expander}">
 
 		<Grid KeyboardNavigation.TabNavigation="Local">
 			<Grid.RowDefinitions>
@@ -268,9 +258,9 @@
 
 		<ControlTemplate.Triggers>
 			<Trigger Property="IsExpanded" Value="true">
+				<Setter TargetName="ExpandArea" Property="IsEnabled" Value="True" />
 
 				<Setter TargetName="ExpandArea" Property="IsHitTestVisible" Value="True" />
-				<Setter TargetName="ExpandArea" Property="IsEnabled" Value="True" />
 
 				<Trigger.EnterActions>
 					<BeginStoryboard>
@@ -298,13 +288,11 @@
 		</ControlTemplate.Triggers>
 	</ControlTemplate>
 
-	<Style
-		x:Key="WpfUtilsClickableExpander"
-		TargetType="{x:Type Expander}">
-		<Setter Property="Template" Value="{StaticResource WpfUtilsClickableExpanderTemplate}" />
+	<Style x:Key="WpfUtilsClickableExpander" TargetType="{x:Type Expander}">
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="Margin" Value="1" />
 		<Setter Property="Padding" Value="1" />
+		<Setter Property="Template" Value="{StaticResource WpfUtilsClickableExpanderTemplate}" />
 	</Style>
 
 </ResourceDictionary>

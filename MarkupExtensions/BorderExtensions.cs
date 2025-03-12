@@ -24,32 +24,32 @@ public partial class BorderExtensions
 			switch (newValue)
 			{
 				case Edges.Top:
-				{
-					radius.TopLeft = 0;
-					radius.TopRight = 0;
-					break;
-				}
+					{
+						radius.TopLeft = 0;
+						radius.TopRight = 0;
+						break;
+					}
 
 				case Edges.Bottom:
-				{
-					radius.BottomLeft = 0;
-					radius.BottomRight = 0;
-					break;
-				}
+					{
+						radius.BottomLeft = 0;
+						radius.BottomRight = 0;
+						break;
+					}
 
 				case Edges.Left:
-				{
-					radius.TopLeft = 0;
-					radius.BottomLeft = 0;
-					break;
-				}
+					{
+						radius.TopLeft = 0;
+						radius.BottomLeft = 0;
+						break;
+					}
 
 				case Edges.Right:
-				{
-					radius.TopRight = 0;
-					radius.BottomRight = 0;
-					break;
-				}
+					{
+						radius.TopRight = 0;
+						radius.BottomRight = 0;
+						break;
+					}
 			}
 
 			border.CornerRadius = radius;

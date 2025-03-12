@@ -111,7 +111,7 @@ public partial class PopOut : Popup, IAddChild
 			MethodInfo? method = typeof(Popup).GetMethod("SetHitTestable", BindingFlags.NonPublic | BindingFlags.Instance);
 			method?.Invoke(this, [hitTestable]);
 		}
-		catch(Exception)
+		catch (Exception)
 		{
 		}
 	}
