@@ -23,7 +23,6 @@ public static class DependencyObjectExtensions
 			return null;
 
 		T? parent = parentObject as T;
-
 		if (parent != null)
 		{
 			return parent;
@@ -31,6 +30,26 @@ public static class DependencyObjectExtensions
 		else
 		{
 			return parentObject.FindParent<T>();
+		}
+	}
+
+	public static T? FindLogicalParent<T>(this DependencyObject child)
+		where T : DependencyObject
+	{
+		DependencyObject parentObject;
+		parentObject = LogicalTreeHelper.GetParent(child);
+
+		if (parentObject == null)
+			return null;
+
+		T? parent = parentObject as T;
+		if (parent != null)
+		{
+			return parent;
+		}
+		else
+		{
+			return parentObject.FindLogicalParent<T>();
 		}
 	}
 
@@ -64,6 +83,27 @@ public static class DependencyObjectExtensions
 				results.Add(tChild);
 
 			child.FindChildren(ref results);
+		}
+	}
+
+	public static List<T> FindLogicalChildren<T>(this DependencyObject self)
+	{
+		List<T> results = new List<T>();
+		self.FindLogicalChildren<T>(ref results);
+		return results;
+	}
+
+	public static void FindLogicalChildren<T>(this DependencyObject self, ref List<T> results)
+	{
+		foreach(var child in LogicalTreeHelper.GetChildren(self))
+		{
+			if (child is T tChild)
+				results.Add(tChild);
+
+			if (child is DependencyObject dependencyObjectChild)
+			{
+				dependencyObjectChild.FindLogicalChildren(ref results);
+			}
 		}
 	}
 }
