@@ -108,7 +108,7 @@
 	<Style x:Key="WpfUtilsListBoxItem" TargetType="{x:Type ListBoxItem}">
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 
 		<Setter Property="HorizontalAlignment" Value="Stretch" />
 		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
