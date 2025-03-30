@@ -16,34 +16,7 @@
 	mc:Ignorable="d">
 
 	<Border Style="{DynamicResource WpfUtilsControlBorder}">
-
-
 		<Grid x:Name="ContentArea">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition x:Name="SliderColumn" />
-				<ColumnDefinition x:Name="InputBoxColumn" Width="Auto" />
-			</Grid.ColumnDefinitions>
-
-			<Slider
-				x:Name="InputSlider"
-				Grid.Row="0"
-				Grid.Column="0"
-				Margin="0"
-				HorizontalAlignment="Stretch"
-				VerticalAlignment="Center"
-				Background="Transparent"
-				Focusable="False"
-				IsSnapToTickEnabled="True"
-				Maximum="{Binding SliderMaximum}"
-				Minimum="{Binding SliderMinimum}"
-				PreviewMouseDown="OnSliderPreviewMouseDown"
-				PreviewMouseMove="OnSliderMouseMove"
-				PreviewMouseUp="OnSliderPreviewMouseUp"
-				TickFrequency="{Binding TickFrequency}"
-				Value="{Binding SliderValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-
-
 			<Grid Grid.Row="0" Grid.Column="1">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />

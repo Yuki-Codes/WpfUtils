@@ -8,15 +8,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using WpfUtils.Logging;
-
-using DrawPoint = System.Drawing.Point;
-using WinCur = System.Windows.Forms.Cursor;
-using WinPoint = System.Windows.Point;
 
 [DependencyProperty<double>("Value", DefaultValue = 0, DefaultBindingMode = DefaultBindingMode.TwoWay)]
 [DependencyProperty<double>("TickFrequency", DefaultValue = 1)]
-[DependencyProperty<SliderModes>("Slider", DefaultValue = SliderModes.None)]
 [DependencyProperty<bool>("Buttons", DefaultValue = false)]
 [DependencyProperty<double>("Minimum", DefaultValue = double.MinValue)]
 [DependencyProperty<double>("Maximum", DefaultValue = double.MaxValue)]
@@ -29,8 +23,6 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 {
 	private string? inputString = "0";
 	private Key keyHeld = Key.None;
-	private double relativeSliderStart;
-	private double relativeSliderCurrent;
 
 	public NumberBox()
 	{
@@ -39,13 +31,6 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 	}
 
 	public event PropertyChangedEventHandler? PropertyChanged;
-
-	public enum SliderModes
-	{
-		None,
-		Absolute,
-		Relative,
-	}
 
 	public double DisplayValue
 	{
@@ -118,75 +103,9 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 		}
 	}
 
-	public double SliderValue
-	{
-		get
-		{
-			if (this.Slider == SliderModes.Absolute)
-			{
-				return this.DisplayValue;
-			}
-			else
-			{
-				return this.relativeSliderCurrent;
-			}
-		}
-		set
-		{
-			if (this.Slider == SliderModes.Absolute)
-			{
-				this.DisplayValue = value;
-			}
-			else
-			{
-				this.relativeSliderCurrent = value;
-
-				if (Keyboard.IsKeyDown(Key.LeftShift))
-					value *= 10;
-
-				if (Keyboard.IsKeyDown(Key.LeftCtrl))
-					value /= 10;
-
-				this.DisplayValue = this.relativeSliderStart + value;
-			}
-
-			this.PropertyChanged?.Invoke(this, new(nameof(NumberBox.SliderValue)));
-		}
-	}
-
-	public double SliderMinimum
-	{
-		get
-		{
-			if (this.Slider == SliderModes.Absolute)
-			{
-				return this.Minimum;
-			}
-			else
-			{
-				return -(this.TickFrequency * 30);
-			}
-		}
-	}
-
-	public double SliderMaximum
-	{
-		get
-		{
-			if (this.Slider == SliderModes.Absolute)
-			{
-				return this.Maximum;
-			}
-			else
-			{
-				return this.TickFrequency * 30;
-			}
-		}
-	}
-
 	protected override void OnPreviewKeyDown(KeyEventArgs e)
 	{
-		bool focused = this.InputBox.IsKeyboardFocused || this.InputSlider.IsKeyboardFocused;
+		bool focused = this.InputBox.IsKeyboardFocused;
 		if (!focused)
 			return;
 
@@ -235,50 +154,15 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 
 	partial void OnValueChanged(double newValue)
 	{
-		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderValue)));
-
 		int caretIndex = this.InputBox.CaretIndex;
 		this.Text = this.DisplayValue.ToString("0.###");
 		this.InputBox.CaretIndex = caretIndex;
-	}
-
-	partial void OnSliderChanged(SliderModes newValue)
-	{
-		this.InputSlider.Visibility = newValue != SliderModes.None ? Visibility.Visible : Visibility.Collapsed;
-
-		int inputColumnWidth = 64;
-		if (this.Buttons)
-			inputColumnWidth += 48;
-
-		this.SliderColumn.Width = newValue != SliderModes.None ? new GridLength(1, GridUnitType.Star) : new GridLength(0);
-		this.InputBoxColumn.Width = newValue != SliderModes.None ? new GridLength(inputColumnWidth) : new GridLength(1, GridUnitType.Star);
-
-		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMaximum)));
-		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMinimum)));
-		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderValue)));
 	}
 
 	partial void OnButtonsChanged(bool newValue)
 	{
 		this.DownButton.Visibility = newValue ? Visibility.Visible : Visibility.Collapsed;
 		this.UpButton.Visibility = newValue ? Visibility.Visible : Visibility.Collapsed;
-	}
-
-	partial void OnMinimumChanged(double newValue)
-	{
-		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMinimum)));
-	}
-
-	partial void OnMaximumChanged(double newValue)
-	{
-		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMaximum)));
-	}
-
-	partial void OnTickFrequencyChanged(double newValue)
-	{
-		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMaximum)));
-		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderMinimum)));
-		this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NumberBox.SliderValue)));
 	}
 
 	private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -290,7 +174,6 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 			window.Deactivated += this.OnWindowDeactivated;
 		}
 
-		this.OnSliderChanged(this.Slider);
 		this.OnButtonsChanged(this.Buttons);
 		this.OnTickFrequencyChanged(this.TickFrequency);
 
@@ -407,28 +290,6 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 		this.TickValue(true);
 	}
 
-	private void OnSliderMouseMove(object sender, MouseEventArgs e)
-	{
-		if (this.Slider != SliderModes.Absolute)
-			return;
-
-		if (e.LeftButton == MouseButtonState.Pressed && this.Wrap)
-		{
-			WinPoint rightEdge = this.InputSlider.PointToScreen(new WinPoint(this.InputSlider.ActualWidth - 5, this.InputSlider.ActualHeight / 2));
-			WinPoint leftEdge = this.InputSlider.PointToScreen(new WinPoint(6, this.InputSlider.ActualHeight / 2));
-
-			if (WinCur.Position.X > rightEdge.X)
-			{
-				WinCur.Position = new DrawPoint((int)leftEdge.X, (int)leftEdge.Y);
-			}
-
-			if (WinCur.Position.X < leftEdge.X)
-			{
-				WinCur.Position = new DrawPoint((int)rightEdge.X, (int)rightEdge.Y);
-			}
-		}
-	}
-
 	private void OnWindowMouseDown(object? sender, MouseButtonEventArgs e)
 	{
 		FocusManager.SetFocusedElement(FocusManager.GetFocusScope(this), null);
@@ -439,19 +300,5 @@ public partial class NumberBox : UserControl, INotifyPropertyChanged
 	{
 		FocusManager.SetFocusedElement(FocusManager.GetFocusScope(this), null);
 		Keyboard.ClearFocus();
-	}
-
-	private void OnSliderPreviewMouseDown(object? sender, MouseButtonEventArgs e)
-	{
-		this.relativeSliderStart = this.DisplayValue;
-	}
-
-	private void OnSliderPreviewMouseUp(object? sender, MouseButtonEventArgs e)
-	{
-		if (this.Slider == SliderModes.Relative)
-		{
-			this.relativeSliderStart = this.DisplayValue;
-			this.SliderValue = 0;
-		}
 	}
 }
