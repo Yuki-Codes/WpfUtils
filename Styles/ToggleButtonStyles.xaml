@@ -155,21 +155,21 @@
 					Background="{DynamicResource BackgroundBrush}"
 					CornerRadius="{DynamicResource WpfUtilsBorderInnerCornerRadius}" />
 
-				<controls:IconBlock
+				<TextBlock
 					x:Name="IndicatorCross"
 					Width="22"
 					Margin="2"
 					HorizontalAlignment="Left"
-					Icon="Times"
+					Text="X"
 					Opacity="1" />
 
-				<controls:IconBlock
+				<TextBlock
 					x:Name="IndicatorCheck"
 					Width="22"
 					Margin="2"
 					HorizontalAlignment="Right"
 					Foreground="{DynamicResource TrimBrush}"
-					Icon="Check"
+					Text="O"
 					Opacity="0" />
 			</Grid>
 

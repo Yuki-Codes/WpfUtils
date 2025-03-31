@@ -35,13 +35,13 @@
 						Content="{TemplateBinding Header}"
 						ContentTemplate="{Binding HeaderTemplate}" />
 
-					<wpfUtils:IconBlock
+					<TextBlock
 						x:Name="ExpandIcon"
 						Grid.Column="2"
 						VerticalAlignment="Center"
 						FontSize="10"
 						Foreground="{TemplateBinding Foreground}"
-						Icon="ChevronRight"
+						Text=">"
 						Visibility="Collapsed" />
 
 

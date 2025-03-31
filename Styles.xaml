@@ -40,8 +40,6 @@
 		<ResourceDictionary Source="Controls/PopOutStyles.xaml" />
 		<ResourceDictionary Source="Controls/SwitchSelectorStyles.xaml" />
 
-		<!--<ResourceDictionary Source="Themes/Nier.xaml" />-->
-
 	</ResourceDictionary.MergedDictionaries>
 
 	<Style BasedOn="{StaticResource WpfUtilsButton}" TargetType="{x:Type Button}" />
@@ -109,12 +107,5 @@
 	<converters:MultiBoolOrToVisibilityConverter x:Key="MultiBoolOrToVisibility" />
 	<converters:MultiBoolAndToVisibilityConverter x:Key="MultiBoolAndToVisibility" />
 	<converters:AnyBoolIsFalseToBoolMultiConverter x:Key="AnyBoolIsFalseToBool" />
-
-	<DataTemplate DataType="{x:Type fontAwesome:IconChar}">
-		<controls:IconBlock
-			Margin="0,2,0,0"
-			Icon="{Binding .}"
-			IconFont="Solid" />
-	</DataTemplate>
 
 </ResourceDictionary>
