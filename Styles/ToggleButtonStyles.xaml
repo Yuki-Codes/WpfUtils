@@ -153,24 +153,17 @@
 					Margin="2"
 					HorizontalAlignment="Left"
 					Background="{DynamicResource BackgroundBrush}"
-					CornerRadius="{DynamicResource WpfUtilsBorderInnerCornerRadius}" />
+					CornerRadius="{DynamicResource WpfUtilsBorderInnerCornerRadius}" >
 
-				<TextBlock
-					x:Name="IndicatorCross"
-					Width="22"
-					Margin="2"
-					HorizontalAlignment="Left"
-					Text="X"
-					Opacity="1" />
-
-				<TextBlock
-					x:Name="IndicatorCheck"
-					Width="22"
-					Margin="2"
-					HorizontalAlignment="Right"
-					Foreground="{DynamicResource TrimBrush}"
-					Text="O"
-					Opacity="0" />
+					<Ellipse
+						x:Name="IndicatorCheck"
+						Width="6"
+						Height="6"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Fill="{DynamicResource TrimBrush}"
+						Opacity="0" />
+				</Border>
 			</Grid>
 
 			<ContentControl
@@ -200,12 +193,6 @@
 								To="1"
 								Duration="00:00:00.250" />
 
-							<DoubleAnimation
-								Storyboard.TargetName="IndicatorCross"
-								Storyboard.TargetProperty="Opacity"
-								To="0"
-								Duration="00:00:00.250" />
-
 							<ThicknessAnimation
 								Storyboard.TargetName="Indicator"
 								Storyboard.TargetProperty="Margin"
@@ -227,12 +214,6 @@
 								Storyboard.TargetName="IndicatorCheck"
 								Storyboard.TargetProperty="Opacity"
 								To="0"
-								Duration="00:00:00.250" />
-
-							<DoubleAnimation
-								Storyboard.TargetName="IndicatorCross"
-								Storyboard.TargetProperty="Opacity"
-								To="1"
 								Duration="00:00:00.250" />
 
 							<ThicknessAnimation
