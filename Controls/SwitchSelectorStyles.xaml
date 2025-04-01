@@ -8,7 +8,7 @@
 		<Setter Property="HorizontalContentAlignment" Value="Center" />
 
 		<Setter Property="Margin" Value="0" />
-		<Setter Property="Padding" Value="6,0" />
+		<Setter Property="Padding" Value="6" />
 
 		<Setter Property="Template">
 			<Setter.Value>
@@ -21,13 +21,15 @@
 						Padding="{TemplateBinding Padding}"
 						HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
 						controls:RadioButtonHighlighter.UseGroupHighlight="True"
-						Background="Transparent"
+						Background="Orange"
 						Focusable="False"
 						IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"
 						IsEnabled="{TemplateBinding IsEnabled}"
 						Style="{DynamicResource WpfUtilsRadioButtonNoHighlight}">
 
-						<ContentPresenter x:Name="Content" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+						<ContentPresenter
+							x:Name="Content"
+							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
 
 					</RadioButton>
 
