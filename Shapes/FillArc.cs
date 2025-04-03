@@ -7,6 +7,12 @@ using DependencyPropertyGenerator;
 [DependencyProperty<double>("Value")]
 public partial class FillArc : Arc
 {
+	public override void OnApplyTemplate()
+	{
+		base.OnApplyTemplate();
+		this.UpdateArc();
+	}
+
 	partial void OnMinimumChanged() => this.UpdateArc();
 	partial void OnMaximumChanged() => this.UpdateArc();
 	partial void OnValueChanged() => this.UpdateArc();
