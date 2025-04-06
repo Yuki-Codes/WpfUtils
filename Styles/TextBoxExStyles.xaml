@@ -3,7 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:controls="clr-namespace:WpfUtils.Controls">
 
-	<ControlTemplate x:Key="WpfUtilsTextBoxTemplate" TargetType="{x:Type TextBox}">
+	<ControlTemplate x:Key="WpfUtilsTextBoxExTemplate" TargetType="{x:Type controls:TextBoxEx}">
 		<ControlTemplate.Triggers>
 			<Trigger Property="IsKeyboardFocused" Value="True">
 				<Trigger.EnterActions>
@@ -113,10 +113,17 @@
 				SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
 				UseLayoutRounding="{TemplateBinding UseLayoutRounding}" />
 
+			<ContentPresenter
+				Margin="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=SuffixPosition}"
+				Content="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Suffix}"
+				ContentTemplate="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=SuffixTemplate}"
+				IsHitTestVisible="False" />
+
 		</Grid>
 	</ControlTemplate>
 
-	<Style x:Key="WpfUtilsTextBox" TargetType="{x:Type TextBox}">
+
+	<Style x:Key="WpfUtilsTextBoxEx" TargetType="{x:Type controls:TextBoxEx}">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="BorderBrush" Value="{DynamicResource TrimBrush}" />
 		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
@@ -129,7 +136,7 @@
 		<Setter Property="Padding" Value="3,2" />
 		<Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
 		<Setter Property="Stylus.IsFlicksEnabled" Value="False" />
-		<Setter Property="Template" Value="{StaticResource WpfUtilsTextBoxTemplate}" />
+		<Setter Property="Template" Value="{StaticResource WpfUtilsTextBoxExTemplate}" />
 		<Setter Property="TextBoxBase.CaretBrush" Value="{DynamicResource TrimBrush}" />
 		<Setter Property="UIElement.AllowDrop" Value="true" />
 		<Setter Property="VerticalContentAlignment" Value="Center" />

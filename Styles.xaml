@@ -11,7 +11,7 @@
 
 		<!--  Custom  -->
 		<ResourceDictionary Source="Styles/BorderStyles.xaml" />
-		<ResourceDictionary Source="Styles/FocusVisualstyles.xaml" />
+		<ResourceDictionary Source="Styles/FocusVisualStyles.xaml" />
 		<ResourceDictionary Source="Styles/GroupBoxStyles.xaml" />
 		<ResourceDictionary Source="Styles/ButtonStyles.xaml" />
 		<ResourceDictionary Source="Styles/TextBlockStyles.xaml" />
@@ -19,6 +19,7 @@
 		<ResourceDictionary Source="Styles/ExpanderStyles.xaml" />
 		<ResourceDictionary Source="Styles/TabControlStyles.xaml" />
 		<ResourceDictionary Source="Styles/TextBoxStyles.xaml" />
+		<ResourceDictionary Source="Styles/TextBoxExStyles.xaml" />
 		<ResourceDictionary Source="Styles/ComboBoxStyles.xaml" />
 		<ResourceDictionary Source="Styles/MenuStyles.xaml" />
 		<ResourceDictionary Source="Styles/WindowStyles.xaml" />
@@ -52,7 +53,7 @@
 	<Style BasedOn="{StaticResource ScrollViewerStyle}" TargetType="{x:Type ScrollViewer}" />
 	<Style BasedOn="{StaticResource WpfUtilsTabControl}" TargetType="{x:Type TabControl}" />
 	<Style BasedOn="{StaticResource WpfUtilsTextBox}" TargetType="{x:Type TextBox}" />
-	<Style BasedOn="{StaticResource WpfUtilsTextBox}" TargetType="{x:Type controls:TextBoxEx}" />
+	<Style BasedOn="{StaticResource WpfUtilsTextBoxEx}" TargetType="{x:Type controls:TextBoxEx}" />
 	<Style BasedOn="{StaticResource WpfUtilsProgressBar}" TargetType="{x:Type ProgressBar}" />
 	<Style BasedOn="{StaticResource WpfUtilsCheckBox}" TargetType="{x:Type CheckBox}" />
 	<Style BasedOn="{StaticResource WpfUtilsMenu}" TargetType="{x:Type Menu}" />
