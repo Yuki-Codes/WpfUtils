@@ -33,6 +33,8 @@ public partial class RadioButtonHighlighter : ContentControl
 		this.rightAnimation = this.CreateAnimation(RightProperty);
 		this.topAnimation = this.CreateAnimation(TopProperty);
 		this.bottomAnimation = this.CreateAnimation(BottomProperty);
+
+		this.Loaded += this.OnLoaded;
 	}
 
 	public override void OnApplyTemplate()
@@ -48,6 +50,7 @@ public partial class RadioButtonHighlighter : ContentControl
 	{
 		this.radioButtons.Add(button);
 		button.Checked += this.OnButtonChecked;
+		this.UpdateBounds();
 	}
 
 	protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
@@ -85,8 +88,15 @@ public partial class RadioButtonHighlighter : ContentControl
 		return animation;
 	}
 
+	private void OnLoaded(object sender, RoutedEventArgs e)
+	{
+		this.UpdateBounds();
+	}
+
 	private void OnButtonChecked(object sender, RoutedEventArgs e)
 	{
+		this.UpdateBounds();
+
 		if (sender is RadioButton button)
 		{
 			this.storyboard.Stop();
@@ -97,7 +107,8 @@ public partial class RadioButtonHighlighter : ContentControl
 			GeneralTransform transform = button.TransformToAncestor(this);
 			Rect bounds = transform.TransformBounds(new(0, 0, button.ActualWidth, button.ActualHeight));
 
-			if (this.highlight != null)
+			bool animate = this.IsVisible && this.IsLoaded;
+			if (animate)
 			{
 				if (fromIndex > this.currentIndex)
 				{
@@ -129,6 +140,13 @@ public partial class RadioButtonHighlighter : ContentControl
 				this.topAnimation.To = bounds.Top;
 				this.bottomAnimation.To = this.ActualHeight - bounds.Bottom;
 				this.storyboard.Begin();
+			}
+			else
+			{
+				this.Left = bounds.Left;
+				this.Right = this.ActualWidth - bounds.Right;
+				this.Top = bounds.Top;
+				this.Bottom = this.ActualHeight - bounds.Bottom;
 			}
 		}
 	}
