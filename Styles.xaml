@@ -33,6 +33,7 @@
 		<ResourceDictionary Source="Styles/RadioButtonStyles.xaml" />
 		<ResourceDictionary Source="Styles/SeparatorStyles.xaml" />
 		<ResourceDictionary Source="Styles/PopupStyles.xaml" />
+		<ResourceDictionary Source="Styles/ContextMenuStyles.xaml" />
 
 		<!--  Controls  -->
 		<ResourceDictionary Source="Controls/MultiNumberBoxStyles.xaml" />
@@ -70,6 +71,7 @@
 	<Style BasedOn="{StaticResource WpfUtilsPopup}" TargetType="{x:Type Popup}" />
 	<Style BasedOn="{StaticResource WpfUtilsAreaSlider}" TargetType="{x:Type controls:AreaSlider}" />
 	<Style BasedOn="{StaticResource WpfUtilsPopOut}" TargetType="{x:Type controls:PopOut}" />
+	<Style BasedOn="{StaticResource WpfUtilsContextMenu}" TargetType="{x:Type ContextMenu}" />
 
 	<!--  Custom converters  -->
 	<converters:StringHasContentToVisibilityConverter x:Key="StringHasContentToVisibility" />

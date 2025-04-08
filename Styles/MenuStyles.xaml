@@ -27,7 +27,7 @@
 						<ColumnDefinition Width="Auto" />
 					</Grid.ColumnDefinitions>
 
-					<ContentPresenter Grid.Column="0" Content="{TemplateBinding Icon}" />
+					<ContentPresenter Grid.Column="0" Content="{TemplateBinding Icon}" Margin="2"/>
 
 					<ContentPresenter
 						Grid.Column="1"
