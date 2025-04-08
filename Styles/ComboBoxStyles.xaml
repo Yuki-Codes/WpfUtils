@@ -46,7 +46,7 @@
 				</DataTemplate>
 			</Setter.Value>
 		</Setter>
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 
 		<Setter Property="Margin" Value="0" />
@@ -184,7 +184,7 @@
 	<Style x:Key="WpfUtilsComboBox" TargetType="{x:Type ComboBox}">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="FocusVisualStyle" Value="{DynamicResource WpfUtilsFocusVisualStyle}" />
-		<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 		<Setter Property="ItemContainerStyle" Value="{StaticResource WpfUtilsComboBoxItem}" />
 		<Setter Property="Margin" Value="1" />
 		<Setter Property="Padding" Value="3,0" />
