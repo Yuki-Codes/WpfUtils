@@ -16,7 +16,7 @@ public static class TaskExtensions
 			}
 			catch (Exception ex)
 			{
-				Log.Error(ex, "Error in Task");
+				Log.Error(ex, ex.Message);
 			}
 		});
 	}
