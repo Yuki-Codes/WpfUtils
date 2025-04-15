@@ -6,7 +6,6 @@
 	xmlns:local="clr-namespace:WpfUtils"
 	xmlns:wpfUtils="clr-namespace:WpfUtils.Controls">
 
-	<converters:IconConverter x:Key="StringToIconConveter" />
 	<converters:StringHasContentToVisibilityConverter x:Key="StringHasContentToVisibility" />
 	<converters:InvertedBoolToVisibilityConverter x:Key="!B2V" />
 
@@ -35,14 +34,21 @@
 						Content="{TemplateBinding Header}"
 						ContentTemplate="{Binding HeaderTemplate}" />
 
-					<TextBlock
+					<Grid
 						x:Name="ExpandIcon"
 						Grid.Column="2"
 						VerticalAlignment="Center"
-						FontSize="10"
-						Foreground="{TemplateBinding Foreground}"
-						Text=">"
-						Visibility="Collapsed" />
+						Visibility="Collapsed" >
+
+						<Path
+							Data="M 1,1.5 L 4.5,5 L 8,1.5"
+							HorizontalAlignment="Center"
+							Stroke="{TemplateBinding Foreground}"
+							SnapsToDevicePixels="false"
+							StrokeThickness="2"
+							VerticalAlignment="Center"/>
+
+					</Grid>
 
 
 				</Grid>

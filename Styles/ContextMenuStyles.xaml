@@ -6,7 +6,6 @@
 	xmlns:local="clr-namespace:WpfUtils"
 	xmlns:wpfUtils="clr-namespace:WpfUtils.Controls">
 
-	<converters:IconConverter x:Key="StringToIconConveter" />
 	<converters:StringHasContentToVisibilityConverter x:Key="StringHasContentToVisibility" />
 	<converters:InvertedBoolToVisibilityConverter x:Key="!B2V" />
 
