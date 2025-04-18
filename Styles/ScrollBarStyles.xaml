@@ -236,7 +236,8 @@
 			</Setter.Value>
 		</Setter>
 		<Setter Property="VerticalScrollBarVisibility" Value="Auto" />
-		<Setter Property="behaviors:ScrollViewerExtensions.DragScroll" Value="True" />
+		<!-- TODO: This Interferes with drag and drop, only use it with stylus? -->
+		<Setter Property="behaviors:ScrollViewerExtensions.DragScroll" Value="False" />
 		<Setter Property="behaviors:SmoothScrollBehavior.SmoothScroll" Value="True" />
 	</Style>
 </ResourceDictionary>
