@@ -31,7 +31,7 @@ public partial class PopOut : Popup, IAddChild
 		this.contentPresenter.Padding = this.Padding;
 		this.contentPresenter.Background = this.Background;
 		this.Child = this.contentPresenter;
-		this.Placement = PlacementMode.RelativePoint;
+		this.Placement = PlacementMode.Bottom;
 
 		this.IsHitTestVisibleChanged += this.OnIsHitTestVisibleChanged;
 	}
@@ -118,12 +118,86 @@ public partial class PopOut : Popup, IAddChild
 
 	private void UpdatePlacement()
 	{
-		if (this.Placement == PlacementMode.RelativePoint
-			&& this.PlacementTarget is FrameworkElement el
-			&& this.Child is FrameworkElement childEl)
+		if (this.Placement == PlacementMode.Bottom
+			&& this.PlacementTarget is FrameworkElement el)
 		{
-			this.HorizontalOffset = (el.ActualWidth / 2) + (childEl.ActualWidth / 2);
-			this.VerticalOffset = el.ActualHeight + this.Margin.Top;
+			double offsetX = 0;
+			double offsetY = 0;
+			PlacementMode placement = this.Placement;
+			UIElement placementTarget = this.PlacementTarget;
+			Rect placementRect = this.PlacementRectangle;
+
+			// Try to get the popup size. If its size is empty, use the size
+			// of its child, if any child exists.
+			Size popupSize = this.GetElementSize(this);
+			UIElement child = this.Child;
+			if ((popupSize.IsEmpty || popupSize.Width <= 0 || popupSize.Height <= 0)
+				&& child != null)
+			{
+				popupSize = this.GetElementSize(child);
+			}
+
+ 			// Get the placement rectangle size. If it's empty, get the
+			// placement target's size, if a target is set.
+			Size targetSize;
+			if (placementRect.Width > 0 && placementRect.Height > 0)
+			{
+				targetSize = placementRect.Size;
+			}
+			else if (placementTarget != null)
+			{
+				targetSize = this.GetElementSize(placementTarget);
+			}
+			else
+			{
+				targetSize = Size.Empty;
+			}
+
+			// If we have a valid popup size and a valid target size, determine
+			// the offset needed to align the popup to the target rectangle.
+			if (!popupSize.IsEmpty && popupSize.Width > 0 && popupSize.Height > 0
+				&& !targetSize.IsEmpty && targetSize.Width > 0 && targetSize.Height > 0)
+			{
+				switch (placement)
+				{
+					// Horizontal alignment offset.
+					case PlacementMode.Top:
+					case PlacementMode.Bottom:
+					{
+						offsetX = (popupSize.Width - targetSize.Width) / 2;
+						offsetY = -8;
+						break;
+					}
+
+					// Vertical alignment offset.
+					case PlacementMode.Left:
+					case PlacementMode.Right:
+					{
+						offsetY = -(popupSize.Height - targetSize.Height) / 2;
+						break;
+					}
+				}
+			}
+
+			// Apply the final computed offsets to the popup.
+			this.HorizontalOffset = offsetX;
+			this.VerticalOffset = offsetY;
+		}
+	}
+
+	private Size GetElementSize(UIElement element)
+	{
+		if (element is null)
+		{
+			return new Size(0d, 0d);
+		}
+		else if (element is FrameworkElement frameworkElement)
+		{
+			return new Size(frameworkElement.ActualWidth, frameworkElement.ActualHeight);
+		}
+		else
+		{
+			return element.RenderSize;
 		}
 	}
 }
