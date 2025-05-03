@@ -18,11 +18,21 @@
 					CornerRadius="6" />
 
 				<Polygon
+					x:Name="TopArrow"
 					Margin="-11"
 					HorizontalAlignment="Center"
 					VerticalAlignment="Top"
 					Fill="{DynamicResource BackgroundBrush}"
 					Points="0,12 16,0, 32,12" />
+
+				<Polygon
+					x:Name="LeftArrow"
+					Margin="-11, 12, 0, 0"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Top"
+					Visibility="Collapsed"
+					Fill="{DynamicResource BackgroundBrush}"
+					Points="12,0 0,16, 12,32" />
 			</Grid>
 
 			<Grid>
@@ -37,7 +47,7 @@
 					CornerRadius="6,6,0,0">
 					<ContentPresenter
 						Grid.Row="1"
-						Margin="{TemplateBinding Padding}"
+						Margin="10"
 						Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:PopOut}}, Path=Header}"
 						ContentTemplate="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:PopOut}}, Path=HeaderTemplate}" />
 				</Border>
@@ -49,10 +59,17 @@
 					ContentTemplate="{TemplateBinding ContentTemplate}" />
 			</Grid>
 		</Grid>
+
+		<ControlTemplate.Triggers>
+			<DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:PopOut}}, Path=Placement}" Value="Right">
+				<Setter TargetName="TopArrow" Property="Visibility" Value="Collapsed"/>
+				<Setter TargetName="LeftArrow" Property="Visibility" Value="Visible"/>
+			</DataTrigger>
+		</ControlTemplate.Triggers>
+
 	</ControlTemplate>
 
 	<Style x:Key="WpfUtilsPopOut" TargetType="{x:Type controls:PopOut}">
-
 		<Setter Property="AllowsTransparency" Value="True" />
 		<Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
 		<Setter Property="Focusable" Value="True" />

@@ -31,7 +31,6 @@ public partial class PopOut : Popup, IAddChild
 		this.contentPresenter.Padding = this.Padding;
 		this.contentPresenter.Background = this.Background;
 		this.Child = this.contentPresenter;
-		this.Placement = PlacementMode.Bottom;
 
 		this.IsHitTestVisibleChanged += this.OnIsHitTestVisibleChanged;
 	}
@@ -118,8 +117,7 @@ public partial class PopOut : Popup, IAddChild
 
 	private void UpdatePlacement()
 	{
-		if (this.Placement == PlacementMode.Bottom
-			&& this.PlacementTarget is FrameworkElement el)
+		if (this.PlacementTarget is FrameworkElement el)
 		{
 			double offsetX = 0;
 			double offsetY = 0;
@@ -173,7 +171,8 @@ public partial class PopOut : Popup, IAddChild
 					case PlacementMode.Left:
 					case PlacementMode.Right:
 					{
-						offsetY = -(popupSize.Height - targetSize.Height) / 2;
+						offsetY = -24;
+						offsetX = -8;
 						break;
 					}
 				}
