@@ -36,7 +36,6 @@
 		<ResourceDictionary Source="Styles/ContextMenuStyles.xaml" />
 
 		<!--  Controls  -->
-		<ResourceDictionary Source="Controls/MultiNumberBoxStyles.xaml" />
 		<ResourceDictionary Source="Controls/RadioButtonHighlighterStyles.xaml" />
 		<ResourceDictionary Source="Controls/AreaSliderStyles.xaml" />
 		<ResourceDictionary Source="Controls/PopOutStyles.xaml" />
@@ -62,7 +61,6 @@
 	<Style BasedOn="{StaticResource WpfUtilsGroupBox}" TargetType="{x:Type GroupBox}" />
 	<Style BasedOn="{StaticResource WpfUtilsTextBlock}" TargetType="{x:Type TextBlock}" />
 	<Style BasedOn="{StaticResource WpfUtilsExpander}" TargetType="{x:Type Expander}" />
-	<Style BasedOn="{StaticResource WpfUtilsMultiNumberBox}" TargetType="{x:Type controls:MultiNumberBox}" />
 	<Style BasedOn="{StaticResource WpfUtilsToolTip}" TargetType="{x:Type ToolTip}" />
 	<Style BasedOn="{StaticResource WpfUtilsRadioButton}" TargetType="{x:Type RadioButton}" />
 	<Style BasedOn="{StaticResource WpfUtilsSeparator}" TargetType="{x:Type Separator}" />
