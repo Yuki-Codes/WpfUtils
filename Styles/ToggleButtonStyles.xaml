@@ -141,29 +141,31 @@
 					Background="{TemplateBinding Background}"
 					Style="{DynamicResource WpfUtilsControlBorder}" />
 
-				<Border
-					x:Name="HoverBorder"
-					Opacity="0"
-					SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-					Style="{DynamicResource WpfUtilsControlHoverBorder}" />
+				<Grid VerticalAlignment="Center" Height="26">
+					<Border
+						x:Name="HoverBorder"
+						Opacity="0"
+						SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+						Style="{DynamicResource WpfUtilsControlHoverBorder}" />
 
-				<Border
-					x:Name="Indicator"
-					Width="22"
-					Margin="2"
-					HorizontalAlignment="Left"
-					Background="{DynamicResource BackgroundBrush}"
-					CornerRadius="{DynamicResource WpfUtilsBorderInnerCornerRadius}" >
+					<Border
+						x:Name="Indicator"
+						Width="22"
+						Margin="2"
+						HorizontalAlignment="Left"
+						Background="{DynamicResource BackgroundBrush}"
+						CornerRadius="{DynamicResource WpfUtilsBorderInnerCornerRadius}" >
 
-					<Ellipse
-						x:Name="IndicatorCheck"
-						Width="6"
-						Height="6"
-						HorizontalAlignment="Center"
-						VerticalAlignment="Center"
-						Fill="{DynamicResource TrimBrush}"
-						Opacity="0" />
-				</Border>
+						<Ellipse
+							x:Name="IndicatorCheck"
+							Width="6"
+							Height="6"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Fill="{DynamicResource TrimBrush}"
+							Opacity="0" />
+					</Border>
+				</Grid>
 			</Grid>
 
 			<ContentControl
