@@ -35,6 +35,7 @@ public partial class RadioButtonHighlighter : ContentControl
 		this.bottomAnimation = this.CreateAnimation(BottomProperty);
 
 		this.Loaded += this.OnLoaded;
+		this.Unloaded += this.OnUnloaded;
 	}
 
 	public override void OnApplyTemplate()
@@ -91,6 +92,11 @@ public partial class RadioButtonHighlighter : ContentControl
 	private void OnLoaded(object sender, RoutedEventArgs e)
 	{
 		this.UpdateBounds();
+	}
+
+	private void OnUnloaded(object sender, RoutedEventArgs e)
+	{
+		this.radioButtons.Clear();
 	}
 
 	private void OnButtonChecked(object sender, RoutedEventArgs e)
@@ -160,16 +166,12 @@ public partial class RadioButtonHighlighter : ContentControl
 			return;
 
 		RadioButton button = this.radioButtons[this.currentIndex];
-		Rect bounds;
 
-		try
-		{
-			GeneralTransform transform = button.TransformToAncestor(this);
-			bounds = transform.TransformBounds(new(0, 0, button.ActualWidth, button.ActualHeight));
-		}
-		catch (InvalidOperationException)
-		{
-		}
+		if (!this.IsAncestorOf(button))
+			return;
+
+		GeneralTransform transform = button.TransformToAncestor(this);
+		Rect bounds = transform.TransformBounds(new(0, 0, button.ActualWidth, button.ActualHeight));
 
 		Thickness margin = this.highlight.Margin;
 		margin.Left = bounds.Left;
