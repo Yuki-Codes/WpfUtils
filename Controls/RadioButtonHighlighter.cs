@@ -110,6 +110,9 @@ public partial class RadioButtonHighlighter : ContentControl
 			int fromIndex = this.currentIndex;
 			this.currentIndex = this.radioButtons.IndexOf(button);
 
+			if (!this.IsAncestorOf(button))
+				return;
+
 			GeneralTransform transform = button.TransformToAncestor(this);
 			Rect bounds = transform.TransformBounds(new(0, 0, button.ActualWidth, button.ActualHeight));
 
