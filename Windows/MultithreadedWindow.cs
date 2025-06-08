@@ -9,15 +9,29 @@ public class MultithreadedWindow : Window
 	public static async Task<T?> CreateInstanceAsync<T>()
 		where T : MultithreadedWindow
 	{
-		return await new PanelWindowThread().Start(typeof(T)) as T;
+		return await new WindowThread().Start(typeof(T)) as T;
 	}
 
-	private class PanelWindowThread
+	private class WindowThread
 	{
 		private static readonly object CreateInstanceLock = new();
 
 		private Window? window;
 		private Type? windowType;
+
+		protected string Description
+		{
+			get
+			{
+				if (this.window != null)
+					return this.window.ToString();
+
+				if (this.windowType != null)
+					return this.windowType.ToString();
+
+				return "Unknown";
+			}
+		}
 
 		public async Task<Window?> Start(Type windowType)
 		{
@@ -38,13 +52,13 @@ public class MultithreadedWindow : Window
 				}
 
 				if (this.window == null)
-					Logging.Log.Error(null, $"Failed to create window {this.windowType}");
+					Logging.Log.Error(null, $"Failed to create window {this.Description}");
 
 				return this.window;
 			}
 			catch (Exception ex)
 			{
-				Logging.Log.Error(ex, $"Failed to create window {this.windowType}");
+				Logging.Log.Error(ex, $"Failed to create window {this.Description}");
 			}
 
 			return null;
@@ -58,12 +72,12 @@ public class MultithreadedWindow : Window
 			AppDomain.CurrentDomain.UnhandledException += (s, e) =>
 			{
 				Exception? ex = e.ExceptionObject as Exception;
-				Logging.Log.Error(ex, $"Unhandled Exception in domain: {this.windowType}");
+				Logging.Log.Error(ex, $"Unhandled Exception in domain: {this.Description}");
 			};
 
 			System.Windows.Threading.Dispatcher.CurrentDispatcher.UnhandledException += (s, e) =>
 			{
-				Logging.Log.Error(e.Exception, $"Unhandled Exception in window: {this.windowType}");
+				Logging.Log.Error(e.Exception, $"Unhandled Exception in window: {this.Description}");
 				e.Handled = true;
 			};
 
@@ -71,18 +85,18 @@ public class MultithreadedWindow : Window
 			{
 				// Even though we're doing this on another thread, we can still only do one panel window
 				// at a time since WPF's LoadComponent system isn't thread safe.
-				lock (PanelWindowThread.CreateInstanceLock)
+				lock (WindowThread.CreateInstanceLock)
 				{
 					this.window = Activator.CreateInstance(this.windowType) as Window;
 				}
 			}
 			catch (Exception ex)
 			{
-				Logging.Log.Error(ex, $"Exception during window construction: {this.windowType}");
+				Logging.Log.Error(ex, $"Exception during window construction: {this.Description}");
 				return;
 			}
 
-			Logging.Log.Message($"Window: {this.windowType} has started");
+			Logging.Log.Message($"Window: {this.Description} has started");
 
 			bool run = true;
 			while (run)
@@ -94,11 +108,11 @@ public class MultithreadedWindow : Window
 				}
 				catch (Exception ex)
 				{
-					Logging.Log.Error(ex, $"Error in {this.windowType} thread");
+					Logging.Log.Error(ex, $"Error in {this.Description} thread");
 				}
 			}
 
-			Logging.Log.Message($"Window: {this.windowType} has shutdown");
+			Logging.Log.Message($"Window: {this.Description} has shutdown");
 		}
 	}
 }
