@@ -32,13 +32,6 @@
 							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
 
 					</RadioButton>
-
-					<!--<ControlTemplate.Triggers>
-					<Trigger Property="IsSelected" Value="True">
-						<Setter Property="IsHitTestVisible" Value="False" />
-					</Trigger>
-				</ControlTemplate.Triggers>-->
-
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>

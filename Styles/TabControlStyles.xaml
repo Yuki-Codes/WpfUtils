@@ -5,10 +5,14 @@
 	xmlns:extensions="clr-namespace:WpfUtils.MarkupExtensions"
 	xmlns:wpfUtils="clr-namespace:WpfUtils.Controls">
 
-	<ControlTemplate x:Key="WpfUtilsTabHighlightTemplate" TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
+	<ControlTemplate
+		x:Key="WpfUtilsTabHighlightTemplate"
+		TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
 		<Grid>
 
-			<Grid x:Name="PART_Highlight" IsHitTestVisible="False">
+			<Grid
+				x:Name="PART_Highlight"
+				IsHitTestVisible="False">
 				<Border
 					Margin="1,1,1,-10"
 					HorizontalAlignment="Stretch"
@@ -22,10 +26,14 @@
 		</Grid>
 	</ControlTemplate>
 
-	<ControlTemplate x:Key="WpfUtilsVerticalTabHighlightTemplate" TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
+	<ControlTemplate
+		x:Key="WpfUtilsVerticalTabHighlightTemplate"
+		TargetType="{x:Type wpfUtils:RadioButtonHighlighter}">
 		<Grid>
 
-			<Grid x:Name="PART_Highlight" IsHitTestVisible="False">
+			<Grid
+				x:Name="PART_Highlight"
+				IsHitTestVisible="False">
 				<Border
 					Margin="1,1,-10,1"
 					HorizontalAlignment="Stretch"
@@ -39,7 +47,9 @@
 		</Grid>
 	</ControlTemplate>
 
-	<Style x:Key="WpfUtilsTabControl" TargetType="{x:Type TabControl}">
+	<Style
+		x:Key="WpfUtilsTabControl"
+		TargetType="{x:Type TabControl}">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 
@@ -53,6 +63,7 @@
 						<Setter.Value>
 							<ControlTemplate TargetType="{x:Type TabItem}">
 								<RadioButton
+									Padding="4"
 									wpfUtils:RadioButtonHighlighter.UseGroupHighlight="True"
 									Background="Transparent"
 									Content="{TemplateBinding Header}"
@@ -81,7 +92,9 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type TabControl}">
-					<Border Background="{TemplateBinding Background}" Style="{DynamicResource WpfUtilsControlBorder}">
+					<Border
+						Background="{TemplateBinding Background}"
+						Style="{DynamicResource WpfUtilsControlBorder}">
 						<Grid
 							ClipToBounds="True"
 							KeyboardNavigation.TabNavigation="Local"
@@ -136,11 +149,13 @@
 
 
 
-	<Style x:Key="WpfUtilsSideTabs" TargetType="TabControl">
+	<Style
+		x:Key="WpfUtilsSideTabs"
+		TargetType="TabControl">
 		<Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
 		<Setter Property="BorderBrush" Value="Transparent" />
 		<Setter Property="BorderThickness" Value="0" />
-		<Setter Property="VerticalContentAlignment" Value="Top"/>
+		<Setter Property="VerticalContentAlignment" Value="Top" />
 
 		<Setter Property="ItemContainerStyle">
 			<Setter.Value>
@@ -149,17 +164,17 @@
 					<Setter Property="Foreground" Value="{DynamicResource ForegroundLightBrush}" />
 					<Setter Property="HorizontalContentAlignment" Value="Stretch" />
 					<Setter Property="Margin" Value="0" />
-					<Setter Property="MaxWidth" Value="48"/>
-					<Setter Property="MaxHeight" Value="48"/>
-					<Setter Property="Padding" Value="12"/>
+					<Setter Property="MaxWidth" Value="48" />
+					<Setter Property="MaxHeight" Value="48" />
+					<Setter Property="Padding" Value="12" />
 					<Setter Property="Template">
 						<Setter.Value>
 							<ControlTemplate TargetType="{x:Type TabItem}">
 								<RadioButton
 									Height="Auto"
+									Padding="{TemplateBinding Padding}"
 									wpfUtils:RadioButtonHighlighter.UseGroupHighlight="True"
 									Background="Transparent"
-									Padding="{TemplateBinding Padding}"
 									Content="{TemplateBinding Header}"
 									ContentTemplate="{TemplateBinding HeaderTemplate}"
 									IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}"
@@ -204,7 +219,9 @@
 								<ColumnDefinition />
 							</Grid.ColumnDefinitions>
 
-							<wpfUtils:RadioButtonHighlighter Orientation="Vertical" Template="{StaticResource WpfUtilsVerticalTabHighlightTemplate}">
+							<wpfUtils:RadioButtonHighlighter
+								Orientation="Vertical"
+								Template="{StaticResource WpfUtilsVerticalTabHighlightTemplate}">
 								<UniformGrid
 									Margin="0"
 									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
