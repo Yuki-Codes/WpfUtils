@@ -3,10 +3,12 @@
 using DependencyPropertyGenerator;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using WpfUtils.Extensions;
 
 [AttachedDependencyProperty<bool>("UseGroupHighlight")]
 [DependencyProperty<double>("Left")]
@@ -24,6 +26,7 @@ public partial class RadioButtonHighlighter : ContentControl
 	private readonly DoubleAnimation bottomAnimation;
 	private FrameworkElement? highlight;
 	private int currentIndex = 0;
+	private bool isLoading = true;
 
 	public RadioButtonHighlighter()
 	{
@@ -43,22 +46,21 @@ public partial class RadioButtonHighlighter : ContentControl
 		base.OnApplyTemplate();
 
 		this.highlight = this.GetTemplateChild("PART_Highlight") as FrameworkElement;
-
-		this.UpdateBounds();
+		this.Update();
 	}
 
 	protected void AddButton(RadioButton button)
 	{
 		this.radioButtons.Add(button);
 		button.Checked += this.OnButtonChecked;
-		this.UpdateBounds();
+		button.IsVisibleChanged += this.OnButtonVisibilityChanged;
+		this.Update();
 	}
 
 	protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
 	{
 		base.OnRenderSizeChanged(sizeInfo);
-
-		this.UpdateBounds();
+		this.Update();
 	}
 
 	static partial void OnUseGroupHighlightChanged(DependencyObject dependencyObject, bool newValue)
@@ -91,84 +93,58 @@ public partial class RadioButtonHighlighter : ContentControl
 
 	private void OnLoaded(object sender, RoutedEventArgs e)
 	{
-		this.UpdateBounds();
+		this.LoadDelay().Run();
+	}
+
+	private async Task LoadDelay()
+	{
+		await Task.Delay(250);
+		await this.MainThread();
+		this.isLoading = false;
+		this.Update();
 	}
 
 	private void OnUnloaded(object sender, RoutedEventArgs e)
 	{
+		this.isLoading = true;
 		this.radioButtons.Clear();
+	}
+
+	private void OnButtonVisibilityChanged(object sender, DependencyPropertyChangedEventArgs e)
+	{
+		if (this.isLoading)
+			return;
+
+		this.Update();
 	}
 
 	private void OnButtonChecked(object sender, RoutedEventArgs e)
 	{
-		this.UpdateBounds();
+		if (this.isLoading)
+			return;
 
-		if (sender is RadioButton button)
-		{
-			this.storyboard.Stop();
-
-			int fromIndex = this.currentIndex;
-			this.currentIndex = this.radioButtons.IndexOf(button);
-
-			if (!this.IsAncestorOf(button))
-				return;
-
-			GeneralTransform transform = button.TransformToAncestor(this);
-			Rect bounds = transform.TransformBounds(new(0, 0, button.ActualWidth, button.ActualHeight));
-
-			bool animate = this.IsVisible && this.IsLoaded;
-			if (animate)
-			{
-				if (fromIndex > this.currentIndex)
-				{
-					this.leftAnimation.AccelerationRatio = 0.1;
-					this.leftAnimation.DecelerationRatio = 0.5;
-					this.rightAnimation.AccelerationRatio = 0.5;
-					this.rightAnimation.DecelerationRatio = 0.1;
-
-					this.topAnimation.AccelerationRatio = 0.1;
-					this.topAnimation.DecelerationRatio = 0.5;
-					this.bottomAnimation.AccelerationRatio = 0.5;
-					this.bottomAnimation.DecelerationRatio = 0.1;
-				}
-				else
-				{
-					this.leftAnimation.AccelerationRatio = 0.5;
-					this.leftAnimation.DecelerationRatio = 0.1;
-					this.rightAnimation.AccelerationRatio = 0.1;
-					this.rightAnimation.DecelerationRatio = 0.5;
-
-					this.topAnimation.AccelerationRatio = 0.5;
-					this.topAnimation.DecelerationRatio = 0.1;
-					this.bottomAnimation.AccelerationRatio = 0.1;
-					this.bottomAnimation.DecelerationRatio = 0.5;
-				}
-
-				this.leftAnimation.To = bounds.Left;
-				this.rightAnimation.To = this.ActualWidth - bounds.Right;
-				this.topAnimation.To = bounds.Top;
-				this.bottomAnimation.To = this.ActualHeight - bounds.Bottom;
-				this.storyboard.Begin();
-			}
-			else
-			{
-				this.Left = bounds.Left;
-				this.Right = this.ActualWidth - bounds.Right;
-				this.Top = bounds.Top;
-				this.Bottom = this.ActualHeight - bounds.Bottom;
-			}
-		}
+		this.Update();
 	}
 
-	private void UpdateBounds()
+	private void Update()
 	{
-		if (this.highlight == null)
+		this.storyboard.Stop();
+
+		RadioButton? button = null;
+		foreach (RadioButton btn in this.radioButtons)
+		{
+			if (btn.IsChecked != true)
+				continue;
+
+			button = btn;
+			break;
+		}
+
+		if (button == null)
 			return;
 
-		if (this.currentIndex < 0 || this.currentIndex >= this.radioButtons.Count)
-			return;
-
-		RadioButton button = this.radioButtons[this.currentIndex];
+		int fromIndex = this.currentIndex;
+		this.currentIndex = this.radioButtons.IndexOf(button);
 
 		if (!this.IsAncestorOf(button))
 			return;
@@ -176,12 +152,47 @@ public partial class RadioButtonHighlighter : ContentControl
 		GeneralTransform transform = button.TransformToAncestor(this);
 		Rect bounds = transform.TransformBounds(new(0, 0, button.ActualWidth, button.ActualHeight));
 
-		Thickness margin = this.highlight.Margin;
-		margin.Left = bounds.Left;
-		margin.Right = this.ActualWidth - bounds.Right;
-		margin.Top = bounds.Top;
-		margin.Bottom = this.ActualHeight - bounds.Bottom;
-		this.highlight.Margin = margin;
+		bool animate = this.IsVisible && !this.isLoading;
+		if (animate)
+		{
+			if (fromIndex > this.currentIndex)
+			{
+				this.leftAnimation.AccelerationRatio = 0.1;
+				this.leftAnimation.DecelerationRatio = 0.5;
+				this.rightAnimation.AccelerationRatio = 0.5;
+				this.rightAnimation.DecelerationRatio = 0.1;
+
+				this.topAnimation.AccelerationRatio = 0.1;
+				this.topAnimation.DecelerationRatio = 0.5;
+				this.bottomAnimation.AccelerationRatio = 0.5;
+				this.bottomAnimation.DecelerationRatio = 0.1;
+			}
+			else
+			{
+				this.leftAnimation.AccelerationRatio = 0.5;
+				this.leftAnimation.DecelerationRatio = 0.1;
+				this.rightAnimation.AccelerationRatio = 0.1;
+				this.rightAnimation.DecelerationRatio = 0.5;
+
+				this.topAnimation.AccelerationRatio = 0.5;
+				this.topAnimation.DecelerationRatio = 0.1;
+				this.bottomAnimation.AccelerationRatio = 0.1;
+				this.bottomAnimation.DecelerationRatio = 0.5;
+			}
+
+			this.leftAnimation.To = bounds.Left;
+			this.rightAnimation.To = this.ActualWidth - bounds.Right;
+			this.topAnimation.To = bounds.Top;
+			this.bottomAnimation.To = this.ActualHeight - bounds.Bottom;
+			this.storyboard.Begin();
+		}
+		else
+		{
+			this.Left = bounds.Left;
+			this.Right = this.ActualWidth - bounds.Right;
+			this.Top = bounds.Top;
+			this.Bottom = this.ActualHeight - bounds.Bottom;
+		}
 	}
 
 	partial void OnLeftChanged(double newValue)
