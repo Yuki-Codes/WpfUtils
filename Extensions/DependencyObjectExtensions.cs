@@ -10,6 +10,9 @@ public static class DependencyObjectExtensions
 	{
 		DependencyObject parentObject;
 
+		if (child == null)
+			return null;
+
 		if (child is Visual)
 		{
 			parentObject = VisualTreeHelper.GetParent(child);
