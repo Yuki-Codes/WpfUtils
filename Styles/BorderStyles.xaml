@@ -64,5 +64,14 @@
 		<Setter Property="UseLayoutRounding" Value="True" />
 	</Style>
 
+	<Style x:Key="WpfUtilsBackgroundBorder" TargetType="{x:Type Border}">
+		<Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+		<Setter Property="CornerRadius" Value="{DynamicResource WpfUtilsBorderInnerCornerRadius}" />
+		<Setter Property="Margin" Value="0" />
+		<Setter Property="Padding" Value="3" />
+		<Setter Property="SnapsToDevicePixels" Value="True" />
+		<Setter Property="UseLayoutRounding" Value="True" />
+	</Style>
+
 
 </ResourceDictionary>
