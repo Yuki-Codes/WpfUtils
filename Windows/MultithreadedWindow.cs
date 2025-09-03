@@ -1,5 +1,6 @@
 ﻿namespace WpfUtils.Windows;
 using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,6 +11,13 @@ public class MultithreadedWindow : Window
 		where T : MultithreadedWindow
 	{
 		return await new WindowThread(name).Start(typeof(T)) as T;
+	}
+
+	protected override void OnClosing(CancelEventArgs e)
+	{
+		base.OnClosing(e);
+
+		this.Dispatcher.InvokeShutdown();
 	}
 
 	private class WindowThread(string name)
