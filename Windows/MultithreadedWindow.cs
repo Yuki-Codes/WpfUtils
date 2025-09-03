@@ -6,32 +6,18 @@ using System.Windows;
 
 public class MultithreadedWindow : Window
 {
-	public static async Task<T?> CreateInstanceAsync<T>()
+	public static async Task<T?> CreateInstanceAsync<T>(string name)
 		where T : MultithreadedWindow
 	{
-		return await new WindowThread().Start(typeof(T)) as T;
+		return await new WindowThread(name).Start(typeof(T)) as T;
 	}
 
-	private class WindowThread
+	private class WindowThread(string name)
 	{
 		private static readonly object CreateInstanceLock = new();
 
 		private Window? window;
 		private Type? windowType;
-
-		protected string Description
-		{
-			get
-			{
-				if (this.window != null)
-					return this.window.ToString();
-
-				if (this.windowType != null)
-					return this.windowType.ToString();
-
-				return "Unknown";
-			}
-		}
 
 		public async Task<Window?> Start(Type windowType)
 		{
@@ -52,13 +38,13 @@ public class MultithreadedWindow : Window
 				}
 
 				if (this.window == null)
-					Logging.Log.Error(null, $"Failed to create window {this.Description}");
+					Logging.Log.Error(null, $"Failed to create window {name}");
 
 				return this.window;
 			}
 			catch (Exception ex)
 			{
-				Logging.Log.Error(ex, $"Failed to create window {this.Description}");
+				Logging.Log.Error(ex, $"Failed to create window {name}");
 			}
 
 			return null;
@@ -69,15 +55,17 @@ public class MultithreadedWindow : Window
 			if (this.windowType == null)
 				throw new Exception("No panel type in thread");
 
+			Thread.CurrentThread.Name = $"Window {name}";
+
 			AppDomain.CurrentDomain.UnhandledException += (s, e) =>
 			{
 				Exception? ex = e.ExceptionObject as Exception;
-				Logging.Log.Error(ex, $"Unhandled Exception in domain: {this.Description}");
+				Logging.Log.Error(ex, $"Unhandled Exception in domain: {name}");
 			};
 
 			System.Windows.Threading.Dispatcher.CurrentDispatcher.UnhandledException += (s, e) =>
 			{
-				Logging.Log.Error(e.Exception, $"Unhandled Exception in window: {this.Description}");
+				Logging.Log.Error(e.Exception, $"Unhandled Exception in window: {name}");
 				e.Handled = true;
 			};
 
@@ -92,11 +80,11 @@ public class MultithreadedWindow : Window
 			}
 			catch (Exception ex)
 			{
-				Logging.Log.Error(ex, $"Exception during window construction: {this.Description}");
+				Logging.Log.Error(ex, $"Exception during window construction: {name}");
 				return;
 			}
 
-			Logging.Log.Message($"Window: {this.Description} has started");
+			Logging.Log.Message($"Window: {name} has started");
 
 			bool run = true;
 			while (run)
@@ -108,11 +96,11 @@ public class MultithreadedWindow : Window
 				}
 				catch (Exception ex)
 				{
-					Logging.Log.Error(ex, $"Error in {this.Description} thread");
+					Logging.Log.Error(ex, $"Error in {name} thread");
 				}
 			}
 
-			Logging.Log.Message($"Window: {this.Description} has shutdown");
+			Logging.Log.Message($"Window: {name} has shutdown");
 		}
 	}
 }
